@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.qdh.data-v-61166c3f {
+  width: 100%;
+  height: 387rpx;
+}
+.qdc .today.data-v-61166c3f {
+  width: 160%;
+  margin-left: -30%;
+  overflow: hidden;
+  height: 400rpx;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  display: flex;
+  justify-content: center;
+}
+.qdc .today .body.data-v-61166c3f {
+  width: 100vw;
+}
+.qdc .main.data-v-61166c3f {
+  margin-top: -150rpx;
+}
+.bf2.data-v-61166c3f {
+  background: #FF5012;
+}
+.cf2.data-v-61166c3f {
+  color: #FF5012;
+}
+.goxd.data-v-61166c3f {
+  width: 160rpx;
+  height: 58rpx;
+  border: 1rpx solid #FF5012;
+  border-radius: 28px;
+}
+.qddays.data-v-61166c3f,
+.qddayw.data-v-61166c3f {
+  width: 67rpx;
+  height: 84rpx;
+  border-radius: 8rpx;
+  margin-left: 30rpx;
+}
+.qddays.data-v-61166c3f:first-child {
+  margin-left: 0;
+}
+.icw.data-v-61166c3f {
+  width: 34rpx;
+  height: 24rpx;
+}
+.dhe.data-v-61166c3f {
+  height: 40rpx;
+}
+.w630.data-v-61166c3f {
+  width: 630rpx;
+}
+.p24.data-v-61166c3f {
+  padding: 30rpx 0 40rpx 0;
+}
+.goodsc.data-v-61166c3f {
+  width: 305rpx;
+}
+.goodsimg.data-v-61166c3f {
+  width: 305rpx;
+  height: 305rpx;
+}
+.boxs.data-v-61166c3f {
+  border-radius: 8rpx;
+  padding: 0 7rpx;
+}
+.sbtn.data-v-61166c3f {
+  width: 200rpx;
+  height: 74rpx;
+  background: #fff;
+  border-radius: 47px;
+}
+.ysbtn.data-v-61166c3f {
+  background: linear-gradient(-90deg, #ff5217 0%, #ff772d 100%);
+  opacity: 0.5;
+  color: #FFDBCC;
+}
+.cfc.data-v-61166c3f {
+  color: #FF481C;
+}
+.p050.data-v-61166c3f {
+  padding: 5rpx 0;
+}
+.data-v-61166c3f .uni-calendar-item--isDay {
+  background-color: #fbf0f0 !important;
+  color: #000 !important;
+  opacity: 1 !important;
+  border-radius: 20rpx;
+}
+.data-v-61166c3f .uni-calendar-item--checked {
+  background-color: #fbf0f0 !important;
+  color: #000 !important;
+  opacity: 1 !important;
+  border-radius: 20rpx;
+}
+.data-v-61166c3f .uni-calendar-item--isDay-text {
+  color: #000 !important;
+}
+.data-v-61166c3f .uni-calendar-item--extra {
+  color: #e43d33 !important;
+}
+

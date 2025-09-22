@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/template/share"],{"0e21":function(t,n,e){"use strict";var o=e("7ec6"),u=e.n(o);u.a},"0ec0":function(t,n,e){"use strict";e.d(n,"b",(function(){return o})),e.d(n,"c",(function(){return u})),e.d(n,"a",(function(){}));var o=function(){var t=this,n=t.$createElement;t._self._c;t._isMounted||(t.e0=function(n){t.show=!1})},u=[]},5910:function(t,n,e){"use strict";e.r(n);var o=e("b882"),u=e.n(o);for(var c in o)["default"].indexOf(c)<0&&function(t){e.d(n,t,(function(){return o[t]}))}(c);n["default"]=u.a},"7ec6":function(t,n,e){},b882:function(t,n,e){"use strict";(function(t){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;e("8f59");var o={name:"mg-share",components:{mgPopup:function(){e.e("components/common/popup").then(function(){return resolve(e("c396"))}.bind(null,e)).catch(e.oe)}},props:{co:{type:Object,default:function(){return{}}},value:{type:Boolean,default:!1},wxs:{type:String,default:"1"},hbs:{type:Boolean,default:!1},link:{type:String,default:""},ptype:String},data:function(){return{}},computed:{show:{get:function(){return this.value},set:function(t){this.$emit("input",t)}}},watch:{},methods:{share:function(){this.show=!1,t.showModal({title:"提示",content:"点击右上角分享",showCancel:!1,confirmText:"我知道了"})},fzlj:function(){this.util.fz(this.link||location.href)},hbfx:function(){this.$emit("hb")}}};n.default=o}).call(this,e("df3c")["default"])},dbf7:function(t,n,e){"use strict";e.r(n);var o=e("0ec0"),u=e("5910");for(var c in u)["default"].indexOf(c)<0&&function(t){e.d(n,t,(function(){return u[t]}))}(c);e("0e21");var i=e("828b"),f=Object(i["a"])(u["default"],o["b"],o["c"],!1,null,"3c747a52",null,!1,o["a"],void 0);n["default"]=f.exports}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/template/share-create-component',
+    {
+        'components/template/share-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('df3c')['createComponent'](__webpack_require__("dbf7"))
+        })
+    },
+    [['components/template/share-create-component']]
+]);

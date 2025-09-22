@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "mg-input": "/components/form/my-input",
+    "mg-radio": "/components/form/my-radio",
+    "mg-cell": "/components/common/my-cell",
+    "bk-b": "/components/common/block-b",
+    "sq-btn": "/components/common/sq-btn",
+    "mg-rtext": "/components/common/functionCmp/rich-text"
+  }
+}

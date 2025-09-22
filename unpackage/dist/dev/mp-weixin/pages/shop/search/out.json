@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "actions": "/components/goods/actions/actions",
+    "product-modal": "/components/goods/product-modal/product-modal",
+    "jzz": "/components/common/jzz"
+  }
+}

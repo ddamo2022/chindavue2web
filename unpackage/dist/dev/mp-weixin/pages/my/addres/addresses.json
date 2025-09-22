@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "addres",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "list-cell": "/components/list-cell/list-cell",
+    "bk-b": "/components/common/block-b",
+    "i-default": "/components/common/default",
+    "sq-btn": "/components/common/sq-btn"
+  }
+}

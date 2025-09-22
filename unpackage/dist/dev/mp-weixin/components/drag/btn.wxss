@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.swiper-v.data-v-454bdabc {
+  width: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.swiper-imgv.data-v-454bdabc {
+  margin-top: 15rpx;
+  width: 88rpx;
+  height: 88rpx;
+}
+.swiper-tv.data-v-454bdabc {
+  font-size: 24rpx;
+  width: 100%;
+  text-align: center;
+}
+.swiper-fbt.data-v-454bdabc {
+  top: 10rpx;
+  right: 10rpx;
+  padding: 0rpx 10rpx;
+  font-size: 18rpx;
+}
+.dbbtnc.data-v-454bdabc {
+  height: 100rpx;
+}
+.smc.data-v-454bdabc {
+  padding: 100rpx 40rpx 30rpx;
+}
+.smimg.data-v-454bdabc {
+  width: 190rpx;
+  height: 190rpx;
+}
+.foot-btn.data-v-454bdabc {
+  height: 84rpx;
+  line-height: 84rpx;
+}
+

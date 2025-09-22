@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "i-default": "/components/common/default",
+    "jzz": "/components/common/jzz"
+  }
+}

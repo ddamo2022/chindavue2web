@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.orderC.data-v-62f2bee0 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 20rpx;
+}
+.orderC .bT.data-v-62f2bee0 {
+  height: 100rpx;
+}
+.orderC .bT .balanceIcon.data-v-62f2bee0 {
+  width: 28rpx;
+  height: 28rpx;
+}
+.orderC .orderB.data-v-62f2bee0 {
+  height: 100rpx;
+  width: 100%;
+}
+.orderC .orderB .spilt.data-v-62f2bee0 {
+  height: 0;
+  width: 24rpx;
+  border: 2rpx dashed #333;
+}
+.orderC .orderB .scf.data-v-62f2bee0 {
+  border: 2rpx dashed #cfcfcf;
+}
+.orderC .orderB .cf5.data-v-62f2bee0 {
+  color: #cfcfcf;
+}
+.orderC .orderB .stepIcon.data-v-62f2bee0 {
+  width: 50rpx;
+  height: 50rpx;
+}
+.swiper.data-v-62f2bee0 {
+  height: 100rpx;
+}
+

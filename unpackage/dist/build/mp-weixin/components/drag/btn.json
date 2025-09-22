@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mg-modal": "/components/common/modal",
+    "bk-b": "/components/common/block-b",
+    "mg-cell": "/components/common/my-cell",
+    "mg-img": "/components/common/my-img"
+  }
+}

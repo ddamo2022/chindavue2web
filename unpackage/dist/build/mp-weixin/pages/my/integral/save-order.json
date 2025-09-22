@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "check-save": "/pages/my/integral/components/check-save",
+    "self-fetch-addres": "/pages/my/integral/components/self-fetch-addres",
+    "take-out-addres": "/pages/my/integral/components/take-out-addres",
+    "load": "/components/common/load"
+  }
+}

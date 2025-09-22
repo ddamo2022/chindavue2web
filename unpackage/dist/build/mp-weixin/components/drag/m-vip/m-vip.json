@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "vip-style1": "/components/drag/m-vip/components/s-h1",
+    "vip-style2": "/components/drag/m-vip/components/s-h2",
+    "my-property": "/components/drag/m-vip/components/my-property",
+    "my-order": "/components/drag/m-vip/components/my-order"
+  }
+}

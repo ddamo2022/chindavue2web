@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.style.data-v-3c8f021f {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-right: -20rpx;
+  padding: 20rpx 20rpx 0 20rpx;
+}
+.style .sItem.data-v-3c8f021f {
+  width: 50%;
+  min-width: 300rpx;
+  margin-bottom: 20rpx;
+  padding-right: 20rpx;
+}
+.style .sItem .sItemBox.data-v-3c8f021f {
+  border-radius: 20rpx;
+  position: relative;
+  width: 100%;
+  height: 290rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.style .sItem .sItemBox .sTit.data-v-3c8f021f {
+  color: #333;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+.style .sItem .sItemBox .sLevel.data-v-3c8f021f {
+  margin: 6rpx auto;
+  color: #000;
+  font-weight: 700;
+  font-size: 40rpx;
+}
+.style .sItem .sItemBox .sText.data-v-3c8f021f {
+  color: #666;
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.style .sItem .sItemBox .sBottom.data-v-3c8f021f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.style .sItem .sItemBox .sBottom .sView.data-v-3c8f021f {
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}
+.style .sItem .sItemBox .sBottom .sIcon .iconfont.data-v-3c8f021f {
+  color: #000;
+  font-size: 72rpx;
+}
+.style .sItem .sItemBox .sBottom .sImg.data-v-3c8f021f {
+  width: 64rpx;
+  height: 64rpx;
+  margin: 0 auto 20rpx auto;
+}
+.style .ml3.data-v-3c8f021f {
+  margin-left: 6rpx;
+}
+

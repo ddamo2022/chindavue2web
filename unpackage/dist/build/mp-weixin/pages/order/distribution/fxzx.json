@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/third/uni-nav-bar",
+    "mg-img": "/components/common/my-img",
+    "mg-cell": "/components/common/my-cell",
+    "mg-modal": "/components/common/modal",
+    "mg-share": "/components/template/share"
+  }
+}

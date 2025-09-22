@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.tui-list-cell.data-v-2c2a1168 {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.tui-radius.data-v-2c2a1168 {
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.tui-cell-hover.data-v-2c2a1168 {
+  background: #f7f7f9 !important;
+}
+.tui-list-cell.data-v-2c2a1168::after {
+  content: '';
+  position: absolute;
+  border-bottom: 1rpx solid rgba(200, 199, 204, 0.3);
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.tui-line-left.data-v-2c2a1168::after {
+  left: 30rpx !important;
+}
+.tui-line-right.data-v-2c2a1168::after {
+  right: 30rpx !important;
+}
+.tui-cell-last.data-v-2c2a1168::after {
+  border-bottom: 0 !important;
+}
+.arrow.data-v-2c2a1168 {
+  width: 20rpx;
+  height: 32rpx;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 10rpx;
+}
+

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.shopInfo.data-v-7bf125ab {
+  border-radius: 0 0 35rpx 35rpx;
+  width: 100%;
+  position: absolute;
+  background: #fff;
+  padding-bottom: 40rpx;
+}
+.shopInfo .label.data-v-7bf125ab {
+  font-size: 20rpx;
+  border-radius: 8rpx;
+  padding: 2rpx 16rpx;
+  border: 2rpx solid #343434;
+}
+.shopInfo .basec.data-v-7bf125ab {
+  color: #343434;
+}
+.shopInfo .djsq.data-v-7bf125ab {
+  right: 30rpx;
+  top: 30rpx;
+}
+.mt40.data-v-7bf125ab {
+  margin-top: 40rpx;
+}
+

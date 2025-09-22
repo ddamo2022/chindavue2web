@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.bT.data-v-372ba820 {
+  height: 50px;
+}
+.bT .balanceIcon.data-v-372ba820 {
+  width: 14px;
+  height: 14px;
+}
+.bB.data-v-372ba820 {
+  height: 60px;
+}
+.bB .bBtn.data-v-372ba820 {
+  width: 90px;
+  height: 32px;
+  border-radius: 32px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wordtxt.data-v-372ba820 {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+

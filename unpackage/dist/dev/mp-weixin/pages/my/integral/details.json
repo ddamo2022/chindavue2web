@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "mg-rtext": "/components/common/functionCmp/rich-text",
+    "load": "/components/common/load"
+  }
+}

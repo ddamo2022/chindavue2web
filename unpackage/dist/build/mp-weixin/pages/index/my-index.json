@@ -1,0 +1,31 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "language": "/components/language/language",
+    "uni-nav-bar": "/components/third/uni-nav-bar",
+    "my-copy": "/pages/index/my/my-copy",
+    "m-vip": "/components/drag/m-vip/m-vip",
+    "pic-lunbo-by": "/components/drag/picLunbo",
+    "m-info": "/components/drag/m-info/m-info",
+    "h-zone": "/components/drag/hot",
+    "p-img": "/components/drag/pictures",
+    "b-group": "/components/drag/btn",
+    "l-wire": "/components/drag/lines",
+    "b-tit": "/components/drag/titles",
+    "m-gic": "/components/drag/margic",
+    "m-bale": "/components/drag/myBalance",
+    "a-tion": "/components/drag/attenTion",
+    "l-nav": "/components/drag/listNav",
+    "load": "/components/common/load",
+    "sq-btn": "/components/common/sq-btn",
+    "m-ad": "/components/drag/ad",
+    "s-notice": "/components/drag/notice",
+    "s-point": "/components/drag/setPoint",
+    "m-ability": "/components/drag/myAbility",
+    "user-privacy": "/components/user/userPrivacy",
+    "custom-video": "/components/drag/custom-video",
+    "roll-package": "/components/drag/rollPackage",
+    "bind-mobile": "/components/common/bind-mobile",
+    "editbirthday": "/components/common/editbirthday"
+  }
+}

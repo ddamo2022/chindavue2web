@@ -1,0 +1,1 @@
+<view hidden="{{!(xxshow)}}" class="posi-f closec data-v-7dccf9d6" style="{{'bottom:'+(bt+'rpx')+';'}}"><view class="h100 f32 cf f-c-c data-v-7dccf9d6"><view class="t-c data-v-7dccf9d6">{{$root.m0}}</view><view class="f28 data-v-7dccf9d6">{{$root.m1+"："+yysj}}</view></view></view>

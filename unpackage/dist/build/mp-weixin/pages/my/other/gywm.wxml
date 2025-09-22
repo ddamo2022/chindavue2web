@@ -1,0 +1,1 @@
+<block wx:if="{{content}}"><view class="bf p23 mt20 data-v-0310fdce"><mg-rtext vue-id="36a492b6-1" type="2" content="{{content}}" class="data-v-0310fdce" bind:__l="__l"></mg-rtext></view></block>

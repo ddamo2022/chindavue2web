@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.rollDl.data-v-6f6afd3a {
+  padding-bottom: 160rpx;
+}
+.rollDl .rollbb.data-v-6f6afd3a {
+  border-bottom: 2rpx dashed #e0d1d1;
+  margin: 0 40rpx;
+}
+.rollDl .logo.data-v-6f6afd3a {
+  width: 100%;
+  height: 400rpx;
+}
+.rollDl .ts.data-v-6f6afd3a {
+  color: #FF3131;
+}
+.rollDl .ts .times.data-v-6f6afd3a {
+  margin: 0 10rpx;
+  padding: 0 6rpx;
+  border: 2rpx solid #FF3131;
+}
+.rollDl .foot-btn.data-v-6f6afd3a {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+}
+.rollDl .bgf.data-v-6f6afd3a {
+  z-index: 10;
+}
+

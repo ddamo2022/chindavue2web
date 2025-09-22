@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "n-lo": "/components/drag/m-info/components/n-lo",
+    "s-y1": "/components/drag/m-info/components/s-y1",
+    "s-y2": "/components/drag/m-info/components/s-y2",
+    "s-y3": "/components/drag/m-info/components/s-y3",
+    "s-y4": "/components/drag/m-info/components/s-y4",
+    "s-y5": "/components/drag/m-info/components/s-y5",
+    "s-y6": "/components/drag/m-info/components/s-y6",
+    "s-y7": "/components/drag/m-info/components/s-y7",
+    "s-y8": "/components/drag/m-info/components/s-y8"
+  }
+}

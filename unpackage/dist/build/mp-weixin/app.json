@@ -1,0 +1,156 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/index/goods",
+    "pages/index/order-index",
+    "pages/index/my-index",
+    "pages/index/card"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/shop",
+      "pages": [
+        "select/index",
+        "select/select",
+        "select/couponList",
+        "out/pay-order",
+        "out/bz",
+        "out/sjjs",
+        "search/out",
+        "activity",
+        "seeGoods",
+        "in/dmf",
+        "in/goods",
+        "in/pay-order",
+        "in/detail",
+        "good-dl"
+      ]
+    },
+    {
+      "root": "pages/my",
+      "pages": [
+        "addres/addresses",
+        "addres/add",
+        "other/bzzx",
+        "other/gywm",
+        "other/gywmtwo",
+        "other/zkf",
+        "user/mr-code",
+        "vip/wkk",
+        "integral/shop-index",
+        "integral/my-integral",
+        "integral/integral-record",
+        "integral/order-dl",
+        "integral/details",
+        "integral/save-order",
+        "signin/index",
+        "lineup/pdqh",
+        "lineup/pdxq"
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        "detail",
+        "promptpay",
+        "refunddl",
+        "other/custom",
+        "invitation/yqyl",
+        "invitation/yqgz",
+        "invitation/yqjl",
+        "invitation/yqhb",
+        "distribution/fxzx",
+        "distribution/sqfx",
+        "distribution/syxq",
+        "distribution/wdfs",
+        "distribution/fxdd",
+        "distribution/tx",
+        "distribution/txmx",
+        "distribution/fxhb",
+        "storage/detail",
+        "storage/list"
+      ]
+    },
+    {
+      "root": "pages/other",
+      "pages": [
+        "chooseAvatar",
+        "activate",
+        "web-view",
+        "login",
+        "register",
+        "forgetting",
+        "recharge/index",
+        "recharge/yemx",
+        "coupon/center",
+        "coupon/coupondl",
+        "coupon/couponList",
+        "coupon/dhm",
+        "coupon/hisCoupon",
+        "coupon/givedl",
+        "giftCard/cardList",
+        "giftCard/dhCard",
+        "giftCard/givedl",
+        "giftCard/hisCard",
+        "giftCard/carddl",
+        "setPoint/pointdl",
+        "wifi",
+        "rollPackage/rolldl",
+        "reserve/index",
+        "reserve/ljyy",
+        "reserve/yyxq",
+        "payVip/index",
+        "payVip/gmls",
+        "payVip/cardxq",
+        "payVip/ckxq",
+        "pwCoupon/index"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#ffffff",
+    "selectedColor": "#ffffff",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "home"
+      },
+      {
+        "pagePath": "pages/index/goods",
+        "text": "goods"
+      },
+      {
+        "pagePath": "pages/index/order-index",
+        "text": "order"
+      },
+      {
+        "pagePath": "pages/index/my-index",
+        "text": "my"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation",
+    "chooseAddress"
+  ],
+  "lazyCodeLoading": "requiredComponents",
+  "__usePrivacyCheck__": true,
+  "usingComponents": {
+    "mg-img": "/components/common/my-img",
+    "tab-bar": "/components/common/tabbar"
+  }
+}

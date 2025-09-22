@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "order-list": "/pages/other/reserve/components/order-list",
+    "sq-btn": "/components/common/sq-btn",
+    "i-default": "/components/common/default",
+    "pay": "/components/pay/pay"
+  }
+}

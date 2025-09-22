@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.countC.data-v-69e135cc {
+  width: 140rpx;
+  height: 60rpx;
+  bottom: 80rpx;
+  right: 40rpx;
+  border-radius: 55rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.tcgg.data-v-69e135cc {
+  width: 70%;
+}
+.tcbtm.data-v-69e135cc {
+  margin-top: 50rpx;
+}
+.iconx2.data-v-69e135cc {
+  font-size: 68rpx;
+}
+

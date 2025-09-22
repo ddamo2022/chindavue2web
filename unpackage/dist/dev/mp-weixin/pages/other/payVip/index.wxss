@@ -1,0 +1,80 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.cont .tq.data-v-795f59f0 {
+  padding: 10rpx 30rpx;
+}
+.cont .tq .qy .logo.data-v-795f59f0 {
+  width: 90rpx;
+  height: 90rpx;
+}
+.foot-btn.data-v-795f59f0 {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 60rpx;
+}
+.jdt.data-v-795f59f0 {
+  padding: 20rpx 60rpx;
+}
+.jdt .le.data-v-795f59f0 {
+  width: 140rpx;
+}
+.jdt .yan.data-v-795f59f0 {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background: #D8D8D8;
+  z-index: 10;
+}
+.jdt .line.data-v-795f59f0 {
+  top: 48rpx;
+  left: 20rpx;
+  width: 100%;
+  height: 6rpx;
+  background: #D8D8D8;
+}
+.myVip .line.data-v-795f59f0 {
+  width: 2rpx;
+  height: 20rpx;
+  background: #D8D8D8;
+  margin: 0 20rpx;
+}
+.imgc.data-v-795f59f0 {
+  height: 360rpx;
+}
+.bot.data-v-795f59f0 {
+  bottom: 30rpx;
+  right: 30rpx;
+  width: 100%;
+}
+.bot .obtn.data-v-795f59f0 {
+  width: 180rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+}
+.goods.data-v-795f59f0 {
+  width: 25%;
+}
+.goods .gwh.data-v-795f59f0 {
+  width: 95%;
+  height: 180rpx;
+  margin: 0 auto;
+}
+.zhed.data-v-795f59f0 {
+  border-radius: 8rpx;
+  width: 220rpx;
+  height: 70rpx;
+  border: none;
+}
+

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.coupon .dy.data-v-ebf15e76 {
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(221, 221, 221, 0.8);
+}
+.coupon .dy .btn.data-v-ebf15e76 {
+  width: 130rpx;
+  height: 44rpx;
+}
+.coupon .cimg.data-v-ebf15e76 {
+  width: 640rpx;
+  height: 460rpx;
+}
+.coupon .cimg .ctxt.data-v-ebf15e76 {
+  color: #F63D2C;
+  width: 480rpx;
+}
+.coupon .xzhy.data-v-ebf15e76 {
+  width: 400rpx;
+  height: 90rpx;
+}
+.coupon .bline.data-v-ebf15e76 {
+  height: 26rpx;
+  width: 2rpx;
+  background: #ddd;
+}
+

@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.noLogin.data-v-221d5d6a {
+  border-radius: 8rpx;
+  background: #f7f8fa;
+}
+.noLogin .nCon.data-v-221d5d6a {
+  height: 156rpx;
+  border-radius: 20rpx;
+  background: #fff;
+}
+.noLogin .nCon .logo.data-v-221d5d6a {
+  width: 100rpx;
+  height: 100rpx;
+}
+.noLogin .nCon .cTxt.data-v-221d5d6a {
+  display: flex;
+  flex-direction: column;
+}
+.noLogin .nCon .cTxt .cH1.data-v-221d5d6a {
+  line-height: 40rpx;
+  font-weight: 600;
+}
+.noLogin .nCon .cTxt .cH2.data-v-221d5d6a {
+  line-height: 30rpx;
+  font-size: 24rpx;
+}
+.noLogin .nCon .cBtn.data-v-221d5d6a {
+  width: 160rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  border-radius: 60rpx;
+}
+.fl_center.data-v-221d5d6a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

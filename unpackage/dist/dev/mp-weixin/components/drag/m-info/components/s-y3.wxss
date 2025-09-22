@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.style.data-v-3c64bb9c {
+  min-height: 160rpx;
+  padding: 30rpx 40rpx;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+}
+.style .usImg.data-v-3c64bb9c {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.style .sTop.data-v-3c64bb9c {
+  border-bottom: 2rpx solid #eee;
+  padding-bottom: 20rpx;
+  margin-bottom: 40rpx;
+}
+.style .sPoint.data-v-3c64bb9c {
+  margin-bottom: 4rpx;
+}
+.style .sPoint .sName.data-v-3c64bb9c {
+  display: inline-block;
+  color: #383838;
+  font-weight: 700;
+  font-size: 30rpx;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+.style .sPoint .sLevel.data-v-3c64bb9c {
+  background: rgba(207, 170, 67, 0.6);
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  display: inline-block;
+  margin-left: 10rpx;
+  padding: 4rpx 8rpx;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 1.2;
+  vertical-align: middle;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 4rpx;
+}
+.style .RIcon.data-v-3c64bb9c {
+  width: 100rpx;
+  height: 100rpx;
+  background: rgba(207, 170, 67, 0.6);
+  border-radius: 50%;
+}
+.style .RIcon .usrImg.data-v-3c64bb9c {
+  width: 44rpx;
+  height: 44rpx;
+  margin: 0 auto 4rpx;
+}
+.style .RIcon .rTxt.data-v-3c64bb9c {
+  color: #8a8a8a;
+}
+

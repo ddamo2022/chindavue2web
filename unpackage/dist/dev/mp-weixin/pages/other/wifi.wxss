@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.cbg.data-v-290c29ed {
+  height: 500rpx;
+}
+.yuan.data-v-290c29ed {
+  width: 120rpx;
+  height: 120rpx;
+  background: #56F06E;
+  border: 2rpx solid #fff;
+}
+.wfb.data-v-290c29ed {
+  margin: -160rpx 40rpx 0 40rpx;
+  z-index: 10;
+}
+.wf .iconWifi.data-v-290c29ed {
+  font-size: 140rpx;
+  color: #09C260;
+}
+.c0960.data-v-290c29ed {
+  color: #09C260;
+}
+.foot-btn.data-v-290c29ed {
+  background: #09C260;
+  width: 500rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 60rpx;
+}
+

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.buytype.data-v-10193061 {
+  height: 62rpx;
+  padding: 0 6rpx;
+  border-radius: 45rpx;
+  border: 0.5px solid #f6f6f6;
+  background: #f6f6f6;
+}
+.buytype .type.data-v-10193061 {
+  min-width: 90rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.buytype .atype.data-v-10193061 {
+  color: #fff;
+  background: #B11E23;
+}
+

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "cu-keyboard": "/components/cu-keyboard/cu-keyboard",
+    "sq-btn": "/components/common/sq-btn",
+    "notes": "/pages/shop/in/components/notes",
+    "user-privacy": "/components/user/userPrivacy",
+    "s-coupon": "/pages/shop/in/dmf/sCoupon",
+    "discounts": "/pages/shop/in/dmf/discounts"
+  }
+}

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.w-bg.data-v-e6fee41a {
+  height: 57px;
+  border-radius: 60rpx;
+  background: #323232;
+}
+.left.data-v-e6fee41a {
+  display: flex;
+  align-items: center;
+}
+.left .detail-action.data-v-e6fee41a {
+  height: 100%;
+  border-radius: 100%;
+  background-color: #ffffff;
+  background: transparent;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90rpx;
+  height: 90rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+.left .detail-action .shopbag-btn.data-v-e6fee41a {
+  width: 70rpx;
+  height: 70rpx;
+}
+.left .detail-action .badge.data-v-e6fee41a {
+  font-size: 20rpx;
+  color: #000;
+  line-height: 1rem;
+  padding: 2rpx 6rpx;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 38rpx;
+  height: 38rpx;
+}
+.left .price.data-v-e6fee41a {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+}
+.right.data-v-e6fee41a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 !important;
+  font-size: 32rpx;
+}
+.rnormal.data-v-e6fee41a {
+  padding: 0 20rpx;
+  font-size: 26rpx;
+}
+.ac.data-v-e6fee41a {
+  height: 34px;
+  background: #FFF7E2;
+  border-radius: 20rpx;
+  z-index: -1;
+}
+

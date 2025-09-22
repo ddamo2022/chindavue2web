@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.remain.data-v-372265a2 {
+  padding-bottom: 50rpx;
+}
+.jdbody.data-v-372265a2 {
+  margin-top: -80rpx;
+}
+.topc.data-v-372265a2 {
+  padding: 45rpx 48rpx 40rpx;
+  width: 100%;
+  height: 500rpx;
+}
+.topc .rwimg.data-v-372265a2 {
+  width: 100%;
+  height: 500rpx;
+  top: 0;
+  bottom: 0rpx;
+}
+.bodyPoint.data-v-372265a2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.bodyPoint .pLeft.data-v-372265a2 {
+  flex: 1;
+}
+.bodyPoint .pLeft .pItem.data-v-372265a2 {
+  display: inline-block;
+  width: 96rpx;
+  height: 96rpx;
+  margin: 30rpx 15rpx 20rpx 15rpx;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+.opo.data-v-372265a2 {
+  opacity: 0.2;
+}
+

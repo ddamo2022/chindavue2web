@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "jzz": "/components/common/jzz",
+    "load": "/components/common/load",
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "i-default": "/components/common/default",
+    "goods-list": "/pages/my/integral/goods-list"
+  }
+}

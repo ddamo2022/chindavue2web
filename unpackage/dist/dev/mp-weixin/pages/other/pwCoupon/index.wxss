@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.cmain.data-v-56fed2b0 {
+  padding-bottom: 30rpx;
+  min-height: 100vh;
+}
+.main.data-v-56fed2b0 {
+  padding-bottom: 80rpx;
+}
+.main .klbb.data-v-56fed2b0 {
+  border: 2rpx solid #ddd;
+  width: 90%;
+  height: 100rpx;
+}
+.main .klbt.data-v-56fed2b0 {
+  width: 90%;
+}
+.topc.data-v-56fed2b0 {
+  width: 100%;
+  min-height: 560rpx;
+}
+.topc .rwimg.data-v-56fed2b0 {
+  width: 100%;
+  top: 0;
+  bottom: 0rpx;
+}
+

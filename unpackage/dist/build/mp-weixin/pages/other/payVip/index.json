@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "ls-swiper": "/components/third/ls-swiper/payVip",
+    "tcyhq": "/components/template/tcyhq",
+    "jzz": "/components/common/jzz",
+    "i-default": "/components/common/default"
+  }
+}

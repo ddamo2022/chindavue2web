@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "jzz": "/components/common/jzz",
+    "i-default": "/components/common/default"
+  }
+}

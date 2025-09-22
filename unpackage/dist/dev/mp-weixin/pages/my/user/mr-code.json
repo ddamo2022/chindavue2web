@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "code",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/third/uni-nav-bar"
+  }
+}

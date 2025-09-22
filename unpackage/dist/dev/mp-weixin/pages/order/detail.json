@@ -1,0 +1,18 @@
+{
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "detail",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "dl-btn": "/pages/order/components/o-btn",
+    "dl-discount": "/pages/order/components/o-discount",
+    "dl-info": "/pages/order/components/o-info",
+    "pic-lunbo-by": "/components/drag/picLunbo",
+    "consumption-gift": "/components/goods/consumption-gift",
+    "waiter": "/components/pay-order/waiter",
+    "dl-in-btn": "/pages/order/components/o-in-btn",
+    "dl-out-btn": "/pages/order/components/o-out-btn",
+    "uni-nav-bar": "/components/third/uni-nav-bar"
+  }
+}

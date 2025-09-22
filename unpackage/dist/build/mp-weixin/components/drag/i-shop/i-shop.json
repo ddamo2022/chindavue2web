@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "s-h1": "/components/drag/i-shop/components/s-h1",
+    "s-h2": "/components/drag/i-shop/components/s-h2",
+    "s-h3": "/components/drag/i-shop/components/s-h3"
+  }
+}

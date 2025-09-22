@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.actions.data-v-d0461bf2 {
+  margin-right: 12rpx;
+  display: flex;
+  align-items: center;
+}
+.actions .add-btn.data-v-d0461bf2,
+.actions .minus-btn.data-v-d0461bf2 {
+  width: 44rpx;
+  height: 44rpx;
+}
+.actions .number.data-v-d0461bf2 {
+  width: 44rpx;
+  height: 44rpx;
+  margin: 0 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36rpx;
+  font-weight: normal;
+}
+.actions .materials-box.data-v-d0461bf2 {
+  position: relative;
+  display: flex;
+}
+.actions .materials-box .materials-btn.data-v-d0461bf2 {
+  border-radius: 50rem !important;
+}
+.actions .materials-box .number-badge.data-v-d0461bf2 {
+  z-index: 4;
+  position: absolute;
+  right: -16rpx;
+  top: -14rpx;
+  background-color: #ffffff;
+  border-radius: 100%;
+  width: 1.1rem;
+  height: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.actions .materials-box .number-badge .number.data-v-d0461bf2 {
+  font-size: 20rpx;
+  flex-shrink: 0;
+  color: #ffffff;
+  width: 0.9rem;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  text-align: center;
+  border-radius: 100%;
+}
+.jh.data-v-d0461bf2 {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+}
+.jhb.data-v-d0461bf2 {
+  border: 2rpx solid #ddd;
+}
+

@@ -1,0 +1,1 @@
+<view class="acty p3 bf data-v-6a5ca940"><block wx:if="{{type==1}}"><block class="data-v-6a5ca940"><view class="f38 wei c0 data-v-6a5ca940">适用商品</view><view class="flex data-v-6a5ca940"><view class="mt20 c6 elm bf bs20 f-g-0 data-v-6a5ca940"><view class="img data-v-6a5ca940"></view><view class="p2 t-o-e data-v-6a5ca940">测试套餐</view></view></view></block></block></view>

@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "add",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "list-cell": "/components/list-cell/list-cell",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "mg-radio": "/components/form/my-radio",
+    "bk-b": "/components/common/block-b",
+    "mg-map": "/components/form/my-map"
+  }
+}

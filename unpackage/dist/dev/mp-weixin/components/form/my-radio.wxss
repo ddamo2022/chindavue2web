@@ -1,0 +1,11 @@
+
+.mr-r1i.data-v-6f2369da {
+	padding: 30rpx 40rpx 30rpx 0;
+}
+.yuan.data-v-6f2369da{
+	width: 40rpx;
+	height: 40rpx;
+	border-radius: 50%;
+	border: 2rpx solid #565656;
+}
+

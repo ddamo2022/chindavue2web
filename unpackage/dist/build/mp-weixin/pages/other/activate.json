@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "user",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "sq-btn": "/components/common/sq-btn",
+    "mg-radio": "/components/form/my-radio"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ls-swiper": "/components/third/ls-swiper/index",
+    "tcyhq": "/components/template/tcyhq"
+  }
+}

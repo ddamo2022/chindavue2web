@@ -1,0 +1,54 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.sBody.data-v-0bd94052 {
+  padding: 20rpx;
+}
+.sBody .sHead.data-v-0bd94052 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sBody .sHead .sHeadTit.data-v-0bd94052 {
+  color: #121212;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+.sBody .sHead .sHeadBtn.data-v-0bd94052 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 194rpx;
+  height: 62rpx;
+  padding: 0 6rpx;
+  background: #f9f9f9;
+  border: 2rpx solid #eee;
+  border-radius: 30rpx;
+}
+.sBody .sHead .sHeadBtn .btn.data-v-0bd94052 {
+  width: 86rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center;
+  border-radius: 23rpx;
+}
+.sBody .sHead .sHeadBtn .btnText.data-v-0bd94052 {
+  color: #fff;
+  background: #333;
+}
+.sBody .sText.data-v-0bd94052 {
+  color: #999;
+  font-weight: 500;
+  font-size: 24rpx;
+}
+

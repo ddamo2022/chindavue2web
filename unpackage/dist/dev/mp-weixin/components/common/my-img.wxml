@@ -1,0 +1,1 @@
+<image class="{{['data-v-6f94589b','wh',cname]}}" style="{{$root.s0}}" mode="{{m}}" src="{{$root.m0}}" show-menu-by-longpress="{{true}}" data-event-opts="{{[['tap',[['$emit',['click']]]]]}}" bindtap="__e"></image>

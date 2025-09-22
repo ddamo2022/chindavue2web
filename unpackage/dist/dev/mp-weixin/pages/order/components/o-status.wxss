@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.order-box.data-v-1042b77f {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  flex-shrink: 0;
+}
+.order-box .images image.data-v-1042b77f {
+  flex-shrink: 0;
+  width: 150rpx;
+  height: 120rpx;
+}
+.order-box .line.data-v-1042b77f {
+  border: 2rpx dashed #DAD8D9;
+  margin: 0 20rpx;
+  width: 80rpx;
+}
+.order-box .cg.data-v-1042b77f {
+  color: #DAD8D9;
+}
+

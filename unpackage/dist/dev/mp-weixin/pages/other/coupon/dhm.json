@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "sq-btn": "/components/common/sq-btn"
+  }
+}

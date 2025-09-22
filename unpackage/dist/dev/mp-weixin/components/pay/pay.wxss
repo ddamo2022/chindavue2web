@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.tit.data-v-3d1f12d6 {
+  background: #F2F0F3;
+  height: 100rpx;
+}
+.tit .cIcon.data-v-3d1f12d6 {
+  top: 26rpx;
+  right: 30rpx;
+}
+.weui-cell.data-v-3d1f12d6 {
+  padding: 40rpx 35rpx 40rpx;
+  border-radius: 20rpx;
+}
+.weui-cell-hover.data-v-3d1f12d6 {
+  border: 2rpx solid #F98811;
+  background: linear-gradient(180deg, #FBF4E2, #F9EED8);
+  color: #333;
+}
+.weui-cell.data-v-3d1f12d6:last-child:after {
+  display: block;
+}
+.weui-cell__bd.data-v-3d1f12d6 {
+  flex: 1;
+}
+.weui-cell.data-v-3d1f12d6:after {
+  left: 112rpx;
+}
+.hdimg.data-v-3d1f12d6 {
+  width: 49rpx;
+  height: 49rpx;
+  margin-right: 30rpx;
+}
+.right30.data-v-3d1f12d6::after {
+  right: 30rpx;
+}
+.foot-btn.data-v-3d1f12d6 {
+  background: #007A53;
+}
+.yuan.data-v-3d1f12d6 {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ccc;
+  z-index: 10;
+}
+

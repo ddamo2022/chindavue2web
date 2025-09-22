@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "my-img": "/components/common/my-img",
+    "my-modal": "/components/common/modal",
+    "my-input": "/components/form/my-input",
+    "my-copy": "/pages/index/my/my-copy"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "jzz": "/components/common/jzz",
+    "i-default": "/components/common/default",
+    "my-coupon": "/components/common/my-coupon",
+    "sq-btn": "/components/common/sq-btn",
+    "user-privacy": "/components/user/userPrivacy"
+  }
+}

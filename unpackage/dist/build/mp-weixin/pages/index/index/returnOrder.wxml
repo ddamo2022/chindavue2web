@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['open',['$event']]]]]}}" class="flex rollBag data-v-aa51765c" bindtap="__e"><view class="tool f-c f22 bf data-v-aa51765c"><view class="mr10 data-v-aa51765c"></view><view class="data-v-aa51765c">{{$root.m0}}</view></view></view>

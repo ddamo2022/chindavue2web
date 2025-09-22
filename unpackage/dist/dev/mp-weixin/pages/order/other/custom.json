@@ -1,0 +1,29 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/third/uni-nav-bar",
+    "pic-lunbo-by": "/components/drag/picLunbo",
+    "m-info": "/components/drag/m-info/m-info",
+    "h-zone": "/components/drag/hot",
+    "p-img": "/components/drag/pictures",
+    "i-shop": "/components/drag/i-shop/i-shop",
+    "s-notice": "/components/drag/notice",
+    "b-group": "/components/drag/btn",
+    "l-wire": "/components/drag/lines",
+    "b-tit": "/components/drag/titles",
+    "m-gic": "/components/drag/margic",
+    "m-bale": "/components/drag/myBalance",
+    "o-status": "/components/drag/o-status",
+    "g-product": "/components/drag/product/product",
+    "a-tion": "/components/drag/attenTion",
+    "l-nav": "/components/drag/listNav",
+    "load": "/components/common/load",
+    "sq-btn": "/components/common/sq-btn",
+    "i-ad": "/components/drag/ad",
+    "n-order": "/components/drag/onOrder",
+    "s-point": "/components/drag/setPoint",
+    "tcyhq": "/components/template/tcyhq",
+    "user-privacy": "/components/user/userPrivacy",
+    "custom-video": "/components/drag/custom-video"
+  }
+}

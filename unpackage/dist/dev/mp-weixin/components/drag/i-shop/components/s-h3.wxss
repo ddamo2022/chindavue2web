@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.sBody.data-v-0ba0e24e {
+  padding: 20rpx;
+}
+.sBody .sCon.data-v-0ba0e24e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sBody .sCon .sConL.data-v-0ba0e24e {
+  display: flex;
+  align-items: center;
+}
+.sBody .sCon .sConR.data-v-0ba0e24e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

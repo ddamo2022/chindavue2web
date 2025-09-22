@@ -1,0 +1,27 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/third/uni-nav-bar",
+    "change-shop": "/pages/shop/in/goods/gtop/change-shop",
+    "no-login": "/pages/shop/in/goods/gtop/login",
+    "shop-notice": "/components/goods/shop-notice",
+    "actions": "/components/goods/actions/actions",
+    "product-modal": "/components/goods/product-modal/product-modal",
+    "cart-bar": "/components/goods/cartbar/cartbar",
+    "business-status": "/pages/index/goods/business",
+    "load": "/components/common/load",
+    "sq-btn": "/components/common/sq-btn",
+    "i-default": "/components/common/default",
+    "g-ad": "/components/drag/ad",
+    "pic-lunbo-by": "/components/drag/picLunbo",
+    "tcyhq": "/components/template/tcyhq",
+    "g-table": "/pages/shop/in/goods/g-table",
+    "class-ts1": "/components/goods/template/class-ts1",
+    "class-ts2": "/components/goods/template/class-ts2",
+    "class-ts3": "/components/goods/template/class-ts3",
+    "class-ts4": "/components/goods/template/class-ts4",
+    "user-privacy": "/components/user/userPrivacy",
+    "mg-popup": "/components/common/popup",
+    "bind-mobile": "/components/common/bind-mobile"
+  }
+}

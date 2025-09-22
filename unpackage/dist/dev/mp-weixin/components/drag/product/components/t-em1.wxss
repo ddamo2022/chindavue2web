@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.mItemBg.data-v-57c44e32 {
+  line-height: 1;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.mItemBg .mItemImg.data-v-57c44e32 {
+  height: 700rpx;
+  border-radius: 16rpx;
+}
+.mItemBg .mItemBody.data-v-57c44e32 {
+  padding: 40rpx;
+}
+.mItemBg .mItemBody .mTit.data-v-57c44e32 {
+  overflow: hidden;
+  color: #333;
+  font-weight: 700;
+  font-size: 30rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.mItemBg .mItemBody .mTxt.data-v-57c44e32 {
+  height: 24rpx;
+  margin: 14px 0;
+  margin-left: -36rpx;
+  overflow: hidden;
+  color: #999;
+  font-weight: 500;
+  font-size: 22rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.mItemBg .mItemBody .mPrice.data-v-57c44e32 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60rpx;
+  color: #333;
+  font-weight: 700;
+  font-size: 36rpx;
+}
+.mItemBg .mItemBody .mPrice .mAdd.data-v-57c44e32 {
+  width: 60rpx;
+}
+.mItemBg .mItemBody .mPrice .mInv.data-v-57c44e32 {
+  display: inline-block;
+  margin-left: 12px;
+  color: #a3a3a3;
+  font-weight: 500;
+  font-size: 22rpx;
+  text-decoration: line-through;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+

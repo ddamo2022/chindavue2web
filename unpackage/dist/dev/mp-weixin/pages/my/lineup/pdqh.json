@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "mg-input": "/components/form/my-input",
+    "w-picker": "/components/form/w-picker",
+    "book-text": "/components/common/functionCmp/rich-text",
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "mg-cell": "/components/common/my-cell",
+    "order-list": "/pages/my/lineup/components/order-list",
+    "sq-btn": "/components/common/sq-btn",
+    "i-default": "/components/common/default"
+  }
+}

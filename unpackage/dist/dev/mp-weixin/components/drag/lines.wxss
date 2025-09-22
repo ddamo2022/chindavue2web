@@ -1,0 +1,24 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.lines.data-v-59606042 {
+  padding: 40rpx 0;
+}
+.lines .one.data-v-59606042 {
+  border-top: 1px solid #eee;
+}
+.lines .two.data-v-59606042 {
+  border-width: 1px 0;
+  border-style: solid;
+}
+

@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['callWaiter',['$event']]]]]}}" class="waiter f-c-c b-s data-v-2ec1d179" bindtap="__e"><view class="data-v-2ec1d179"><text class="iconfont icon-xiaoxi f40 data-v-2ec1d179" style="{{'color:'+(tColor)+';'}}"></text></view><view class="f24 data-v-2ec1d179">{{$root.m0}}</view></view>

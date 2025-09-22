@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.ysxy.data-v-150a71b4 {
+  padding: 60rpx;
+  width: 80%;
+  background: #fff;
+}
+.privacyTit.data-v-150a71b4 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+}
+.privacyDesc.data-v-150a71b4 {
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+.privacyDesc text.data-v-150a71b4 {
+  color: #333;
+}
+.privacyPost.data-v-150a71b4 {
+  overflow: hidden;
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.privacyPost .refuseBtn.data-v-150a71b4,
+.privacyPost .agreeBtn.data-v-150a71b4 {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  background: #a9a9a9;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+

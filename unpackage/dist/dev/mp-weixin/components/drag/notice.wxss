@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.ggbt.data-v-235070a8 {
+  padding: 1rpx 12rpx;
+  font-size: 28rpx;
+  border-radius: 7rpx;
+}
+.limg.data-v-235070a8 {
+  width: 48rpx;
+  height: 48rpx;
+}
+.ngr.data-v-235070a8 {
+  padding: 10rpx 0rpx;
+  height: 80rpx;
+}
+

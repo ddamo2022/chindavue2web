@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "order",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "order-list": "/pages/index/order/order-list",
+    "load": "/components/common/load",
+    "i-default": "/components/common/default"
+  }
+}

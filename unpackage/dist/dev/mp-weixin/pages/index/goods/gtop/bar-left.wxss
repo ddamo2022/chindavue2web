@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.tool.data-v-3a123b03 {
+  height: 70rpx;
+  border: 1px solid #eaeaea;
+}
+.search.data-v-3a123b03 {
+  border: 1px solid #eaeaea;
+  height: 70rpx;
+  width: 70rpx;
+}
+.icImg.data-v-3a123b03 {
+  width: 50rpx;
+  height: 50rpx;
+}
+

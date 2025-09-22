@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "jzz": "/components/common/jzz",
+    "g-nav": "/components/drag/product/components/g-nav",
+    "t-em1": "/components/drag/product/components/t-em1",
+    "t-em2": "/components/drag/product/components/t-em2",
+    "t-em3": "/components/drag/product/components/t-em3",
+    "t-em4": "/components/drag/product/components/t-em4",
+    "t-em5": "/components/drag/product/components/t-em5"
+  }
+}

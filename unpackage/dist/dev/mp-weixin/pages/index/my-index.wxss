@@ -1,0 +1,68 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.db.data-v-1a50a7c7 {
+  position: absolute;
+  bottom: 190rpx;
+  width: 100%;
+}
+.pb230.data-v-1a50a7c7 {
+  padding-bottom: 230rpx;
+}
+.privacyTit.data-v-1a50a7c7 {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+}
+.privacyDesc.data-v-1a50a7c7 {
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+.privacyDesc text.data-v-1a50a7c7 {
+  color: #333;
+}
+.privacyPost.data-v-1a50a7c7 {
+  overflow: hidden;
+  margin-top: 60rpx;
+}
+.privacyPost .refuseBtn.data-v-1a50a7c7,
+.privacyPost .agreeBtn.data-v-1a50a7c7 {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  background: #a9a9a9;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.noagreeBtn.data-v-1a50a7c7 {
+  margin-top: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #fff;
+  background: #a9a9a9;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+

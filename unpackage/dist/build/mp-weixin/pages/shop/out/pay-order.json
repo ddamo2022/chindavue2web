@@ -1,0 +1,20 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "payorder",
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "self-fetch-addres": "/pages/shop/out/components/self-fetch-addres",
+    "take-out-addres": "/pages/shop/out/components/take-out-addres",
+    "check-shop": "/pages/shop/out/components/check-shop",
+    "check-time": "/pages/shop/out/components/check-time",
+    "check-goods": "/components/pay-order/check-goods",
+    "discounts": "/components/pay-order/discounts",
+    "check-notes": "/components/pay-order/check-notes",
+    "consumption-gift": "/components/goods/consumption-gift",
+    "check-save": "/pages/shop/out/components/check-save",
+    "tcyhq": "/components/template/tcyhq",
+    "check-point": "/components/pay-order/check-point",
+    "business-status": "/pages/index/goods/business"
+  }
+}

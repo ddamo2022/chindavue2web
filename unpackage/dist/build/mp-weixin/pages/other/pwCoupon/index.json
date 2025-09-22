@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "sq-btn": "/components/common/sq-btn",
+    "mg-rtext": "/components/common/functionCmp/rich-text",
+    "tcyhq": "/components/template/tcyhq"
+  }
+}

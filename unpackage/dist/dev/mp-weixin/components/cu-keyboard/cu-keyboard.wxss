@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+@font-face {
+  font-family: 'zm';
+  /* project id 2442084 */
+  src: url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.eot");
+  src: url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.eot?#iefix") format("embedded-opentype"), url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.woff2") format("woff2"), url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.woff") format("woff"), url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.ttf") format("truetype"), url("https://at.alicdn.com/t/font_2442084_o72ps3802ih.svg#zm") format("svg");
+}
+.zm.data-v-f120b96c {
+  font-family: "zm" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.iconbackspace.data-v-f120b96c:before {
+  content: "\ef11";
+}
+.flex.data-v-f120b96c {
+  display: flex;
+}
+.flex-wrap.data-v-f120b96c {
+  flex-wrap: wrap;
+}
+.cu-btn.data-v-f120b96c {
+  position: relative;
+  border: 0rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  height: 64rpx;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  overflow: visible;
+  margin-left: initial;
+  -webkit-transform: translate(0rpx, 0rpx);
+          transform: translate(0rpx, 0rpx);
+  margin-right: initial;
+}
+.cu-btn.data-v-f120b96c::after {
+  display: none;
+}
+.text-xl.data-v-f120b96c {
+  font-size: 36rpx;
+  font-weight: bold;
+  font-family: 'microsoft-yahei';
+}
+.text-black.data-v-f120b96c {
+  color: #333;
+}
+.active.data-v-f120b96c {
+  background-color: #ddd !important;
+  -webkit-transform: translate(2rpx, 2rpx);
+          transform: translate(2rpx, 2rpx);
+}
+.key-container.data-v-f120b96c {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.key-container .key-content.data-v-f120b96c {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  background-color: #F7F7F7;
+}
+.key-box.data-v-f120b96c {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10rpx 10rpx 0;
+}
+.key-box .key-left.data-v-f120b96c {
+  width: 75%;
+}
+.key-box .key-right.data-v-f120b96c {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+.key-box .key-bottom.data-v-f120b96c {
+  width: 100%;
+  display: flex;
+}
+.del.data-v-f120b96c {
+  width: 100%;
+}
+.btn-box.data-v-f120b96c {
+  width: 33.33%;
+  padding: 0 10rpx 10rpx 0;
+  box-sizing: border-box;
+}
+.btn-zero.data-v-f120b96c {
+  width: 66.66%;
+  padding: 0 10rpx 10rpx 0;
+  box-sizing: border-box;
+}
+.btn-point.data-v-f120b96c {
+  width: 33.33%;
+  padding: 0 10rpx 10rpx 0;
+  box-sizing: border-box;
+}
+.key-right.data-v-f120b96c {
+  flex-shrink: 0;
+}
+.key-btn.data-v-f120b96c {
+  background-color: #fff;
+  width: 100%;
+  height: 90rpx;
+}
+.confirm.data-v-f120b96c {
+  width: 100%;
+  flex: 1;
+  padding: 10rpx 0 10rpx 0;
+  box-sizing: border-box;
+}
+.confirm button.data-v-f120b96c {
+  width: 100%;
+  height: 100%;
+}
+.confirm button .confirm-text.data-v-f120b96c {
+  display: block;
+  font-size: 32rpx;
+}
+

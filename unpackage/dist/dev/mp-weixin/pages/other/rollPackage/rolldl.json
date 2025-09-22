@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "my-coupon": "/components/common/my-coupon",
+    "sq-btn": "/components/common/sq-btn"
+  }
+}

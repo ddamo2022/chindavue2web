@@ -1,0 +1,26 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-nav-bar": "/components/third/uni-nav-bar",
+    "bar-left": "/pages/index/goods/gtop/bar-left",
+    "change-shop": "/pages/index/goods/gtop/change-shop",
+    "shop-notice": "/components/goods/shop-notice",
+    "actions": "/components/goods/actions/actions",
+    "product-modal": "/components/goods/product-modal/product-modal",
+    "cart-bar": "/components/goods/cartbar/cartbar",
+    "cart-popup": "/components/goods/cart-popup/cart-popup",
+    "business-status": "/pages/index/goods/business",
+    "load": "/components/common/load",
+    "sq-btn": "/components/common/sq-btn",
+    "i-default": "/components/common/default",
+    "g-ad": "/components/drag/ad",
+    "pic-lunbo-by": "/components/drag/picLunbo",
+    "tcyhq": "/components/template/tcyhq",
+    "class-ts1": "/components/goods/template/class-ts1",
+    "class-ts2": "/components/goods/template/class-ts2",
+    "class-ts3": "/components/goods/template/class-ts3",
+    "class-ts4": "/components/goods/template/class-ts4",
+    "roll-bag": "/pages/index/goods/rollBag/rollBag",
+    "roll-popup": "/pages/index/goods/rollBag/rollPopup"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "my-cell": "/components/common/my-cell",
+    "jzz": "/components/common/jzz"
+  }
+}

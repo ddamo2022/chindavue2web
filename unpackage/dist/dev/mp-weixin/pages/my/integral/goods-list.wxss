@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.jfgb.data-v-7dfd1d64 {
+  padding: 12rpx 20rpx;
+}
+.bf2.data-v-7dfd1d64 {
+  background: #FF5012;
+}
+.goodsc.data-v-7dfd1d64 {
+  width: 330rpx;
+}
+.goodsimg.data-v-7dfd1d64 {
+  width: 330rpx;
+  height: 330rpx;
+}
+.hot.data-v-7dfd1d64 {
+  top: 0;
+  right: 0;
+  background: #E85757;
+  padding: 4rpx;
+  border-radius: 6rpx;
+}
+

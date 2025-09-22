@@ -1,0 +1,31 @@
+
+.navtf {
+	/* border-radius: 50%; */
+	border-top-left-radius: 50%; 
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 0; 
+	border-bottom-left-radius: 0; 
+	background: #fff;
+	height: 140rpx;
+	width: 140rpx;
+	margin-bottom: 30rpx;
+	border-top: 1px solid rgba(0,0,0,0.05);
+}
+.nav-tf-icon {
+	border-radius: 50%;
+	width: 110rpx !important;
+	height: 110rpx !important;
+	margin-bottom: 20rpx;
+}
+.xf{
+	left: 10rpx;
+	margin: 30rpx;
+	width: 90%;
+	border-radius: 60rpx;
+	box-shadow: 0rpx 8rpx 20rpx 0rpx rgba(0, 0, 0, 0.4);
+}
+.xf .navbar-icon {
+	width: 42rpx;
+	height: 42rpx;
+}
+

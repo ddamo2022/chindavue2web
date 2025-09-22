@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "jzz": "/components/common/jzz",
+    "mg-img": "/components/common/my-img"
+  }
+}

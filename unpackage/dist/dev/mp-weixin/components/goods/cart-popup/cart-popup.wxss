@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.cart-popup.data-v-06d981aa {
+  background-color: #ffffff;
+  margin-bottom: 150rpx;
+  padding-bottom: 130rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  position: relative;
+}
+.header.data-v-06d981aa {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid rgba(200, 199, 204, 0.6);
+  font-size: 24rpx;
+  color: #999;
+}
+.header .order-type.data-v-06d981aa {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #343434;
+}
+.header .order-type .extra.data-v-06d981aa {
+  margin-right: 10rpx;
+  border: 2rpx solid #007A53;
+  font-size: 18rpx;
+  padding: 2rpx 10rpx;
+  color: #007A53;
+  margin-left: 10rpx;
+}
+.header .delete-btn.data-v-06d981aa {
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 10rpx;
+}
+.content.data-v-06d981aa {
+  max-height: calc(100vh - 600rpx);
+}
+.content .wrapper.data-v-06d981aa {
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx;
+}
+.content .list.data-v-06d981aa {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+.content .list .item.data-v-06d981aa {
+  display: flex;
+  align-items: stretch;
+  padding: 30rpx 0;
+  position: relative;
+}
+.content .list .item .left.data-v-06d981aa {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+}
+.content .list .item .left .image.data-v-06d981aa {
+  width: 120rpx;
+  height: 120rpx;
+}
+.content .list .item .right.data-v-06d981aa {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #343434;
+}
+.content .list .item .right .name-and-materials.data-v-06d981aa {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20rpx;
+}
+.content .list .item .right .name-and-materials .name.data-v-06d981aa {
+  font-weight: bold;
+}
+.content .list .item .right .name-and-materials .materials.data-v-06d981aa {
+  font-size: 24rpx;
+  color: #999;
+}
+.content .list .item .right .price-and-actions.data-v-06d981aa {
+  display: flex;
+  justify-content: space-between;
+}
+.content .list .item .right .price-and-actions .price.data-v-06d981aa {
+  color: #666;
+}
+.ac.data-v-06d981aa {
+  height: 34px;
+  background: #FFF7E2;
+  border-radius: 20rpx;
+}
+

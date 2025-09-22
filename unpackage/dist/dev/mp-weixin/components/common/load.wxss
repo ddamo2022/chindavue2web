@@ -1,0 +1,65 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+@-webkit-keyframes backOpacity-data-v-b9c208c2 {
+0% {
+    opacity: 0;
+}
+25% {
+    opacity: .2;
+}
+50% {
+    opacity: 0.5;
+}
+75% {
+    opacity: .2;
+}
+100% {
+    opacity: 0;
+}
+}
+@keyframes backOpacity-data-v-b9c208c2 {
+0% {
+    opacity: 0;
+}
+25% {
+    opacity: .2;
+}
+50% {
+    opacity: 0.5;
+}
+75% {
+    opacity: .2;
+}
+100% {
+    opacity: 0;
+}
+}
+.animation_opactiy.data-v-b9c208c2 {
+  -webkit-animation: backOpacity-data-v-b9c208c2 1s ease-in-out infinite;
+          animation: backOpacity-data-v-b9c208c2 1s ease-in-out infinite;
+}
+.jzzc.data-v-b9c208c2 {
+  width: 300rpx;
+  height: 300rpx;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+.weui-loading.data-v-b9c208c2 {
+  width: 80rpx;
+  height: 80rpx;
+}
+

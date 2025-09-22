@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "mg-img": "/components/common/my-img",
+    "mg-agree": "/components/form/my-agree",
+    "mg-rtext": "/components/common/functionCmp/rich-text",
+    "sq-btn": "/components/common/sq-btn"
+  }
+}

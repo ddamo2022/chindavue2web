@@ -1,0 +1,125 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.setPoint .el.data-v-ea1b51c4 {
+  padding: 60rpx 0;
+}
+.setPoint .desc.data-v-ea1b51c4 {
+  font-size: 24rpx;
+}
+.setPoint .tit.data-v-ea1b51c4 {
+  padding: 30rpx 20rpx;
+  -webkit-column-gap: 16rpx;
+          column-gap: 16rpx;
+  font-size: 26rpx;
+}
+.setPoint .body.data-v-ea1b51c4 {
+  margin: 0 0 24rpx 0;
+}
+.setPoint .body .bodyPoint.data-v-ea1b51c4 {
+  display: flex;
+  align-items: center;
+}
+.setPoint .body .bodyPoint .pLeft.data-v-ea1b51c4 {
+  flex: 1;
+  height: 60rpx;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.setPoint .body .bodyPoint .pLeft .pItem.data-v-ea1b51c4 {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 0 4rpx;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+}
+.setPoint .body .bodyPoint .pRight.data-v-ea1b51c4 {
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 34rpx;
+  display: flex;
+  margin-right: 16rpx;
+  align-items: baseline;
+}
+.setPoint .body .bodyPoint .pRight .rightNum.data-v-ea1b51c4 {
+  font-size: 60rpx;
+  font-weight: 700;
+}
+.setPoint .body .bodyFoot.data-v-ea1b51c4 {
+  margin-top: 16rpx;
+  margin-left: 20rpx;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  color: #999;
+}
+.setPoint .style2.data-v-ea1b51c4 {
+  background: #f5f5f5;
+  border-radius: 16rpx;
+}
+.setPoint .style2 .sIcon.data-v-ea1b51c4 {
+  width: 100rpx;
+  height: 100rpx;
+  background: #eaf1d0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.setPoint .style2 .pRight.data-v-ea1b51c4 {
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 34rpx;
+  display: flex;
+  margin-right: 16rpx;
+  align-items: baseline;
+}
+.setPoint .style2 .pRight .rightNum.data-v-ea1b51c4 {
+  font-size: 60rpx;
+  font-weight: 700;
+}
+.setPoint .style2 .bBtn.data-v-ea1b51c4 {
+  width: 160rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  color: #fff;
+}
+.setPoint .style2 .bodyFoot.data-v-ea1b51c4 {
+  margin-top: 16rpx;
+  margin-left: 20rpx;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  color: #999;
+}
+.setPoint .style2 .bodyFoot .fNum.data-v-ea1b51c4 {
+  margin: 0 20rpx;
+}
+.setPoint .style2 .sTip .el-progress.data-v-ea1b51c4 {
+  width: 200rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+  position: relative;
+  line-height: 1;
+}
+.setPoint .opo.data-v-ea1b51c4 {
+  opacity: 0.2;
+}
+

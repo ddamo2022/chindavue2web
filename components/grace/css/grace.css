@@ -1,0 +1,100 @@
+
+
+/* 页面主体结构 */
+.gui-body{width:750rpx;}
+
+/* 去除图片空白 */
+.gui-img-in{font-size:0;}
+
+/* #ifndef APP-NVUE */
+.gui-flex{display:flex;}
+.gui-border-box{box-sizing:border-box;}
+.gui-body{width:750rpx; box-sizing:border-box;}
+/* #endif */
+
+
+/* flex 布局 */
+.gui-rows{flex-direction:row;}
+.gui-row{flex-direction:row;}
+.gui-columns{flex-direction:column;}
+.gui-column{flex-direction:column;}
+.gui-wrap{flex-direction:row; flex-wrap:wrap;}
+.gui-nowrap{flex-direction:row; flex-wrap:nowrap;}
+.gui-space-around{justify-content:space-around;}
+.gui-space-between{justify-content:space-between;}
+.gui-justify-content-start{justify-content:flex-start;}
+.gui-justify-content-center{justify-content:center;}
+.gui-justify-content-end{justify-content:flex-end;}
+.gui-align-items-start{align-items:flex-start;}
+.gui-align-items-center{align-items:center;}
+.gui-align-items-end{align-items:flex-end;}
+.gui-flex1{flex:1;}
+
+/* 文本对齐 */
+.gui-text-left{text-align:left;}
+.gui-text-center{text-align:center;}
+.gui-text-right{text-align:right;}
+.gui-ellipsis{overflow:hidden;}
+/* #ifndef APP-NVUE */
+.gui-ellipsis{white-space:nowrap; text-overflow:ellipsis;}
+.gui-block-text{display:block;}
+/* #endif */
+
+/* 文本修饰 */
+.gui-bold{font-weight:bold;}
+.gui-line-through{text-decoration:line-through;}
+.gui-underline{text-decoration:underline;}
+.gui-italic{font-style:italic;}
+
+/* 边框 */
+/* #ifdef APP-NVUE */
+.gui-border{border-style:solid; border-width:1rpx; border-color:#F1F2F3;}
+.gui-border-l{border-left-style:solid; border-left-width:1rpx; border-left-color:#F1F2F3;}
+.gui-border-r{border-right-style:solid; border-right-width:1rpx; border-right-color:#F1F2F3;}
+.gui-border-t{border-top-style:solid; border-top-width:1rpx; border-top-color:#F1F2F3;}
+.gui-border-b{border-bottom-style:solid; border-bottom-width:1rpx; border-bottom-color:#F1F2F3;}
+.gui-noborder{border-right-width:0; border-top-width:0; border-left-width:0; border-bottom-width:0;}
+/* #endif */
+/* #ifndef APP-NVUE */
+.gui-border{border:1rpx solid #F1F2F3;}
+.gui-border-l{border-left:1rpx solid #F1F2F3;}
+.gui-border-r{border-right:1rpx solid #F1F2F3;}
+.gui-border-t{border-top:1rpx solid #F1F2F3;}
+.gui-border-b{border-bottom:1rpx solid #F1F2F3;}
+.gui-noborder{border:none !important;}
+/* #endif */
+
+/* 自定义头部导航相关 */
+.gui-header-content{width:100rpx; flex:1; text-align:center; margin-left:10rpx; margin-right:168rpx;}
+.gui-headr-back{width:148rpx; line-height:40px; font-size:32rpx;}
+
+
+/* 列表样式 */
+/* #ifndef APP-NVUE */
+.gui-list-items, .gui-list-title{display:flex;}
+.gui-list-icon, .gui-list-title-text, .gui-list-title-desc, .gui-list-body-desc, .gui-list-arrow-right{display:block;}
+/* #endif */
+.gui-list-items{flex-direction:row; flex-wrap:nowrap; align-items:center; justify-content:center;}
+.gui-list-icon{width:80rpx; height:80rpx; line-height:80rpx; text-align:center; font-size:44rpx;}
+.gui-list-image{width:80rpx; height:80rpx; border-radius:80rpx; font-size:0;}
+.gui-list-body{padding:25rpx 0; margin-left:25rpx; width:100rpx; flex:1;}
+.gui-list-title{flex-direction:row; flex-wrap:nowrap; justify-content:space-between; align-items:center;}
+.gui-list-one-line{line-height:60rpx !important;}
+.gui-list-title-text{font-size:26rpx; line-height:44rpx;}
+.gui-list-title-desc{font-size:22rpx; line-height:30rpx;}
+.gui-list-body-desc{font-size:22rpx; line-height:32rpx;}
+.gui-list-arrow-right{width:50rpx; height:50rpx; line-height:50rpx; font-size:30rpx; text-align:right;}
+
+
+/* 滚动区域 */
+/* #ifndef APP-NVUE */
+.gui-scroll-x{display:flex; white-space:nowrap;}
+.gui-scroll-x-item, .gui-scroll-x-items{display:inline-flex; vertical-align:top;}
+/* #endif */
+/* #ifdef MP-ALIPAY */
+.gui-scroll-x{display:block; white-space:nowrap;}
+/* #endif */
+.gui-scroll-x{width:750rpx; flex-direction:row; overflow:hidden;}
+
+
+.gui-padding{padding-left:30rpx; padding-right:30rpx;}

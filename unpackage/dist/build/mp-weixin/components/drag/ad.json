@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mg-popup": "/components/common/popup",
+    "pic-lunbo-by": "/components/drag/picLunbo"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "dl-btn": "/pages/shop/in/components/o-btn",
+    "dl-discount": "/pages/shop/in/components/o-discount",
+    "dl-info": "/pages/shop/in/components/o-info",
+    "consumption-gift": "/components/goods/consumption-gift",
+    "check-order": "/pages/shop/in/components/check-order"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "mg-cell": "/components/common/my-cell"
+  }
+}

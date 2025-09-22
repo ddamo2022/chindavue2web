@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "gui-refresh": "/components/grace/components/gui-refresh",
+    "gui-loadmore": "/components/grace/components/gui-loadmore",
+    "gui-page-loading": "/components/grace/components/gui-page-loading"
+  }
+}

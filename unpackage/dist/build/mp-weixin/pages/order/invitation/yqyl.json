@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "mg-share": "/components/template/share",
+    "sq-btn": "/components/common/sq-btn",
+    "tcyhq": "/components/template/tcyhq",
+    "uni-nav-bar": "/components/third/uni-nav-bar"
+  }
+}

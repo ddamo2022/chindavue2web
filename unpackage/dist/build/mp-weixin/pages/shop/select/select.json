@@ -1,0 +1,8 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "city",
+  "usingComponents": {
+    "gui-page": "/components/grace/components/gui-page"
+  }
+}

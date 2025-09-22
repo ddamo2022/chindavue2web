@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-calendar": "/uni_modules/uni-calendar/components/uni-calendar/uni-calendar",
+    "load": "/components/common/load",
+    "sq-btn": "/components/common/sq-btn"
+  }
+}

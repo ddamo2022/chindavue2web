@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "my-coupon": "/components/common/my-coupon",
+    "sq-btn": "/components/common/sq-btn",
+    "mg-rtext": "/components/common/functionCmp/rich-text"
+  }
+}

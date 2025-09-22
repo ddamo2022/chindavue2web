@@ -1,0 +1,109 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.codeBtn.data-v-e2b4c8b0 {
+  background: #B11E23;
+  color: #ffffff;
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+}
+.codeBtn1.data-v-e2b4c8b0 {
+  background: #f6f6f6;
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+}
+.container.data-v-e2b4c8b0 {
+  padding-top: 60px;
+}
+.maint.data-v-e2b4c8b0 {
+  padding: 100rpx 10rpx 20rpx 10rpx;
+  margin: 80rpx 20rpx 20rpx 20rpx;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 4rpx 20rpx 0rpx rgba(221, 221, 221, 0.8);
+}
+.wszl.data-v-e2b4c8b0 {
+  padding: 15rpx 20rpx;
+  background: #e6e6e6;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.sryl.data-v-e2b4c8b0 {
+  margin: 20rpx 20rpx 80rpx 20rpx;
+  background: #efefef;
+}
+.sryl .sric.data-v-e2b4c8b0 {
+  width: 40rpx;
+  height: 40rpx;
+}
+.bbx.data-v-e2b4c8b0 {
+  position: relative;
+  border-radius: 50%;
+  overflow: visible;
+}
+.timg.data-v-e2b4c8b0 {
+  width: 160rpx;
+  height: 160rpx;
+}
+.ttop.data-v-e2b4c8b0 {
+  margin-top: -200rpx;
+  border-radius: 50%;
+}
+.gx.data-v-e2b4c8b0 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40rpx;
+  height: 40rpx;
+  background: #666;
+}
+.avatar-wrapper.data-v-e2b4c8b0 {
+  padding: 0;
+}
+.avatar-wrapper .avatar.data-v-e2b4c8b0 {
+  border-radius: 50%;
+}
+.sqsjh.data-v-e2b4c8b0 {
+  width: 140rpx;
+  height: 50rpx;
+  background: #FFD11A;
+}
+.ghb.data-v-e2b4c8b0 {
+  background: #fff;
+  padding: 0;
+  height: 44rpx;
+  line-height: 44rpx;
+  margin-left: 10rpx;
+}
+.data-v-e2b4c8b0 .r-box .mr-r1i {
+  padding: 0 !important;
+  margin-left: 40rpx;
+}
+.underline-input.data-v-e2b4c8b0 {
+  border: 1rpx solid #e6e6e6;
+  height: 65rpx;
+  border-radius: 10rpx 10rpx 10rpx 10rpx;
+  width: 100%;
+  text-align: right;
+  padding-right: 10rpx;
+}
+.box.data-v-e2b4c8b0 {
+  display: flex;
+}
+.leftbox.data-v-e2b4c8b0 {
+  flex: 1;
+}
+.rightbox.data-v-e2b4c8b0 {
+  flex: 2;
+}
+

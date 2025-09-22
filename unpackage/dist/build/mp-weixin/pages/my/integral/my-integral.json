@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "jzz": "/components/common/jzz",
+    "i-default": "/components/common/default"
+  }
+}

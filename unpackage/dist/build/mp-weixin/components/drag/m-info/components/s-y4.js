@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/drag/m-info/components/s-y4"],{1809:function(e,t,n){"use strict";n.r(t);var u=n("be81"),o=n("64e4");for(var a in o)["default"].indexOf(a)<0&&function(e){n.d(t,e,(function(){return o[e]}))}(a);n("6deb");var r=n("828b"),s=Object(r["a"])(o["default"],u["b"],u["c"],!1,null,"38c233e9",null,!1,u["a"],void 0);t["default"]=s.exports},"64e4":function(e,t,n){"use strict";n.r(t);var u=n("b706"),o=n.n(u);for(var a in u)["default"].indexOf(a)<0&&function(e){n.d(t,e,(function(){return u[e]}))}(a);t["default"]=o.a},"6deb":function(e,t,n){"use strict";var u=n("be84"),o=n.n(u);o.a},b706:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u={name:"SY4",props:{styles:{type:Object,default:function(){return{}}},u:{type:String,default:"px"}},data:function(){return{usImg:"/static/images/layout/user.png",usrImg:"/static/images/layout/code.png"}},methods:{goTo:function(e){1==e.value?this.go({url:"/pages/other/recharge/index"}):2==e.value?this.go({url:"/pages/my/integral/shop-index"}):3==e.value&&this.go({url:"/pages/other/coupon/couponList"})}}};t.default=u},be81:function(e,t,n){"use strict";n.d(t,"b",(function(){return u})),n.d(t,"c",(function(){return o})),n.d(t,"a",(function(){}));var u=function(){var e=this,t=e.$createElement,n=(e._self._c,e.__map(e.styles.zCList,(function(t,n){var u=e.__get_orig(t),o=1==t.open&&1==e.styles.position&&1==t.value?e.user.account&&parseFloat(e.user.account.balance):null,a=1==t.open&&1!=e.styles.position&&1==t.value?e.user.account&&parseFloat(e.user.account.balance):null;return{$orig:u,m0:o,m1:a}})));e.$mp.data=Object.assign({},{$root:{l0:n}})},o=[]},be84:function(e,t,n){}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/drag/m-info/components/s-y4-create-component',
+    {
+        'components/drag/m-info/components/s-y4-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('df3c')['createComponent'](__webpack_require__("1809"))
+        })
+    },
+    [['components/drag/m-info/components/s-y4-create-component']]
+]);

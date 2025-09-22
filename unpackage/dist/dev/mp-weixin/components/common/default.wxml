@@ -1,0 +1,1 @@
+<block wx:if="{{defaultImg&&defaultImg[imgn]}}"><view class="no-order-content data-v-ae528cd0" style="{{$root.s0}}"><image src="{{defaultImg[imgn].upUrl||defaultImg[imgn].url}}" class="data-v-ae528cd0"></image><view class="tips data-v-ae528cd0"><view class="data-v-ae528cd0">{{zdytxt||defaultImg[imgn].txt}}</view></view></view></block>

@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.myPro.data-v-6df9bf3f {
+  z-index: 1;
+  position: relative;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 0 20rpx 20rpx 20rpx;
+}
+.myPro .tit.data-v-6df9bf3f {
+  padding: 32rpx 0 0 32rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+}
+.myPro .proList.data-v-6df9bf3f {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.myPro .proList .item.data-v-6df9bf3f {
+  width: 33%;
+  padding-top: 40rpx;
+}
+.myPro .proList .item .nem.data-v-6df9bf3f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myPro .proList .item .nem ._img.data-v-6df9bf3f {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 4rpx;
+}
+.myPro .proList .item .dc.data-v-6df9bf3f {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9a9a9a;
+}
+.myPro .proList .item .dc .nu.data-v-6df9bf3f {
+  margin-right: 4rpx;
+  color: #f93a4a;
+  font-size: 28rpx;
+}
+

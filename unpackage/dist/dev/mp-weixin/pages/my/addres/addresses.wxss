@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.content.data-v-ac3d52e8 {
+  height: 100%;
+  padding-bottom: 170rpx;
+}
+.address.data-v-ac3d52e8 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.address .info.data-v-ac3d52e8 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+.address .info .user-row.data-v-ac3d52e8 {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+.address .info .address-row.data-v-ac3d52e8 {
+  display: flex;
+  align-items: center;
+}
+.address .info .address-row .address.data-v-ac3d52e8 {
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.address .edit-btn.data-v-ac3d52e8 {
+  margin-right: 20rpx;
+}
+.footer.data-v-ac3d52e8 {
+  position: fixed;
+  bottom: 30rpx;
+  width: 100%;
+  z-index: 10;
+  background-color: #F8F8F8;
+  padding: 0 30rpx;
+}
+.footer button.data-v-ac3d52e8 {
+  width: 100%;
+  font-size: 34rpx;
+}
+

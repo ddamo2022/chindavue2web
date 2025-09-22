@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.mt120.data-v-6906a682 {
+  margin-top: 120rpx;
+}
+.p43.data-v-6906a682 {
+  padding: 40rpx 30rpx;
+}
+.bor-b.data-v-6906a682 {
+  border-bottom: 1px solid #EFF3F6;
+}
+.cardimg.data-v-6906a682 {
+  width: 240rpx;
+  height: 140rpx;
+}
+.ddbh.data-v-6906a682 {
+  border-bottom: 1px dotted #eee;
+  padding-top: 0;
+  padding-left: 0;
+}
+

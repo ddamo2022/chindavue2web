@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "class-left1": "/components/goods/template/class-left1",
+    "actions": "/components/goods/actions/actions",
+    "pic-lunbo-by": "/components/drag/picLunbo"
+  }
+}

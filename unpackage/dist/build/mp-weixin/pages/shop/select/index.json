@@ -1,0 +1,10 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTitleText": "shop",
+  "usingComponents": {
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "jzz": "/components/common/jzz",
+    "mg-map": "/components/form/my-map"
+  }
+}

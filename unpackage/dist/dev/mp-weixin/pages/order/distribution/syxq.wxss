@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.qdc .today.data-v-4e0c3120 {
+  width: 160%;
+  margin-left: -30%;
+  overflow: hidden;
+  height: 400rpx;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  display: flex;
+  justify-content: center;
+}
+.qdc .today .body.data-v-4e0c3120 {
+  width: 100vw;
+}
+.qdc .main.data-v-4e0c3120 {
+  margin-top: -90rpx;
+}
+.sbtn.data-v-4e0c3120 {
+  width: 560rpx;
+  height: 78rpx;
+  background: #0594FE;
+  border-radius: 47px;
+}
+

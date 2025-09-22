@@ -1,0 +1,10 @@
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["components/uParse/src/components/wxParseTemplate1"],{"435b":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var o={name:"wxParseTemplate1",props:{node:{}},components:{wxParseTemplate:function(){t.e("components/uParse/src/components/wxParseTemplate2").then(function(){return resolve(t("c593"))}.bind(null,t)).catch(t.oe)},wxParseImg:function(){t.e("components/uParse/src/components/wxParseImg").then(function(){return resolve(t("8eb1"))}.bind(null,t)).catch(t.oe)},wxParseVideo:function(){t.e("components/uParse/src/components/wxParseVideo").then(function(){return resolve(t("adba"))}.bind(null,t)).catch(t.oe)},wxParseAudio:function(){t.e("components/uParse/src/components/wxParseAudio").then(function(){return resolve(t("0b24"))}.bind(null,t)).catch(t.oe)}},inject:["uparse"],methods:{wxParseATap:function(e){var n=e.currentTarget.dataset.href;n&&this.uparse.navigate(n,e)}}};n.default=o},"64c0":function(e,n,t){"use strict";t.d(n,"b",(function(){return o})),t.d(n,"c",(function(){return r})),t.d(n,"a",(function(){}));var o=function(){var e=this.$createElement;this._self._c},r=[]},"73cc":function(e,n,t){"use strict";t.r(n);var o=t("435b"),r=t.n(o);for(var c in o)["default"].indexOf(c)<0&&function(e){t.d(n,e,(function(){return o[e]}))}(c);n["default"]=r.a},ae06:function(e,n,t){"use strict";t.r(n);var o=t("64c0"),r=t("73cc");for(var c in r)["default"].indexOf(c)<0&&function(e){t.d(n,e,(function(){return r[e]}))}(c);var a=t("828b"),u=Object(a["a"])(r["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],void 0);n["default"]=u.exports}}]);
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/uParse/src/components/wxParseTemplate1-create-component',
+    {
+        'components/uParse/src/components/wxParseTemplate1-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('df3c')['createComponent'](__webpack_require__("ae06"))
+        })
+    },
+    [['components/uParse/src/components/wxParseTemplate1-create-component']]
+]);

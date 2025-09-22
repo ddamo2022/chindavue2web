@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.popCode.data-v-57280228,
+.popShare.data-v-57280228 {
+  padding: 100rpx;
+  position: relative;
+  background: #fff;
+}
+.popCode .code.data-v-57280228,
+.popShare .code.data-v-57280228 {
+  width: 400rpx;
+  height: 400rpx;
+}
+.popCode .xzhy.data-v-57280228,
+.popShare .xzhy.data-v-57280228 {
+  width: 400rpx;
+  height: 90rpx;
+  margin-top: 60rpx;
+}
+

@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.address-form.data-v-374ba18b {
+  margin-top: 20rpx;
+}
+.address-form .form-item.data-v-374ba18b {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.address-form .form-item .label.data-v-374ba18b {
+  width: 160rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.address-form .form-item input.data-v-374ba18b {
+  flex: 1;
+}
+.address-form .form-item .jump-icon.data-v-374ba18b {
+  width: 30rpx;
+  height: 48rpx;
+}
+.address-form .form-item .radio.data-v-374ba18b {
+  display: flex;
+  margin-right: 50rpx;
+}
+.address-form .form-item .radio image.data-v-374ba18b {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.save-btn.data-v-374ba18b {
+  padding: 0 30rpx;
+  margin-top: 60rpx;
+}
+.save-btn button.data-v-374ba18b {
+  width: 100%;
+  font-size: 30rpx;
+}
+

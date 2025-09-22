@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-tab": "/components/common/functionCmp/nav-tab",
+    "i-default": "/components/common/default",
+    "my-coupon": "/components/common/my-coupon",
+    "jzz": "/components/common/jzz"
+  }
+}

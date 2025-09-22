@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.index.data-v-35de973a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mdbd.data-v-35de973a {
+  border-radius: 40rpx 40rpx 0 0;
+}
+.mninput.data-v-35de973a {
+  font-size: 70rpx;
+  height: 2.9rem;
+  line-height: 2.9rem;
+  caret-color: #17E883;
+  min-width: 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-weight: bold;
+  color: #000;
+}
+.mninput .wsr.data-v-35de973a {
+  font-size: 45rpx;
+  font-weight: normal;
+  line-height: normal;
+  color: #E6E6E6;
+}
+@-webkit-keyframes cursor-blinks-data-v-35de973a {
+0% {
+    opacity: 1;
+    display: block;
+}
+50% {
+    opacity: 0;
+    display: none;
+}
+100% {
+    opacity: 1;
+    display: block;
+}
+}
+@keyframes cursor-blinks-data-v-35de973a {
+0% {
+    opacity: 1;
+    display: block;
+}
+50% {
+    opacity: 0;
+    display: none;
+}
+100% {
+    opacity: 1;
+    display: block;
+}
+}
+.cursor.data-v-35de973a {
+  width: 0;
+  overflow: visible;
+  position: relative;
+}
+.line.data-v-35de973a {
+  position: absolute;
+  width: 2px;
+  height: 90%;
+  background-color: #49c265;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  -webkit-animation: cursor-blinks-data-v-35de973a 1.5s infinite steps(1, start);
+          animation: cursor-blinks-data-v-35de973a 1.5s infinite steps(1, start);
+}
+.z0.data-v-35de973a {
+  z-index: 0;
+}
+

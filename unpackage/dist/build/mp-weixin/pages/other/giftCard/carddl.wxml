@@ -1,0 +1,1 @@
+<view class="data-v-72c1aeb6"><view class="pt150 data-v-72c1aeb6"><block wx:if="{{$root.g0}}"><i-default vue-id="4a8c3732-1" imgn="{{6}}" class="data-v-72c1aeb6" bind:__l="__l"></i-default></block></view></view>

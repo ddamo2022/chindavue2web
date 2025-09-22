@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.pb130.data-v-d655a92e {
+  padding-bottom: 200rpx;
+}
+.main.data-v-d655a92e {
+  padding: 30rpx;
+}
+.b-s.data-v-d655a92e {
+  box-shadow: 5rpx 5rpx 8rpx 3rpx rgba(221, 221, 221, 0.5);
+}
+.sjhqh.data-v-d655a92e {
+  padding-right: 30rpx;
+  margin-right: 30rpx;
+}
+.hlr.data-v-d655a92e::after {
+  border-color: #BBBBBB;
+}
+.ydjc.data-v-d655a92e {
+  top: 10rpx;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  padding: 20rpx 40rpx;
+  border-radius: 60rpx;
+}
+.xxsj.data-v-d655a92e {
+  bottom: -20rpx;
+  left: 30rpx;
+  width: 0;
+  height: 0;
+  border-width: 30rpx 30rpx 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+}
+.yd2r.data-v-d655a92e {
+  width: 250rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+}
+.userInfo .logo.data-v-d655a92e {
+  width: 120rpx;
+  height: 120rpx;
+}
+

@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "pay": "/components/pay/pay",
+    "self-fetch": "/pages/shop/in/components/self-fetch",
+    "check-goods": "/components/pay-order/check-goods",
+    "discounts": "/components/pay-order/discounts",
+    "check-notes": "/components/pay-order/check-notes",
+    "consumption-gift": "/components/goods/consumption-gift",
+    "check-save": "/pages/shop/in/components/check-save",
+    "tcyhq": "/components/template/tcyhq",
+    "check-point": "/components/pay-order/check-point",
+    "waiter": "/components/pay-order/waiter"
+  }
+}

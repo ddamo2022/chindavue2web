@@ -1,0 +1,75 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  /* 确保内边距不会增加总宽度 */
+  /* 添加底部圆角 */
+  border-bottom-left-radius: 20px;
+  /* 左下角圆角半径 */
+  border-bottom-right-radius: 20px;
+  /* 右下角圆角半径 */
+  /* 根据需要添加其他样式，如背景颜色等 */
+  background-color: #fff;
+  /* 举例：白色背景 */
+  /* 添加阴影效果提升层次感（可选） */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* 标题样式 */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+/* QR码样式 */
+.qr-container {
+  width: 60%;
+  /* 根据实际需求调整 */
+  margin-bottom: 24px;
+}
+/* 支付信息样式 */
+.payment-info {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 8px;
+}
+.time-left {
+  font-size: 16px;
+  color: #555;
+}
+/* 说明文本样式 */
+.instructions {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 24px;
+}
+/* 警告信息样式 */
+.warning {
+  font-size: 14px;
+  color: red;
+  text-align: center;
+}
+

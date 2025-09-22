@@ -1,0 +1,34 @@
+@charset "UTF-8";
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.ipolcs.data-v-1c1cf38c {
+  height: 65rpx;
+}
+.ipomt.data-v-1c1cf38c {
+  margin-top: 200rpx;
+}
+.mrltc.data-v-1c1cf38c {
+  width: 50rpx;
+  height: 50rpx;
+}
+.b-l-yy.data-v-1c1cf38c {
+  background: linear-gradient(to bottom, #05CBE0, #02AABA);
+}
+.nfix.data-v-1c1cf38c {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+  background-color: #F5F5F5;
+}
+

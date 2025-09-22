@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mg-rtext": "/components/common/functionCmp/rich-text",
+    "sq-btn": "/components/common/sq-btn",
+    "user-privacy": "/components/user/userPrivacy",
+    "actions": "/components/goods/actions/actions",
+    "product-modal": "/components/goods/product-modal/tc-modal"
+  }
+}

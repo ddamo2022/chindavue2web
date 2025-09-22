@@ -1,0 +1,321 @@
+{
+	"lazyCodeLoading": "requiredComponents",
+	"pages": [{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "home",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/goods",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/order-index",
+			"style": {
+				// "enablePullDownRefresh": true,
+				"navigationBarTitleText": "order",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/index/my-index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/index/card",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "pages/shop",
+		"pages": [{
+				"path": "select/index",
+				"style": {
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#ffffff",
+					"navigationBarTitleText": "shop"
+				}
+			},
+			{
+				"path": "select/select",
+				"style": {
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#ffffff",
+					"navigationBarTitleText": "city"
+				}
+			},
+			{
+				"path": "select/couponList"
+			},
+			{
+				"path": "out/pay-order",
+				"style": {
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#ffffff",
+					"navigationBarTitleText": "payorder"
+				}
+			}, {
+				"path": "out/bz"
+			}, {
+				"path": "out/sjjs"
+			}, {
+				"path": "search/out"
+			}, {
+				"path": "activity"
+			}, {
+				"path": "seeGoods"
+			}, {
+				"path": "in/dmf"
+			}, {
+				"path": "in/goods",
+				"style": {
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "in/pay-order"
+			}, {
+				"path": "in/detail"
+			}, {
+				"path": "good-dl"
+			}
+		]
+	}, {
+		"root": "pages/my",
+		"pages": [{
+			"path": "addres/addresses",
+			"style": {
+				"navigationBarTitleText": "addres",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		}, {
+			"path": "addres/add",
+			"style": {
+				"navigationBarTitleText": "add",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		}, {
+			"path": "other/bzzx"
+		}, {
+			"path": "other/gywm"
+		}, {
+			"path": "other/gywmtwo"
+		}, {
+			"path": "other/zkf"
+		}, {
+			"path": "user/mr-code",
+			"style": {
+				"navigationBarTitleText": "code",
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "vip/wkk"
+		}, {
+			"path": "integral/shop-index"
+		}, {
+			"path": "integral/my-integral"
+		}, {
+			"path": "integral/integral-record",
+			"style": {
+				"enablePullDownRefresh": true
+			}
+		}, {
+			"path": "integral/order-dl"
+		}, {
+			"path": "integral/details"
+		}, {
+			"path": "integral/save-order"
+		}, {
+			"path": "signin/index"
+		}, {
+			"path": "lineup/pdqh"
+		}, {
+			"path": "lineup/pdxq"
+		}]
+	}, {
+		"root": "pages/order",
+		"pages": [{
+				"path": "detail",
+				"style": {
+					"navigationStyle": "custom",
+					"enablePullDownRefresh": true,
+					"navigationBarTitleText": "detail",
+					"navigationBarBackgroundColor": "#ffffff"
+				}
+			},
+			{
+				"path": "promptpay",
+				"style": {
+
+					"navigationBarTitleText": "Promptpay",
+					"navigationBarBackgroundColor": "#ffffff"
+				}
+			},
+			{
+				"path": "refunddl"
+			}, {
+				"path": "other/custom",
+				"style": {
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "invitation/yqyl",
+				"style": {
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "invitation/yqgz"
+			}, {
+				"path": "invitation/yqjl"
+			}, {
+				"path": "invitation/yqhb"
+			}, {
+				"path": "distribution/fxzx",
+				"style": {
+					"navigationStyle": "custom"
+				}
+			}, {
+				"path": "distribution/sqfx"
+			}, {
+				"path": "distribution/syxq"
+			}, {
+				"path": "distribution/wdfs"
+			}, {
+				"path": "distribution/fxdd"
+			}, {
+				"path": "distribution/tx"
+			}, {
+				"path": "distribution/txmx"
+			}, {
+				"path": "distribution/fxhb"
+			}, {
+				"path": "storage/detail"
+			}, {
+				"path": "storage/list"
+			}, {
+				"path": "feedback"
+			}
+		]
+	}, {
+		"root": "pages/other",
+		"pages": [{
+				"path": "chooseAvatar",
+				"style": {
+					"navigationBarTitleText": "user",
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#ffffff"
+				}
+			},
+			{
+				"path": "activate",
+				"style": {
+					"navigationBarTitleText": "user",
+					"navigationBarTextStyle": "black",
+					"navigationBarBackgroundColor": "#ffffff"
+				}
+			},
+			{
+				"path": "web-view"
+			}, {
+				"path": "login"
+			},
+			{
+				"path": "register"
+			},
+			{
+				"path": "forgetting"
+			},
+			{
+				"path": "recharge/index"
+			}, {
+				"path": "recharge/yemx"
+			}, {
+				"path": "coupon/center"
+			}, {
+				"path": "coupon/coupondl"
+			}, {
+				"path": "coupon/couponList"
+			}, {
+				"path": "coupon/dhm"
+			}, {
+				"path": "coupon/hisCoupon"
+			}, {
+				"path": "coupon/givedl"
+			}, {
+				"path": "giftCard/cardList"
+			}, {
+				"path": "giftCard/dhCard"
+			}, {
+				"path": "giftCard/givedl"
+			}, {
+				"path": "giftCard/hisCard"
+			}, {
+				"path": "giftCard/carddl"
+			}, {
+				"path": "setPoint/pointdl"
+			}, {
+				"path": "wifi"
+			}, {
+				"path": "rollPackage/rolldl"
+			}, {
+				"path": "reserve/index"
+			}, {
+				"path": "reserve/ljyy"
+			}, {
+				"path": "reserve/yyxq"
+			}, {
+				"path": "payVip/index"
+			}, {
+				"path": "payVip/gmls"
+			}, {
+				"path": "payVip/cardxq"
+			}, {
+				"path": "payVip/ckxq"
+			}, {
+				"path": "pwCoupon/index"
+			}
+		]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+
+	},
+	"tabBar": {
+		"color": "#ffffff",
+		"selectedColor": "#ffffff",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "home"
+			},
+			{
+				"pagePath": "pages/index/goods",
+				"text": "goods"
+			},
+			{
+				"pagePath": "pages/index/order-index",
+				"text": "order"
+			},
+			{
+				"pagePath": "pages/index/my-index",
+				"text": "my"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
