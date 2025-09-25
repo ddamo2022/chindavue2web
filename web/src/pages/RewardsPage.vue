@@ -1,29 +1,25 @@
 <template>
   <section class="rewards-page">
     <header>
-      <h1>Rewards marketplace</h1>
-      <p>
-        Curated experiences, merchandise, and collaborations—powered by the same points mall endpoints
-        from the existing Vue 2 app. Browse by category, filter by point value, and launch instant
-        redemptions.
-      </p>
+      <h1>{{ t('web.pages.rewards.title') }}</h1>
+      <p>{{ t('web.pages.rewards.description') }}</p>
       <div class="rewards-page__filters">
         <label>
-          <span>Category</span>
+          <span>{{ t('web.pages.rewards.filters.category') }}</span>
           <select v-model="filters.category" :disabled="categoriesLoading">
-            <option value="">All</option>
+            <option value="">{{ t('web.pages.rewards.filters.categoryAll') }}</option>
             <option v-for="category in categories" :key="category.id" :value="category.id">
               {{ category.name }}
             </option>
           </select>
         </label>
         <label>
-          <span>Max points</span>
+          <span>{{ t('web.pages.rewards.filters.maxPoints') }}</span>
           <input type="number" v-model.number="filters.maxPoints" min="0" />
         </label>
         <button class="button button--ghost" @click="loadRewards" :disabled="loading">
-          <span v-if="!loading">Apply filters</span>
-          <span v-else>Loading…</span>
+          <span v-if="!loading">{{ t('web.pages.rewards.filters.apply') }}</span>
+          <span v-else>{{ t('web.pages.rewards.loading') }}</span>
         </button>
       </div>
     </header>
@@ -36,13 +32,13 @@
         :description="reward.intro"
         :image="reward.cover || placeholder"
         :points="reward.points"
-        :category="reward.category?.name || reward.category || 'Featured'"
+        :category="reward.category?.name || reward.category || t('web.pages.rewards.categoryFallback')"
         :disabled="!isAuthenticated"
         @redeem="redeemReward(reward)"
       />
     </div>
     <p v-if="!rewards.length && !loading" class="rewards-page__empty">
-      Rewards will appear here once they are published in the Uni-app catalogue.
+      {{ t('web.pages.rewards.empty') }}
     </p>
   </section>
 </template>
@@ -56,6 +52,8 @@ import { rewardsApi, memberApi } from '@/api/client'
 import { useSiteStore } from '@/stores/site'
 import { useAuthStore } from '@/stores/auth'
 import { useMemberStore } from '@/stores/member'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const site = useSiteStore()
 const auth = useAuthStore()
@@ -71,6 +69,12 @@ const filters = reactive({
 })
 const loading = ref(false)
 const categoriesLoading = ref(false)
+const { t } = useI18n()
+
+usePageMeta({
+  titleKey: 'web.pages.rewards.title',
+  descriptionKey: 'web.pages.rewards.description'
+})
 
 const loadCategories = async () => {
   try {
@@ -102,8 +106,8 @@ const loadRewards = async () => {
 const redeemReward = async (reward) => {
   if (!isAuthenticated.value) {
     site.notify({
-      title: 'Sign in required',
-      message: 'Log in to redeem your rewards across devices.',
+      title: t('web.notifications.signInRequired.title'),
+      message: t('web.notifications.signInRequired.message'),
       tone: 'neutral'
     })
     router.push({ name: 'login', query: { redirect: '/rewards' } })
@@ -112,15 +116,15 @@ const redeemReward = async (reward) => {
   try {
     await memberApi.redeem({ reward_id: reward.id })
     site.notify({
-      title: 'Redemption requested',
-      message: `${reward.name} will be ready for you shortly.`,
+      title: t('web.notifications.redeemSuccess.title'),
+      message: t('web.notifications.redeemSuccess.message', { name: reward.name }),
       tone: 'success'
     })
     member.loadProfile({ silent: true }).catch(() => {})
   } catch (error) {
     site.notify({
-      title: 'Redemption failed',
-      message: 'Please check your balance or try again later.',
+      title: t('web.notifications.redeemFailed.title'),
+      message: t('web.notifications.redeemFailed.message'),
       tone: 'error'
     })
   }

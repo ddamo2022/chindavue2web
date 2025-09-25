@@ -1,11 +1,8 @@
 <template>
   <section class="support">
     <header>
-      <h1>Support & enablement</h1>
-      <p>
-        Partner with our team for implementation guidance, creative assets, and operational training.
-        Choose the engagement model that fits your rollout.
-      </p>
+      <h1>{{ t('web.pages.support.title') }}</h1>
+      <p>{{ t('web.pages.support.description') }}</p>
     </header>
 
     <div v-if="plans.length" class="support__grid">
@@ -39,7 +36,7 @@
         <p v-if="contact.phone">
           Call <a :href="`tel:${contact.phone}`">{{ contact.phone }}</a>
         </p>
-        <a v-if="contact.href" :href="contact.href" class="support__link">Explore resources</a>
+        <a v-if="contact.href" :href="contact.href" class="support__link">{{ t('web.pages.support.resourcesLink') }}</a>
       </article>
     </section>
   </section>
@@ -49,9 +46,17 @@
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 import { useContentStore } from '@/stores/content'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
 
+const { t } = useI18n()
 const content = useContentStore()
 const { supportPlans: plans, supportContacts: contacts } = storeToRefs(content)
+
+usePageMeta({
+  titleKey: 'web.pages.support.title',
+  descriptionKey: 'web.pages.support.description'
+})
 </script>
 
 <style scoped>

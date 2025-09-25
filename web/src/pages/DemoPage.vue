@@ -1,79 +1,86 @@
 <template>
   <section class="demo">
     <header class="demo__header">
-      <h1>Request a guided demo</h1>
-      <p>
-        Share a few details and our partnerships team will coordinate a tailored walkthrough covering
-        loyalty, reservations, and integrations. Desktop, mobile, and in-venue workflows are all included.
-      </p>
+      <h1>{{ t('web.pages.demo.title') }}</h1>
+      <p>{{ t('web.pages.demo.description') }}</p>
     </header>
 
     <form class="demo__form" @submit.prevent="onSubmit">
       <div class="demo__grid">
         <label>
-          <span>Full name</span>
+          <span>{{ t('web.pages.demo.form.name') }}</span>
           <input v-model="form.name" required />
         </label>
         <label>
-          <span>Company</span>
+          <span>{{ t('web.pages.demo.form.company') }}</span>
           <input v-model="form.company" required />
         </label>
         <label>
-          <span>Email</span>
+          <span>{{ t('web.pages.demo.form.email') }}</span>
           <input v-model="form.email" type="email" required />
         </label>
         <label>
-          <span>Phone</span>
+          <span>{{ t('web.pages.demo.form.phone') }}</span>
           <input v-model="form.phone" type="tel" />
         </label>
       </div>
 
       <label>
-        <span>Primary interest</span>
+        <span>{{ t('web.pages.demo.form.interest') }}</span>
         <select v-model="form.interest" required>
-          <option disabled value="">Select one</option>
-          <option>Membership & loyalty</option>
-          <option>Ordering & payments</option>
-          <option>Experiential events</option>
-          <option>Partnership opportunities</option>
+          <option disabled value="">{{ t('web.pages.demo.form.interestPlaceholder') }}</option>
+          <option>{{ t('web.pages.demo.form.interestOptions.loyalty') }}</option>
+          <option>{{ t('web.pages.demo.form.interestOptions.ordering') }}</option>
+          <option>{{ t('web.pages.demo.form.interestOptions.experiences') }}</option>
+          <option>{{ t('web.pages.demo.form.interestOptions.partnerships') }}</option>
         </select>
       </label>
 
       <label>
-        <span>Notes</span>
-        <textarea v-model="form.notes" rows="4" placeholder="Tell us about your goals"></textarea>
+        <span>{{ t('web.pages.demo.form.notes') }}</span>
+        <textarea
+          v-model="form.notes"
+          rows="4"
+          :placeholder="t('web.pages.demo.form.notesPlaceholder')"
+        ></textarea>
       </label>
 
       <button type="submit" class="button button--primary button--lg" :disabled="loading">
-        <span v-if="!loading">Submit request</span>
-        <span v-else>Sending...</span>
+        <span v-if="!loading">{{ t('web.pages.demo.form.submit') }}</span>
+        <span v-else>{{ t('web.pages.demo.form.submitting') }}</span>
       </button>
     </form>
 
     <section class="demo__aside">
       <article>
-        <h2>What to expect</h2>
+        <h2>{{ t('web.pages.demo.aside.expectationsTitle') }}</h2>
         <ul>
-          <li>Live demo mapped to your current tech stack</li>
-          <li>API reuse plan aligned with the existing Vue 2 app</li>
-          <li>PC-first design system starter kit</li>
+          <li v-for="item in expectations" :key="item">{{ item }}</li>
         </ul>
       </article>
       <article>
-        <h2>Availability</h2>
-        <p>Weekdays 10:00–18:00 ICT · Virtual or on-site sessions</p>
-        <p>Email <a href="mailto:partners@chinda.co">partners@chinda.co</a> for urgent requests.</p>
+        <h2>{{ t('web.pages.demo.aside.availabilityTitle') }}</h2>
+        <p>{{ t('web.pages.demo.aside.availabilityBody') }}</p>
+        <p>{{ t('web.pages.demo.aside.emailPrompt') }}</p>
       </article>
     </section>
   </section>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useSiteStore } from '@/stores/site'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const site = useSiteStore()
 const loading = ref(false)
+const { t, tm } = useI18n()
+
+usePageMeta({
+  titleKey: 'web.pages.demo.title',
+  descriptionKey: 'web.pages.demo.description'
+})
 
 const form = reactive({
   name: '',
@@ -84,13 +91,18 @@ const form = reactive({
   notes: ''
 })
 
+const expectations = computed(() => {
+  const list = tm('web.pages.demo.aside.expectations')
+  return Array.isArray(list) ? list : []
+})
+
 const onSubmit = async () => {
   loading.value = true
   try {
     await new Promise((resolve) => setTimeout(resolve, 600))
     site.notify({
-      title: 'Demo request received',
-      message: 'Our partnerships team will reach out within 24 hours.',
+      title: t('web.notifications.demoReceived.title'),
+      message: t('web.notifications.demoReceived.message'),
       tone: 'success'
     })
     Object.assign(form, { name: '', company: '', email: '', phone: '', interest: '', notes: '' })

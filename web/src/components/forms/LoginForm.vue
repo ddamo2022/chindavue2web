@@ -1,32 +1,37 @@
 <template>
   <form class="auth-form" @submit.prevent="onSubmit">
-    <h2>Welcome back</h2>
-    <p>Log in to manage your membership, reservations, and rewards.</p>
+    <h2>{{ t('web.auth.login.title') }}</h2>
+    <p>{{ t('web.auth.login.subtitle') }}</p>
 
     <label>
-      <span>Email</span>
-      <input v-model="credentials.email" type="email" required placeholder="you@example.com" />
+      <span>{{ t('web.auth.login.email') }}</span>
+      <input
+        v-model="credentials.email"
+        type="email"
+        required
+        :placeholder="t('web.auth.login.emailPlaceholder')"
+      />
     </label>
     <label>
-      <span>Password</span>
+      <span>{{ t('web.auth.login.password') }}</span>
       <input v-model="credentials.password" type="password" required minlength="6" />
     </label>
 
     <div class="auth-form__actions">
       <label class="auth-form__checkbox">
         <input v-model="credentials.remember" type="checkbox" />
-        <span>Keep me signed in</span>
+        <span>{{ t('web.auth.login.remember') }}</span>
       </label>
-      <RouterLink to="/reset" class="auth-form__link">Forgot password?</RouterLink>
+      <RouterLink to="/reset" class="auth-form__link">{{ t('web.auth.login.forgot') }}</RouterLink>
     </div>
 
     <button type="submit" class="button button--primary button--full" :disabled="loading">
-      <span v-if="!loading">Sign in</span>
-      <span v-else>Signing in...</span>
+      <span v-if="!loading">{{ t('web.auth.login.submit') }}</span>
+      <span v-else>{{ t('web.auth.login.submitting') }}</span>
     </button>
     <p class="auth-form__hint">
-      Not a member yet?
-      <RouterLink to="/register">Join the experience</RouterLink>
+      {{ t('web.auth.login.hint') }}
+      <RouterLink to="/register">{{ t('web.auth.login.hintCta') }}</RouterLink>
     </p>
   </form>
 </template>
@@ -34,9 +39,11 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
+import { useI18n } from 'vue-i18n'
 
 const auth = useAuthStore()
 const loading = ref(false)
+const { t } = useI18n()
 
 const credentials = reactive({
   email: '',

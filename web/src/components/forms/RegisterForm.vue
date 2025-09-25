@@ -1,30 +1,34 @@
 <template>
   <form class="auth-form" @submit.prevent="onSubmit">
-    <h2>Join the culinary collective</h2>
-    <p>Create a member account to access table reservations, tasting events, and loyalty rewards.</p>
+    <h2>{{ t('web.auth.register.title') }}</h2>
+    <p>{{ t('web.auth.register.subtitle') }}</p>
 
     <div class="auth-form__grid">
       <label>
-        <span>First name</span>
+        <span>{{ t('web.auth.register.firstName') }}</span>
         <input v-model="payload.firstName" required />
       </label>
       <label>
-        <span>Last name</span>
+        <span>{{ t('web.auth.register.lastName') }}</span>
         <input v-model="payload.lastName" required />
       </label>
     </div>
     <label>
-      <span>Email</span>
+      <span>{{ t('web.auth.register.email') }}</span>
       <input v-model="payload.email" type="email" required />
     </label>
     <label>
-      <span>Mobile number (optional)</span>
+      <span>{{ t('web.auth.register.mobile') }}</span>
       <input v-model="payload.mobile" type="tel" />
     </label>
     <div class="auth-form__code">
       <label>
-        <span>Verification code</span>
-        <input v-model="payload.code" required placeholder="Enter 6-digit code" />
+        <span>{{ t('web.auth.register.code') }}</span>
+        <input
+          v-model="payload.code"
+          required
+          :placeholder="t('web.auth.register.codePlaceholder')"
+        />
       </label>
       <button
         type="button"
@@ -32,32 +36,32 @@
         :disabled="sending || countdown > 0"
         @click="sendCode"
       >
-        <span v-if="countdown === 0 && !sending">Send code</span>
-        <span v-else-if="sending">Sending…</span>
-        <span v-else>Resend in {{ countdown }}s</span>
+        <span v-if="countdown === 0 && !sending">{{ t('web.auth.shared.sendCode') }}</span>
+        <span v-else-if="sending">{{ t('web.auth.shared.sending') }}</span>
+        <span v-else>{{ t('web.auth.shared.resend', { seconds: countdown }) }}</span>
       </button>
     </div>
     <label>
-      <span>Password</span>
+      <span>{{ t('web.auth.register.password') }}</span>
       <input v-model="payload.password" type="password" required minlength="6" />
     </label>
     <label>
-      <span>Confirm password</span>
+      <span>{{ t('web.auth.register.confirm') }}</span>
       <input v-model="payload.confirm" type="password" required minlength="6" />
     </label>
 
     <label class="auth-form__checkbox">
       <input v-model="payload.optIn" type="checkbox" />
-      <span>Subscribe to seasonal drops and exclusive invitations.</span>
+      <span>{{ t('web.auth.register.optIn') }}</span>
     </label>
 
     <button type="submit" class="button button--primary button--full" :disabled="loading">
-      <span v-if="!loading">Create account</span>
-      <span v-else>Creating…</span>
+      <span v-if="!loading">{{ t('web.auth.register.submit') }}</span>
+      <span v-else>{{ t('web.auth.register.submitting') }}</span>
     </button>
     <p class="auth-form__hint">
-      Already have an account?
-      <RouterLink to="/login">Sign in</RouterLink>
+      {{ t('web.auth.register.hint') }}
+      <RouterLink to="/login">{{ t('web.auth.register.hintCta') }}</RouterLink>
     </p>
   </form>
 </template>
@@ -67,6 +71,7 @@ import { onBeforeUnmount, reactive, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useSiteStore } from '@/stores/site'
+import { useI18n } from 'vue-i18n'
 
 const auth = useAuthStore()
 const site = useSiteStore()
@@ -74,6 +79,7 @@ const loading = ref(false)
 const sending = ref(false)
 const countdown = ref(0)
 const timer = ref()
+const { t } = useI18n()
 
 const payload = reactive({
   firstName: '',
@@ -106,8 +112,8 @@ const clearTimer = () => {
 const sendCode = async () => {
   if (!payload.email) {
     site.notify({
-      title: 'Enter email first',
-      message: 'Provide your email so we can send a verification code.',
+      title: t('web.notifications.emailRequired.title'),
+      message: t('web.notifications.emailRequired.message'),
       tone: 'neutral'
     })
     return
@@ -116,15 +122,15 @@ const sendCode = async () => {
   try {
     await auth.sendRegisterCode({ email: payload.email, type: 0 })
     site.notify({
-      title: 'Verification sent',
-      message: 'Check your inbox for the registration code.',
+      title: t('web.notifications.verificationRegister.title'),
+      message: t('web.notifications.verificationRegister.message'),
       tone: 'success'
     })
     startCountdown()
   } catch (error) {
     site.notify({
-      title: 'Unable to send code',
-      message: error.message || 'Please try again shortly.',
+      title: t('web.notifications.unableToSend.title'),
+      message: error.message || t('web.notifications.unableToSend.message'),
       tone: 'error'
     })
   } finally {
@@ -135,8 +141,8 @@ const sendCode = async () => {
 const onSubmit = async () => {
   if (payload.password !== payload.confirm) {
     site.notify({
-      title: 'Passwords do not match',
-      message: 'Please confirm your password before continuing.',
+      title: t('web.notifications.passwordMismatchRegister.title'),
+      message: t('web.notifications.passwordMismatchRegister.message'),
       tone: 'error'
     })
     return

@@ -37,9 +37,15 @@ import FeatureGrid from '@/components/sections/FeatureGrid.vue'
 import ExperienceTimeline from '@/components/sections/ExperienceTimeline.vue'
 import LoyaltyOverview from '@/components/sections/LoyaltyOverview.vue'
 import { useContentStore } from '@/stores/content'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const content = useContentStore()
 const { showcaseCards } = storeToRefs(content)
+
+usePageMeta({
+  titleKey: 'web.pages.home.title',
+  descriptionKey: 'web.pages.home.description'
+})
 </script>
 
 <style scoped>

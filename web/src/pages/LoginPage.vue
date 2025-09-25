@@ -1,15 +1,10 @@
 <template>
   <section class="auth-page">
     <div class="auth-page__intro">
-      <h1>Member access</h1>
-      <p>
-        Use your Chinda account to manage reservations, track points, and unlock curated events across
-        all of our venues. Your login works across mobile and the new desktop experience.
-      </p>
+      <h1>{{ t('web.pages.login.title') }}</h1>
+      <p>{{ t('web.pages.login.description') }}</p>
       <ul>
-        <li>Unified credentials across platforms</li>
-        <li>Track points and stored value balances</li>
-        <li>Redeem rewards and experiences instantly</li>
+        <li v-for="item in bullets" :key="item">{{ item }}</li>
       </ul>
     </div>
     <LoginForm />
@@ -18,6 +13,21 @@
 
 <script setup>
 import LoginForm from '@/components/forms/LoginForm.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
+
+const { t, tm } = useI18n()
+
+usePageMeta({
+  titleKey: 'web.pages.login.title',
+  descriptionKey: 'web.pages.login.description'
+})
+
+const bullets = computed(() => {
+  const list = tm('web.pages.login.bullets')
+  return Array.isArray(list) ? list : []
+})
 </script>
 
 <style scoped>

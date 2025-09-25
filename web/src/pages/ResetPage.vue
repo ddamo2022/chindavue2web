@@ -1,53 +1,64 @@
 <template>
   <section class="reset">
     <div class="reset__intro">
-      <h1>Reset your password</h1>
-      <p>
-        Enter your email, request a verification code, and set a new password. The credentials you update
-        here sync instantly with the existing Uni-app experience and native channels.
-      </p>
+      <h1>{{ t('web.pages.reset.title') }}</h1>
+      <p>{{ t('web.pages.reset.description') }}</p>
       <p class="reset__help">
-        Need assistance? Email <a href="mailto:help@chinda.co">help@chinda.co</a> or call +66 2 555 1234.
+        {{ t('web.pages.reset.helpPrefix') }}
+        <a :href="`mailto:${helpEmail}`">{{ helpEmail }}</a>
+        {{ t('web.pages.reset.helpConnector') }}
+        <a :href="helpPhoneHref">{{ helpPhone }}</a>
       </p>
     </div>
 
     <form class="reset__form" @submit.prevent="onSubmit">
       <label>
-        <span>Email</span>
-        <input v-model.trim="form.email" type="email" required placeholder="you@example.com" />
+        <span>{{ t('web.auth.reset.email') }}</span>
+        <input
+          v-model.trim="form.email"
+          type="email"
+          required
+          :placeholder="t('web.auth.login.emailPlaceholder')"
+        />
       </label>
       <div class="reset__code-row">
         <label>
-          <span>Verification code</span>
-          <input v-model.trim="form.code" required placeholder="Enter 6-digit code" />
+          <span>{{ t('web.auth.reset.code') }}</span>
+          <input
+            v-model.trim="form.code"
+            required
+            :placeholder="t('web.auth.reset.codePlaceholder')"
+          />
         </label>
         <button type="button" class="button button--ghost" :disabled="sending || countdown > 0" @click="sendCode">
-          <span v-if="countdown === 0 && !sending">Send code</span>
-          <span v-else-if="sending">Sending...</span>
-          <span v-else>Resend in {{ countdown }}s</span>
+          <span v-if="countdown === 0 && !sending">{{ t('web.auth.shared.sendCode') }}</span>
+          <span v-else-if="sending">{{ t('web.auth.shared.sending') }}</span>
+          <span v-else>{{ t('web.auth.shared.resend', { seconds: countdown }) }}</span>
         </button>
       </div>
       <label>
-        <span>New password</span>
+        <span>{{ t('web.auth.reset.password') }}</span>
         <input v-model="form.password" type="password" required minlength="6" />
       </label>
       <label>
-        <span>Confirm password</span>
+        <span>{{ t('web.auth.reset.confirm') }}</span>
         <input v-model="form.confirm" type="password" required minlength="6" />
       </label>
       <button type="submit" class="button button--primary button--full" :disabled="loading">
-        <span v-if="!loading">Save new password</span>
-        <span v-else>Saving...</span>
+        <span v-if="!loading">{{ t('web.auth.reset.submit') }}</span>
+        <span v-else>{{ t('web.auth.reset.submitting') }}</span>
       </button>
-      <RouterLink to="/login" class="reset__back">Return to sign in</RouterLink>
+      <RouterLink to="/login" class="reset__back">{{ t('web.auth.reset.back') }}</RouterLink>
     </form>
   </section>
 </template>
 
 <script setup>
-import { onBeforeUnmount, reactive, ref } from 'vue'
+import { onBeforeUnmount, reactive, ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useSiteStore } from '@/stores/site'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const auth = useAuthStore()
 const site = useSiteStore()
@@ -55,6 +66,12 @@ const loading = ref(false)
 const sending = ref(false)
 const countdown = ref(0)
 const timer = ref()
+const { t } = useI18n()
+
+usePageMeta({
+  titleKey: 'web.pages.reset.title',
+  descriptionKey: 'web.pages.reset.description'
+})
 
 const form = reactive({
   email: '',
@@ -62,6 +79,10 @@ const form = reactive({
   password: '',
   confirm: ''
 })
+
+const helpEmail = computed(() => t('web.pages.reset.helpEmail'))
+const helpPhone = computed(() => t('web.pages.reset.helpPhone'))
+const helpPhoneHref = computed(() => `tel:${helpPhone.value.replace(/\s+/g, '')}`)
 
 const clearTimer = () => {
   if (timer.value) {
@@ -84,8 +105,8 @@ const startCountdown = () => {
 const sendCode = async () => {
   if (!form.email) {
     site.notify({
-      title: 'Enter email first',
-      message: 'We need your email to send a verification code.',
+      title: t('web.notifications.emailRequired.title'),
+      message: t('web.notifications.emailRequired.message'),
       tone: 'neutral'
     })
     return
@@ -94,15 +115,15 @@ const sendCode = async () => {
   try {
     await auth.sendResetCode({ email: form.email, type: 0 })
     site.notify({
-      title: 'Verification sent',
-      message: 'Check your inbox for the reset code.',
+      title: t('web.notifications.verificationReset.title'),
+      message: t('web.notifications.verificationReset.message'),
       tone: 'success'
     })
     startCountdown()
   } catch (error) {
     site.notify({
-      title: 'Unable to send code',
-      message: error.message || 'Please try again shortly.',
+      title: t('web.notifications.unableToSend.title'),
+      message: error.message || t('web.notifications.unableToSend.message'),
       tone: 'error'
     })
   } finally {
@@ -113,8 +134,8 @@ const sendCode = async () => {
 const onSubmit = async () => {
   if (form.password !== form.confirm) {
     site.notify({
-      title: 'Passwords do not match',
-      message: 'Please confirm your new password.',
+      title: t('web.notifications.passwordMismatchReset.title'),
+      message: t('web.notifications.passwordMismatchReset.message'),
       tone: 'error'
     })
     return
@@ -128,8 +149,8 @@ const onSubmit = async () => {
       type: 0
     })
     site.notify({
-      title: 'Password updated',
-      message: 'You can now sign in with your new password.',
+      title: t('web.notifications.passwordUpdated.title'),
+      message: t('web.notifications.passwordUpdated.message'),
       tone: 'success'
     })
     Object.assign(form, { email: '', code: '', password: '', confirm: '' })
@@ -137,8 +158,8 @@ const onSubmit = async () => {
     countdown.value = 0
   } catch (error) {
     site.notify({
-      title: 'Unable to reset password',
-      message: error.message || 'Check the code and try again.',
+      title: t('web.notifications.resetFailed.title'),
+      message: error.message || t('web.notifications.resetFailed.message'),
       tone: 'error'
     })
   } finally {

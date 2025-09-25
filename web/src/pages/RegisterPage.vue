@@ -1,15 +1,10 @@
 <template>
   <section class="auth-page">
     <div class="auth-page__intro">
-      <h1>Elevate every visit.</h1>
-      <p>
-        Become part of the Chinda collective and receive curated itineraries, priority reservations, and
-        experiential rewards. We combine culinary craft with digital convenience.
-      </p>
+      <h1>{{ t('web.pages.register.title') }}</h1>
+      <p>{{ t('web.pages.register.description') }}</p>
       <ul>
-        <li>Personalized welcome experiences</li>
-        <li>Seasonal drops tailored to your tastes</li>
-        <li>Priority access to chef collaborations</li>
+        <li v-for="item in bullets" :key="item">{{ item }}</li>
       </ul>
     </div>
     <RegisterForm />
@@ -18,6 +13,21 @@
 
 <script setup>
 import RegisterForm from '@/components/forms/RegisterForm.vue'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
+
+const { t, tm } = useI18n()
+
+usePageMeta({
+  titleKey: 'web.pages.register.title',
+  descriptionKey: 'web.pages.register.description'
+})
+
+const bullets = computed(() => {
+  const list = tm('web.pages.register.bullets')
+  return Array.isArray(list) ? list : []
+})
 </script>
 
 <style scoped>

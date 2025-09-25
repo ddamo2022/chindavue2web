@@ -6,15 +6,20 @@
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
       <div class="reward-card__meta">
-        <span class="reward-card__points">{{ points }} pts</span>
-        <button class="button button--ghost" @click="$emit('redeem')" :disabled="disabled">Redeem</button>
+        <span class="reward-card__points">{{ pointsLabel }}</span>
+        <button class="button button--ghost" @click="$emit('redeem')" :disabled="disabled">
+          {{ redeemLabel }}
+        </button>
       </div>
     </div>
   </article>
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const props = defineProps({
   title: String,
   description: String,
   points: [String, Number],
@@ -25,6 +30,11 @@ defineProps({
     default: false
   }
 })
+
+const { t } = useI18n()
+
+const pointsLabel = computed(() => t('web.pages.rewards.pointsLabel', { count: props.points }))
+const redeemLabel = computed(() => t('web.pages.rewards.redeem'))
 </script>
 
 <style scoped>

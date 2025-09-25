@@ -1477,6 +1477,313 @@
                                 "privacy": "隐私政策",
                                 "cookies": "Cookie 政策"
                         }
+                },
+                "pages": {
+                        "home": {
+                                "title": "Chinda 体验平台",
+                                "description": "为桌面与移动打造的全渠道会员、预订与待客体验。"
+                        },
+                        "experiences": {
+                                "title": "体验",
+                                "description": "让品牌调性贯穿整个季节性活动与宾客旅程。",
+                                "journeyTitle": "跨设备无缝衔接的宾客旅程",
+                                "journeyDescription": "在桌面端复刻线下礼宾式服务，从发现到兑换全程与原生应用保持一致，会员随时保持上下文。"
+                        },
+                                "membership": {
+                                "title": "会员体验",
+                                "description": "直接调用 Uni-app 会员接口，呈现等级旅程、权益与升级机制，并可根据本地市场故事自定义文案与素材。",
+                                "loading": "正在加载会员等级…",
+                                "activate": "立即激活",
+                                "fallbackTiers": [
+                                        {
+                                                "name": "Lapis",
+                                                "points": "入门等级",
+                                                "description": "以迎宾酒、水晶唱片与品鉴笔记激发好奇心。",
+                                                "perks": [
+                                                        "生日惊喜",
+                                                        "专属品鉴活动",
+                                                        "会员专属菜单内容"
+                                                ]
+                                        },
+                                        {
+                                                "name": "Obsidian",
+                                                "points": "4,000+ 积分",
+                                                "description": "以时令配餐、调酒实验室与主厨见面会提升常客体验。",
+                                                "perks": [
+                                                        "主厨餐桌预约",
+                                                        "品酒师礼宾服务",
+                                                        "每月调酒实验室"
+                                                ]
+                                        },
+                                        {
+                                                "name": "Aurora",
+                                                "points": "仅限邀约",
+                                                "description": "通过酒窖私享与幕后合作打造难忘夜晚。",
+                                                "perks": [
+                                                        "酒窖私享夜",
+                                                        "菜单共创",
+                                                        "专属生活方式礼宾"
+                                                ]
+                                        }
+                                ],
+                                "fallbackPerks": {
+                                        "priority": "优先预订",
+                                        "seasonal": "时令品鉴邀约"
+                                },
+                                "fallbackDefaults": {
+                                        "name": "会员等级",
+                                        "points": "{count}+ 积分",
+                                        "level": "第 {level} 级",
+                                        "description": "解锁围绕你偏好打造的高端待客体验。"
+                                }
+                        },
+                        "rewards": {
+                                "title": "积分礼遇市集",
+                                "description": "依托现有 Vue 2 积分商城接口，呈现精选体验、周边与品牌合作。可按分类浏览、按积分筛选并立即发起兑换。",
+                                "filters": {
+                                        "category": "分类",
+                                        "categoryAll": "全部",
+                                        "maxPoints": "积分上限",
+                                        "apply": "应用筛选"
+                                },
+                                "loading": "加载中…",
+                                "empty": "当 Uni-app 上架礼遇后，这里会同步显示。",
+                                "redeem": "兑换",
+                                "pointsLabel": "{count} 积分",
+                                "categoryFallback": "精选"
+                        },
+                        "locations": {
+                                "title": "门店网络",
+                                "description": "探索区域内的旗舰品鉴室、私密酒吧与合作快闪。"
+                        },
+                        "support": {
+                                "title": "支持与赋能",
+                                "description": "与我们团队合作，获取实施指南、创意素材与运营培训。",
+                                "resourcesLink": "查看资源"
+                        },
+                        "dashboard": {
+                                "title": "运营仪表盘",
+                                "description": "与移动端实时同步的洞察。从会员余额、忠诚度互动到最新积分流水，一站式掌握。",
+                                "refresh": "刷新数据",
+                                "metrics": {
+                                        "points": {
+                                                "title": "积分余额",
+                                                "description": "可立即兑换"
+                                        },
+                                        "storedValue": {
+                                                "title": "储值余额",
+                                                "description": "会员钱包余额"
+                                        },
+                                        "tier": {
+                                                "title": "当前等级",
+                                                "description": "与 Uni-app 会员系统保持一致"
+                                        }
+                                },
+                                "ledger": {
+                                        "title": "会员积分流水",
+                                        "description": "查看与现有积分账本同步的最新会员行为。",
+                                        "headers": {
+                                                "action": "行为",
+                                                "points": "积分",
+                                                "date": "日期"
+                                        },
+                                "empty": "暂无积分记录。",
+                                "loading": "正在加载积分流水…",
+                                "fallbackAction": "会员动态"
+                                },
+                                "roadmap": {
+                                        "title": "体验路线图",
+                                        "description": "与跨职能团队对齐即将上线的能力。",
+                                        "items": [
+                                                {
+                                                        "title": "葡萄酒搭配礼宾",
+                                                        "description": "结合会员偏好提供品酒师推荐。",
+                                                        "status": "building"
+                                                },
+                                                {
+                                                        "title": "数字品鉴日志",
+                                                        "description": "记录品鉴笔记、分享给好友并解锁徽章。",
+                                                        "status": "design"
+                                                },
+                                                {
+                                                        "title": "LINE 小程序",
+                                                        "description": "将忠诚旅程带入 LINE 生态并复用现有 API。",
+                                                        "status": "planned"
+                                                }
+                                        ],
+                                        "statusLabels": {
+                                                "building": "开发中",
+                                                "design": "设计中",
+                                                "planned": "规划中"
+                                        }
+                                }
+                        },
+                        "login": {
+                                "title": "会员登录",
+                                "description": "使用 Chinda 账号管理预约、追踪积分，并解锁跨门店体验。一次登录即可畅行移动与桌面端。",
+                                "bullets": [
+                                        "多端统一账号体系",
+                                        "实时查看积分与储值",
+                                        "即时兑换礼遇与体验"
+                                ]
+                        },
+                        "register": {
+                                "title": "每一次到访都值得期待",
+                                "description": "加入 Chinda 会员计划，获取定制行程、优先预约与沉浸式礼遇。我们将匠心体验与数字便捷结合。",
+                                "bullets": [
+                                        "个性化迎宾体验",
+                                        "契合口味的季节上新",
+                                        "主厨合作的优先邀约"
+                                ]
+                        },
+                        "reset": {
+                                "title": "重置密码",
+                                "description": "输入邮箱、获取验证码并设置新密码。信息会即时同步至现有 Uni-app 与原生渠道。",
+                                "helpPrefix": "需要帮助？",
+                                "helpEmail": "help@chinda.co",
+                                "helpConnector": "或致电",
+                                "helpPhone": "+66 2 555 1234",
+                                "form": {
+                                        "email": "邮箱",
+                                        "code": "验证码",
+                                        "codePlaceholder": "输入 6 位验证码",
+                                        "password": "新密码",
+                                        "confirm": "确认密码",
+                                        "submit": "保存新密码",
+                                        "submitting": "保存中…",
+                                        "back": "返回登录"
+                                }
+                        },
+                        "demo": {
+                                "title": "预约专属演示",
+                                "description": "留下需求后，我们的合作团队将为您安排个性化演示，涵盖忠诚度、预订与系统集成，覆盖桌面、移动与门店场景。",
+                                "form": {
+                                        "name": "姓名",
+                                        "company": "公司",
+                                        "email": "邮箱",
+                                        "phone": "电话",
+                                        "interest": "主要关注点",
+                                        "interestPlaceholder": "请选择",
+                                        "interestOptions": {
+                                                "loyalty": "会员与忠诚体系",
+                                                "ordering": "点单与支付",
+                                                "experiences": "沉浸式活动",
+                                                "partnerships": "合作机会"
+                                        },
+                                        "notes": "备注",
+                                        "notesPlaceholder": "欢迎分享您的目标",
+                                        "submit": "提交申请",
+                                        "submitting": "发送中…"
+                                },
+                                "aside": {
+                                        "expectationsTitle": "演示内容包含",
+                                        "expectations": [
+                                                "根据现有技术栈定制的实时演示",
+                                                "与现有 Vue 2 项目对齐的 API 复用方案",
+                                                "面向桌面的设计系统起步包"
+                                        ],
+                                        "availabilityTitle": "可预约时间",
+                                        "availabilityBody": "周一至周五 10:00–18:00（ICT），支持线上或上门演示",
+                                        "emailPrompt": "如需加急，请发送邮件至 partners@chinda.co。"
+                                }
+                        }
+                },
+                "auth": {
+                        "login": {
+                                "title": "欢迎回来",
+                                "subtitle": "登录以管理会员、预约与礼遇。",
+                                "email": "邮箱",
+                                "emailPlaceholder": "you@example.com",
+                                "password": "密码",
+                                "remember": "保持登录状态",
+                                "forgot": "忘记密码？",
+                                "submit": "登录",
+                                "submitting": "登录中…",
+                                "hint": "还不是会员？",
+                                "hintCta": "立即加入"
+                        },
+                        "register": {
+                                "title": "加入美馔社群",
+                                "subtitle": "创建会员账号，畅享专属预约、品鉴活动与积分礼遇。",
+                                "firstName": "名",
+                                "lastName": "姓",
+                                "email": "邮箱",
+                                "mobile": "手机（选填）",
+                                "code": "验证码",
+                                "codePlaceholder": "输入 6 位验证码",
+                                "password": "密码",
+                                "confirm": "确认密码",
+                                "optIn": "订阅季节上新与独家邀请",
+                                "submit": "创建账号",
+                                "submitting": "创建中…",
+                                "hint": "已有账号？",
+                                "hintCta": "立即登录"
+                        },
+                        "reset": {
+                                "email": "邮箱",
+                                "code": "验证码",
+                                "codePlaceholder": "输入 6 位验证码",
+                                "password": "新密码",
+                                "confirm": "确认密码",
+                                "submit": "保存新密码",
+                                "submitting": "保存中…",
+                                "back": "返回登录"
+                        },
+                        "shared": {
+                                "sendCode": "发送验证码",
+                                "sending": "发送中…",
+                                "resend": "{seconds}s 后可重新发送"
+                        }
+                },
+                "notifications": {
+                        "emailRequired": {
+                                "title": "请先填写邮箱",
+                                "message": "请提供邮箱以便发送验证码。"
+                        },
+                        "verificationRegister": {
+                                "title": "验证码已发送",
+                                "message": "请查看邮箱获取注册验证码。"
+                        },
+                        "verificationReset": {
+                                "title": "验证码已发送",
+                                "message": "请查看邮箱获取重置验证码。"
+                        },
+                        "unableToSend": {
+                                "title": "验证码发送失败",
+                                "message": "请稍后重试。"
+                        },
+                        "passwordMismatchRegister": {
+                                "title": "两次密码不一致",
+                                "message": "请确认密码后再继续。"
+                        },
+                        "passwordMismatchReset": {
+                                "title": "两次密码不一致",
+                                "message": "请确认新密码后再提交。"
+                        },
+                        "passwordUpdated": {
+                                "title": "密码已更新",
+                                "message": "您现在可以使用新密码登录。"
+                        },
+                        "resetFailed": {
+                                "title": "重置失败",
+                                "message": "请检查验证码后重试。"
+                        },
+                        "signInRequired": {
+                                "title": "需要登录",
+                                "message": "请先登录以便跨设备兑换礼遇。"
+                        },
+                        "redeemSuccess": {
+                                "title": "兑换请求已提交",
+                                "message": "{name} 即将为您准备完成。"
+                        },
+                        "redeemFailed": {
+                                "title": "兑换失败",
+                                "message": "请检查积分余额或稍后再试。"
+                        },
+                        "demoReceived": {
+                                "title": "已收到演示申请",
+                                "message": "合作团队将于 24 小时内与您联系。"
+                        }
                 }
         }
 

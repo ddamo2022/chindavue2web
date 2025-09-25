@@ -1454,6 +1454,317 @@
                                 "privacy": "Privacy",
                                 "cookies": "Cookies"
                         }
+                },
+                "pages": {
+                        "home": {
+                                "title": "Chinda experience platform",
+                                "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile."
+                        },
+                        "experiences": {
+                                "title": "Experiences",
+                                "description": "Seasonal programming and guest journeys that stay in sync with your brand.",
+                                "journeyTitle": "A guest journey that flows across devices.",
+                                "journeyDescription": "Recreate the white-glove concierge model on desktop. From discovery to redemption, every step mirrors the native app so members never lose context."
+                        },
+                        "membership": {
+                                "title": "Membership experience",
+                                "description": "Visualize tier journeys, benefits, and upgrade mechanics sourced directly from the Uni-app membership APIs. Customize copy, imagery, and reward structures to align with local market stories while keeping backend logic in sync.",
+                                "loading": "Loading membership tiers…",
+                                "activate": "Activate",
+                                "fallbackTiers": [
+                                        {
+                                                "name": "Lapis",
+                                                "points": "Entry tier",
+                                                "description": "Ignite curiosity with welcome drinks, curated playlists, and tasting notes.",
+                                                "perks": [
+                                                        "Birthday surprise",
+                                                        "Access to tasting events",
+                                                        "Member-only menu content"
+                                                ]
+                                        },
+                                        {
+                                                "name": "Obsidian",
+                                                "points": "4,000+ points",
+                                                "description": "Elevate regular visits with seasonal pairings, mixology labs, and chef intros.",
+                                                "perks": [
+                                                        "Chef table reservations",
+                                                        "Sommelier concierge",
+                                                        "Monthly mixology labs"
+                                                ]
+                                        },
+                                        {
+                                                "name": "Aurora",
+                                                "points": "Invite only",
+                                                "description": "Craft unforgettable evenings with cellar access and behind-the-scenes collaborations.",
+                                                "perks": [
+                                                        "Private cellar evenings",
+                                                        "Menu co-creation",
+                                                        "Dedicated lifestyle concierge"
+                                                ]
+                                        }
+                                ],
+                                "fallbackPerks": {
+                                        "priority": "Priority reservations",
+                                        "seasonal": "Seasonal tasting invitations"
+                                },
+                                "fallbackDefaults": {
+                                        "name": "Membership tier",
+                                        "points": "{count}+ pts",
+                                        "level": "Level {level}",
+                                        "description": "Unlock elevated hospitality moments curated around your preferences."
+                                }
+                        },
+                        "rewards": {
+                                "title": "Rewards marketplace",
+                                "description": "Curated experiences, merchandise, and collaborations—powered by the same points mall endpoints from the existing Vue 2 app. Browse by category, filter by point value, and launch instant redemptions.",
+                                "filters": {
+                                        "category": "Category",
+                                        "categoryAll": "All",
+                                        "maxPoints": "Max points",
+                                        "apply": "Apply filters"
+                                },
+                                "loading": "Loading…",
+                                "empty": "Rewards will appear here once they are published in the Uni-app catalogue.",
+                                "redeem": "Redeem",
+                                "pointsLabel": "{count} pts",
+                                "categoryFallback": "Featured"
+                        },
+                        "locations": {
+                                "title": "Locations",
+                                "description": "Discover flagship tasting rooms, speakeasies, and partner pop-ups around the region."
+                        },
+                        "support": {
+                                "title": "Support & enablement",
+                                "description": "Partner with our team for implementation guidance, creative assets, and operational training.",
+                                "resourcesLink": "Explore resources"
+                        },
+                        "dashboard": {
+                                "title": "Operations dashboard",
+                                "description": "Insights synchronized with the mobile ecosystem. Monitor member balances, loyalty engagement, and the latest ledger activity directly from your browser.",
+                                "refresh": "Refresh data",
+                                "metrics": {
+                                        "points": {
+                                                "title": "Points balance",
+                                                "description": "Available to redeem"
+                                        },
+                                        "storedValue": {
+                                                "title": "Stored value",
+                                                "description": "Member wallet balance"
+                                        },
+                                        "tier": {
+                                                "title": "Current tier",
+                                                "description": "Synced from Uni-app membership"
+                                        }
+                                },
+                                "ledger": {
+                                        "title": "Member ledger",
+                                        "description": "Review recent member actions synchronized with the existing points ledger API.",
+                                        "headers": {
+                                                "action": "Action",
+                                                "points": "Points",
+                                                "date": "Date"
+                                        },
+                                "empty": "No ledger entries yet.",
+                                "loading": "Loading ledger…",
+                                "fallbackAction": "Activity"
+                                },
+                                "roadmap": {
+                                        "title": "Experience roadmap",
+                                        "description": "Align cross-functional teams with upcoming releases.",
+                                        "items": [
+                                                {
+                                                        "title": "Wine pairing concierge",
+                                                        "description": "Integrate sommelier recommendations powered by member preferences.",
+                                                        "status": "building"
+                                                },
+                                                {
+                                                        "title": "Digital tasting journal",
+                                                        "description": "Allow members to log tasting notes, share with friends, and unlock badges.",
+                                                        "status": "design"
+                                                },
+                                                {
+                                                        "title": "Line mini app",
+                                                        "description": "Bring loyalty journeys into the LINE ecosystem with shared APIs.",
+                                                        "status": "planned"
+                                                }
+                                        ],
+                                        "statusLabels": {
+                                                "building": "Building",
+                                                "design": "In design",
+                                                "planned": "Planned"
+                                        }
+                                }
+                        },
+                        "login": {
+                                "title": "Member access",
+                                "description": "Use your Chinda account to manage reservations, track points, and unlock curated events across all of our venues. Your login works across mobile and the new desktop experience.",
+                                "bullets": [
+                                        "Unified credentials across platforms",
+                                        "Track points and stored value balances",
+                                        "Redeem rewards and experiences instantly"
+                                ]
+                        },
+                        "register": {
+                                "title": "Elevate every visit.",
+                                "description": "Become part of the Chinda collective and receive curated itineraries, priority reservations, and experiential rewards. We combine culinary craft with digital convenience.",
+                                "bullets": [
+                                        "Personalized welcome experiences",
+                                        "Seasonal drops tailored to your tastes",
+                                        "Priority access to chef collaborations"
+                                ]
+                        },
+                        "reset": {
+                                "title": "Reset your password",
+                                "description": "Enter your email, request a verification code, and set a new password. The credentials you update here sync instantly with the existing Uni-app experience and native channels.",
+                                "helpPrefix": "Need assistance?",
+                                "helpEmail": "help@chinda.co",
+                                "helpConnector": "or call",
+                                "helpPhone": "+66 2 555 1234",
+                                "form": {
+                                        "email": "Email",
+                                        "code": "Verification code",
+                                        "codePlaceholder": "Enter 6-digit code",
+                                        "password": "New password",
+                                        "confirm": "Confirm password",
+                                        "submit": "Save new password",
+                                        "submitting": "Saving…",
+                                        "back": "Return to sign in"
+                                }
+                        },
+                        "demo": {
+                                "title": "Request a guided demo",
+                                "description": "Share a few details and our partnerships team will coordinate a tailored walkthrough covering loyalty, reservations, and integrations. Desktop, mobile, and in-venue workflows are all included.",
+                                "form": {
+                                        "name": "Full name",
+                                        "company": "Company",
+                                        "email": "Email",
+                                        "phone": "Phone",
+                                        "interest": "Primary interest",
+                                        "interestPlaceholder": "Select one",
+                                        "interestOptions": {
+                                                "loyalty": "Membership & loyalty",
+                                                "ordering": "Ordering & payments",
+                                                "experiences": "Experiential events",
+                                                "partnerships": "Partnership opportunities"
+                                        },
+                                        "notes": "Notes",
+                                        "notesPlaceholder": "Tell us about your goals",
+                                        "submit": "Submit request",
+                                        "submitting": "Sending…"
+                                },
+                                "aside": {
+                                        "expectationsTitle": "What to expect",
+                                        "expectations": [
+                                                "Live demo mapped to your current tech stack",
+                                                "API reuse plan aligned with the existing Vue 2 app",
+                                                "PC-first design system starter kit"
+                                        ],
+                                        "availabilityTitle": "Availability",
+                                        "availabilityBody": "Weekdays 10:00–18:00 ICT · Virtual or on-site sessions",
+                                        "emailPrompt": "Email partners@chinda.co for urgent requests."
+                                }
+                        },
+                        "homeMeta": {
+                                "title": "Chinda experience platform",
+                                "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile."
+                        }
+                },
+                "auth": {
+                        "login": {
+                                "title": "Welcome back",
+                                "subtitle": "Log in to manage your membership, reservations, and rewards.",
+                                "email": "Email",
+                                "emailPlaceholder": "you@example.com",
+                                "password": "Password",
+                                "remember": "Keep me signed in",
+                                "forgot": "Forgot password?",
+                                "submit": "Sign in",
+                                "submitting": "Signing in…",
+                                "hint": "Not a member yet?",
+                                "hintCta": "Join the experience"
+                        },
+                        "register": {
+                                "title": "Join the culinary collective",
+                                "subtitle": "Create a member account to access table reservations, tasting events, and loyalty rewards.",
+                                "firstName": "First name",
+                                "lastName": "Last name",
+                                "email": "Email",
+                                "mobile": "Mobile number (optional)",
+                                "code": "Verification code",
+                                "codePlaceholder": "Enter 6-digit code",
+                                "password": "Password",
+                                "confirm": "Confirm password",
+                                "optIn": "Subscribe to seasonal drops and exclusive invitations.",
+                                "submit": "Create account",
+                                "submitting": "Creating…",
+                                "hint": "Already have an account?",
+                                "hintCta": "Sign in"
+                        },
+                        "reset": {
+                                "email": "Email",
+                                "code": "Verification code",
+                                "codePlaceholder": "Enter 6-digit code",
+                                "password": "New password",
+                                "confirm": "Confirm password",
+                                "submit": "Save new password",
+                                "submitting": "Saving…",
+                                "back": "Return to sign in"
+                        },
+                        "shared": {
+                                "sendCode": "Send code",
+                                "sending": "Sending…",
+                                "resend": "Resend in {seconds}s"
+                        }
+                },
+                "notifications": {
+                        "emailRequired": {
+                                "title": "Enter email first",
+                                "message": "Provide your email so we can send a verification code."
+                        },
+                        "verificationRegister": {
+                                "title": "Verification sent",
+                                "message": "Check your inbox for the registration code."
+                        },
+                        "verificationReset": {
+                                "title": "Verification sent",
+                                "message": "Check your inbox for the reset code."
+                        },
+                        "unableToSend": {
+                                "title": "Unable to send code",
+                                "message": "Please try again shortly."
+                        },
+                        "passwordMismatchRegister": {
+                                "title": "Passwords do not match",
+                                "message": "Please confirm your password before continuing."
+                        },
+                        "passwordMismatchReset": {
+                                "title": "Passwords do not match",
+                                "message": "Please confirm your new password."
+                        },
+                        "passwordUpdated": {
+                                "title": "Password updated",
+                                "message": "You can now sign in with your new password."
+                        },
+                        "resetFailed": {
+                                "title": "Unable to reset password",
+                                "message": "Check the code and try again."
+                        },
+                        "signInRequired": {
+                                "title": "Sign in required",
+                                "message": "Log in to redeem your rewards across devices."
+                        },
+                        "redeemSuccess": {
+                                "title": "Redemption requested",
+                                "message": "{name} will be ready for you shortly."
+                        },
+                        "redeemFailed": {
+                                "title": "Redemption failed",
+                                "message": "Please check your balance or try again later."
+                        },
+                        "demoReceived": {
+                                "title": "Demo request received",
+                                "message": "Our partnerships team will reach out within 24 hours."
+                        }
                 }
         }
 

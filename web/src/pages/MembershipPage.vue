@@ -1,13 +1,9 @@
 <template>
   <section class="membership-page">
     <header class="membership-page__header">
-      <h1>Membership experience</h1>
-      <p>
-        Visualize tier journeys, benefits, and upgrade mechanics sourced directly from the Uni-app
-        membership APIs. Customize copy, imagery, and reward structures to align with local market
-        stories while keeping backend logic in sync.
-      </p>
-      <p v-if="loading" class="membership-page__hint">Loading membership tiers…</p>
+      <h1>{{ t('web.pages.membership.title') }}</h1>
+      <p>{{ t('web.pages.membership.description') }}</p>
+      <p v-if="loading" class="membership-page__hint">{{ t('web.pages.membership.loading') }}</p>
     </header>
     <div class="membership-page__tiers">
       <article v-for="tier in displayTiers" :key="tier.name" class="membership-tier">
@@ -19,7 +15,7 @@
         <ul>
           <li v-for="perk in tier.perks" :key="perk">{{ perk }}</li>
         </ul>
-        <RouterLink to="/register" class="button button--ghost">Activate</RouterLink>
+        <RouterLink to="/register" class="button button--ghost">{{ t('web.pages.membership.activate') }}</RouterLink>
       </article>
     </div>
   </section>
@@ -30,30 +26,29 @@ import { computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useMemberStore } from '@/stores/member'
+import { useI18n } from 'vue-i18n'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const member = useMemberStore()
 const { tiers, tiersLoading } = storeToRefs(member)
+const { t, tm } = useI18n()
 
-const fallbackTiers = [
-  {
-    name: 'Lapis',
-    pointsLabel: 'Entry tier',
-    description: 'Ignite curiosity with welcome drinks, curated playlists, and tasting notes.',
-    perks: ['Birthday surprise', 'Access to tasting events', 'Member-only menu content']
-  },
-  {
-    name: 'Obsidian',
-    pointsLabel: '4,000+ points',
-    description: 'Elevate regular visits with seasonal pairings, mixology labs, and chef intros.',
-    perks: ['Chef table reservations', 'Sommelier concierge', 'Monthly mixology labs']
-  },
-  {
-    name: 'Aurora',
-    pointsLabel: 'Invite only',
-    description: 'Craft unforgettable evenings with cellar access and behind-the-scenes collaborations.',
-    perks: ['Private cellar evenings', 'Menu co-creation', 'Dedicated lifestyle concierge']
-  }
-]
+usePageMeta({
+  titleKey: 'web.pages.membership.title',
+  descriptionKey: 'web.pages.membership.description'
+})
+
+const fallbackTiers = computed(() => {
+  const tiers = tm('web.pages.membership.fallbackTiers')
+  return Array.isArray(tiers)
+    ? tiers.map((tier) => ({
+        name: tier.name,
+        pointsLabel: tier.points,
+        description: tier.description,
+        perks: Array.isArray(tier.perks) ? tier.perks : []
+      }))
+    : []
+})
 
 const normalizePerks = (tier) => {
   const perks = []
@@ -77,24 +72,33 @@ const normalizePerks = (tier) => {
       }
     })
   }
-  return perks.length ? perks : ['Priority reservations', 'Seasonal tasting invitations']
+  if (perks.length) return perks
+  const fallbackPerks = [
+    t('web.pages.membership.fallbackPerks.priority'),
+    t('web.pages.membership.fallbackPerks.seasonal')
+  ].filter((entry) => entry && entry !== 'web.pages.membership.fallbackPerks.priority' && entry !== 'web.pages.membership.fallbackPerks.seasonal')
+  return fallbackPerks.length ? fallbackPerks : []
 }
 
 const normalizedTiers = computed(() => {
   if (!tiers.value || !tiers.value.length) return []
   return tiers.value.map((tier) => ({
-    name: tier.name || tier.levelName || 'Membership tier',
+    name: tier.name || tier.levelName || t('web.pages.membership.fallbackDefaults.name'),
     pointsLabel:
-      tier.exp || tier.upgrade ? `${tier.exp || tier.upgrade}+ pts` : tier.level ? `Level ${tier.level}` : '',
+      tier.exp || tier.upgrade
+        ? t('web.pages.membership.fallbackDefaults.points', { count: tier.exp || tier.upgrade })
+        : tier.level
+        ? t('web.pages.membership.fallbackDefaults.level', { level: tier.level })
+        : '',
     description:
       tier.describe ||
       tier.description ||
-      'Unlock elevated hospitality moments curated around your preferences.',
+      t('web.pages.membership.fallbackDefaults.description'),
     perks: normalizePerks(tier)
   }))
 })
 
-const displayTiers = computed(() => (normalizedTiers.value.length ? normalizedTiers.value : fallbackTiers))
+const displayTiers = computed(() => (normalizedTiers.value.length ? normalizedTiers.value : fallbackTiers.value))
 const loading = computed(() => tiersLoading.value)
 
 onMounted(() => {

@@ -66,9 +66,15 @@
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 import { useContentStore } from '@/stores/content'
+import { usePageMeta } from '@/composables/usePageMeta'
 
 const content = useContentStore()
 const { locationsHero: hero, locations } = storeToRefs(content)
+
+usePageMeta({
+  titleKey: 'web.pages.locations.title',
+  descriptionKey: 'web.pages.locations.description'
+})
 </script>
 
 <style scoped>

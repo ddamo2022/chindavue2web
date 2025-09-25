@@ -56,11 +56,8 @@
 
     <section v-if="journey.length" class="experiences__journey">
       <div class="experiences__journey-head">
-        <h2>A guest journey that flows across devices.</h2>
-        <p>
-          Recreate the white-glove concierge model on desktop. From discovery to redemption, every step
-          mirrors the native app so members never lose context.
-        </p>
+        <h2>{{ t('web.pages.experiences.journeyTitle') }}</h2>
+        <p>{{ t('web.pages.experiences.journeyDescription') }}</p>
       </div>
       <ol class="experiences__timeline">
         <li v-for="step in journey" :key="step.title">
@@ -81,10 +78,18 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useContentStore } from '@/stores/content'
+import { usePageMeta } from '@/composables/usePageMeta'
 
+const { t } = useI18n()
 const content = useContentStore()
 const { experiencesHero: hero, experiences, experienceJourney: journey } = storeToRefs(content)
+
+usePageMeta({
+  titleKey: 'web.pages.experiences.title',
+  descriptionKey: 'web.pages.experiences.description'
+})
 </script>
 
 <style scoped>
