@@ -74,6 +74,20 @@ const setActiveLocale = (locale) => {
   i18n.global.locale.value = nextLocale
   persistLocale(nextLocale)
   applyDocumentLang(nextLocale)
+
+  if (typeof window !== 'undefined') {
+    try {
+      window.dispatchEvent(
+        new CustomEvent('chinda:locale-changed', {
+          detail: { locale: nextLocale }
+        })
+      )
+    } catch (error) {
+      console.warn('Unable to broadcast locale change event', error)
+    }
+  }
+
+  return nextLocale
 }
 
 export const supportedLocales = SUPPORTED_LOCALES

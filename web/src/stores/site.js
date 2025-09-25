@@ -107,6 +107,8 @@ const readStoredShopId = (info) => {
   )
 }
 
+let lastKnownLocale = readLocale()
+
 const resolveApiBase = () => {
   if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) {
     return import.meta.env.VITE_API_BASE
@@ -396,6 +398,8 @@ export const useSiteStore = defineStore('site', () => {
     lastChecked: 0
   })
 
+  let localeRefreshQueued = false
+
   const markConnectivityChecking = () => {
     connectivity.status = 'checking'
   }
@@ -420,7 +424,12 @@ export const useSiteStore = defineStore('site', () => {
 
   const loadConfig = async ({ force = false } = {}) => {
     if (ready.value && !force) return
-    if (loading.value) return
+    if (loading.value) {
+      if (force) {
+        localeRefreshQueued = true
+      }
+      return
+    }
     loading.value = true
     markConnectivityChecking()
     try {
@@ -464,6 +473,10 @@ export const useSiteStore = defineStore('site', () => {
       markConnectivityOffline(error)
     } finally {
       loading.value = false
+      if (localeRefreshQueued) {
+        localeRefreshQueued = false
+        await loadConfig({ force: true })
+      }
     }
   }
 
@@ -481,6 +494,22 @@ export const useSiteStore = defineStore('site', () => {
       return config.layout
     } finally {
       layoutLoading.value = false
+    }
+  }
+
+  if (typeof window !== 'undefined') {
+    const handleLocaleChange = (event) => {
+      const nextLocale = event?.detail?.locale
+      if (!nextLocale || nextLocale === lastKnownLocale) return
+      lastKnownLocale = nextLocale
+      loadConfig({ force: true }).catch((error) => {
+        console.warn('Failed to refresh config after locale change', error)
+      })
+    }
+
+    if (!window.__CHINDA_LOCALE_LISTENER__) {
+      window.__CHINDA_LOCALE_LISTENER__ = handleLocaleChange
+      window.addEventListener('chinda:locale-changed', handleLocaleChange)
     }
   }
 
