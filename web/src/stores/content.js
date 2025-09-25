@@ -108,6 +108,37 @@ const normalizePressList = (input, fallback) => {
   return normalized.length ? normalized : fallback
 }
 
+const normalizePartnersList = (input, fallback) => {
+  const normalized = ensureArray(input)
+    .map((entry) => {
+      const name = ensureText(entry.name ?? entry.title ?? entry.label)
+      const logo = ensureText(entry.logo ?? entry.image ?? entry.icon)
+      if (!name && !logo) return null
+      const href = ensureText(entry.href ?? entry.url)
+      const external = Boolean(entry.external || (href && /^https?:/i.test(href)))
+      return {
+        name: name || 'Partner',
+        logo: logo || '',
+        href: href || '',
+        external
+      }
+    })
+    .filter((entry) => entry.logo || entry.name)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizeFaqList = (input, fallback) => {
+  const normalized = ensureArray(input)
+    .map((entry) => {
+      const question = ensureText(entry.question ?? entry.q ?? entry.title)
+      const answer = ensureText(entry.answer ?? entry.a ?? entry.description ?? entry.copy)
+      if (!question || !answer) return null
+      return { question, answer }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
 const normalizeHeroCards = (cards, fallback) => {
   const normalized = ensureArray(cards)
     .map((card) => {
@@ -658,6 +689,51 @@ const defaultPressMentions = [
   }
 ]
 
+const defaultPartners = [
+  {
+    name: 'Siam Culinary Group',
+    logo: 'https://dummyimage.com/160x60/0f172a/ffffff&text=Siam+Culinary',
+    href: 'https://example.com/partners/siam',
+    external: true
+  },
+  {
+    name: 'Luminous Hotels',
+    logo: 'https://dummyimage.com/160x60/111827/ffffff&text=Luminous',
+    href: 'https://example.com/partners/luminous',
+    external: true
+  },
+  {
+    name: 'Azure Mixology Lab',
+    logo: 'https://dummyimage.com/160x60/1e293b/ffffff&text=Azure+Lab',
+    href: 'https://example.com/partners/azure',
+    external: true
+  },
+  {
+    name: 'Chroma Events',
+    logo: 'https://dummyimage.com/160x60/0f172a/ffffff&text=Chroma',
+    href: 'https://example.com/partners/chroma',
+    external: true
+  }
+]
+
+const defaultFaqs = [
+  {
+    question: 'How does the desktop site stay in sync with our existing Uni-app?',
+    answer:
+      'The web client consumes the same configuration, membership, and loyalty endpoints as the Uni-app build. Updates published in your existing CMS and API propagate instantly to the desktop experience.'
+  },
+  {
+    question: 'Can we localize content for each market?',
+    answer:
+      'Yes. Marketing copy, navigation, and footer content respect the locale dictionaries bundled with the project. You can extend the dictionaries or supply localized overrides from remote configuration.'
+  },
+  {
+    question: 'What integrations are supported at launch?',
+    answer:
+      'Out of the box, the site supports loyalty ledgers, points redemption, reservations, and demo request workflows. Additional hospitality integrations can be added without disrupting the shared API contract.'
+  }
+]
+
 const mergePanels = (source = {}, fallback) => ({
   analyticsCta: normalizeCta(source.analyticsCta, fallback.analyticsCta),
   rewardsCta: normalizeCta(source.rewardsCta, fallback.rewardsCta)
@@ -957,6 +1033,33 @@ export const useContentStore = defineStore('content', () => {
     )
   })
 
+  const partners = computed(() => {
+    const config =
+      marketing.value.partners || marketing.value.clients || marketing.value.brands || marketing.value.partnerLogos || {}
+    const layoutPartners = ensureArray(site.config.layout?.list).find(
+      (block) => block?.name === 'ad' && Array.isArray(block?.styles?.adList)
+    )
+    const layoutLogos = Array.isArray(layoutPartners?.styles?.adList)
+      ? layoutPartners.styles.adList
+          .map((item) => ({
+            name: ensureText(item.title ?? item.name ?? item.label),
+            logo: ensureText(item.image ?? item.pic ?? item.img ?? item.logo),
+            href: ensureText(item.link ?? item.url ?? item.to),
+            external: Boolean(item.external || (item.link && /^https?:/i.test(item.link)))
+          }))
+          .filter((entry) => entry.logo || entry.name)
+      : []
+    return normalizePartnersList(
+      config.list || config.items || config.logos || marketing.value.partnerLogos || layoutLogos,
+      defaultPartners
+    )
+  })
+
+  const faqs = computed(() => {
+    const support = marketing.value.support || marketing.value.enablement || marketing.value.services || {}
+    return normalizeFaqList(support.faqs || support.questions || support.qna || marketing.value.faqs, defaultFaqs)
+  })
+
   return {
     hero,
     features,
@@ -973,6 +1076,8 @@ export const useContentStore = defineStore('content', () => {
     testimonials,
     testimonialsMeta,
     pressMentions,
-    pressMeta
+    pressMeta,
+    partners,
+    faqs
   }
 })

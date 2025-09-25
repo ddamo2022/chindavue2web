@@ -1482,6 +1482,11 @@
                         "home": {
                                 "title": "Chinda 体验平台",
                                 "description": "为桌面与移动打造的全渠道会员、预订与待客体验。",
+                                "partners": {
+                                        "eyebrow": "合作伙伴网络",
+                                        "title": "深受行业创新者信赖",
+                                        "description": "领先的餐饮集团、酒店与会所使用 Chinda 在各渠道编排会员与服务体验。"
+                                },
                                 "testimonials": {
                                         "title": "合作伙伴的真实声音",
                                         "description": "来自亚太地区的运营团队如何利用 Chinda 构建一致的桌面故事与会员旅程。",
@@ -1578,7 +1583,12 @@
                         "support": {
                                 "title": "支持与赋能",
                                 "description": "与我们团队合作，获取实施指南、创意素材与运营培训。",
-                                "resourcesLink": "查看资源"
+                                "resourcesLink": "查看资源",
+                                "faq": {
+                                        "title": "常见问题",
+                                        "description": "帮助运营与营销团队自信上线桌面体验的答案。",
+                                        "empty": "常见问题内容将在 Uni-app CMS 配置后显示。"
+                                }
                         },
                         "dashboard": {
                                 "title": "运营仪表盘",

@@ -39,6 +39,8 @@
         <a v-if="contact.href" :href="contact.href" class="support__link">{{ t('web.pages.support.resourcesLink') }}</a>
       </article>
     </section>
+
+    <FaqAccordion />
   </section>
 </template>
 
@@ -48,6 +50,7 @@ import { RouterLink } from 'vue-router'
 import { useContentStore } from '@/stores/content'
 import { useI18n } from 'vue-i18n'
 import { usePageMeta } from '@/composables/usePageMeta'
+import FaqAccordion from '@/components/sections/FaqAccordion.vue'
 
 const { t } = useI18n()
 const content = useContentStore()

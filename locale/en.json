@@ -1459,6 +1459,11 @@
                         "home": {
                                 "title": "Chinda experience platform",
                                 "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile.",
+                                "partners": {
+                                        "eyebrow": "Partner network",
+                                        "title": "Trusted by hospitality innovators",
+                                        "description": "Leading restaurant groups, hotels, and lounges rely on Chinda to orchestrate loyalty and service across every channel."
+                                },
                                 "testimonials": {
                                         "title": "Voices from our partners",
                                         "description": "How leading operators orchestrate desktop storytelling, campaigns, and loyalty using Chinda.",
@@ -1555,7 +1560,12 @@
                         "support": {
                                 "title": "Support & enablement",
                                 "description": "Partner with our team for implementation guidance, creative assets, and operational training.",
-                                "resourcesLink": "Explore resources"
+                                "resourcesLink": "Explore resources",
+                                "faq": {
+                                        "title": "Frequently asked questions",
+                                        "description": "Answers to help your operations and marketing teams launch the desktop experience with confidence.",
+                                        "empty": "FAQ content will appear once it is configured in the Uni-app CMS."
+                                }
                         },
                         "dashboard": {
                                 "title": "Operations dashboard",

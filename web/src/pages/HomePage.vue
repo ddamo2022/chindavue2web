@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HeroPrimary />
+    <PartnerMarquee />
     <FeatureGrid />
     <ExperienceTimeline />
     <LoyaltyOverview />
@@ -35,6 +36,7 @@
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 import HeroPrimary from '@/components/hero/HeroPrimary.vue'
+import PartnerMarquee from '@/components/sections/PartnerMarquee.vue'
 import FeatureGrid from '@/components/sections/FeatureGrid.vue'
 import ExperienceTimeline from '@/components/sections/ExperienceTimeline.vue'
 import LoyaltyOverview from '@/components/sections/LoyaltyOverview.vue'
