@@ -1,21 +1,18 @@
 <template>
   <section class="loyalty">
     <div class="loyalty__content">
-      <h2>Loyalty designed for culinary exploration.</h2>
-      <p>
-        Tiered journeys map to culinary stories: from discovery tastings to cellar access and chef tables.
-        Configure thresholds, benefits, and experiential rewards in minutes.
-      </p>
-      <ul class="loyalty__tiers">
-        <li v-for="tier in tiers" :key="tier.name" class="loyalty__tier">
+      <h2>{{ loyalty.headline }}</h2>
+      <p>{{ loyalty.copy }}</p>
+      <ul v-if="loyalty.tiers?.length" class="loyalty__tiers">
+        <li v-for="tier in loyalty.tiers" :key="tier.name" class="loyalty__tier">
           <h3>{{ tier.name }}</h3>
           <p>{{ tier.description }}</p>
           <dl>
-            <div>
+            <div v-if="tier.qualification">
               <dt>Qualification</dt>
               <dd>{{ tier.qualification }}</dd>
             </div>
-            <div>
+            <div v-if="tier.highlight">
               <dt>Signature reward</dt>
               <dd>{{ tier.highlight }}</dd>
             </div>
@@ -26,53 +23,55 @@
     <aside class="loyalty__aside">
       <div class="loyalty__panel">
         <h4>Points health snapshot</h4>
-        <ul>
-          <li v-for="metric in metrics" :key="metric.label">
+        <ul v-if="loyalty.metrics?.length">
+          <li v-for="metric in loyalty.metrics" :key="metric.label">
             <span>{{ metric.label }}</span>
             <strong>{{ metric.value }}</strong>
           </li>
         </ul>
-        <RouterLink to="/dashboard" class="button button--full button--ghost">View analytics</RouterLink>
+        <component
+          v-if="loyalty.analyticsCta"
+          :is="loyalty.analyticsCta.to ? RouterLink : 'a'"
+          v-bind="loyalty.analyticsCta.to
+            ? { to: loyalty.analyticsCta.to }
+            : { href: loyalty.analyticsCta.href || '#', target: loyalty.analyticsCta.external ? '_blank' : undefined, rel: loyalty.analyticsCta.external ? 'noopener' : undefined }
+          "
+          class="button button--full"
+          :class="loyalty.analyticsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        >
+          {{ loyalty.analyticsCta.label }}
+        </component>
       </div>
       <div class="loyalty__panel loyalty__panel--gradient">
         <h4>Exchange marketplace</h4>
         <p>
-          Curate experiences and merchandise using the existing points mall APIs. Manage stock, set point
-          costs, and schedule limited drops.
+          Curate experiences and merchandise using the existing points mall APIs. Manage stock, set point costs, and schedule
+          limited drops.
         </p>
-        <RouterLink to="/rewards" class="button button--primary button--full">Explore catalog</RouterLink>
+        <component
+          v-if="loyalty.rewardsCta"
+          :is="loyalty.rewardsCta.to ? RouterLink : 'a'"
+          v-bind="loyalty.rewardsCta.to
+            ? { to: loyalty.rewardsCta.to }
+            : { href: loyalty.rewardsCta.href || '#', target: loyalty.rewardsCta.external ? '_blank' : undefined, rel: loyalty.rewardsCta.external ? 'noopener' : undefined }
+          "
+          class="button button--full"
+          :class="loyalty.rewardsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        >
+          {{ loyalty.rewardsCta.label }}
+        </component>
       </div>
     </aside>
   </section>
 </template>
 
 <script setup>
-const tiers = [
-  {
-    name: 'Lapis',
-    description: 'Welcome tier with curated tasting flights and birthday surprises.',
-    qualification: 'Sign up + first purchase',
-    highlight: 'Complimentary artisanal drink on every third visit'
-  },
-  {
-    name: 'Obsidian',
-    description: 'Unlock chef table reservations, mixology lab sessions, and curated pairings.',
-    qualification: '6 visits or 4,000 THB spend per quarter',
-    highlight: 'Monthly sommelier pairing and seasonal merch drop'
-  },
-  {
-    name: 'Aurora',
-    description: 'By invitation tier with private cellar evenings and collaborative menu creation.',
-    qualification: 'Invitation + 12k THB annual spend',
-    highlight: 'Exclusive cellar vault experiences and VIP concierge'
-  }
-]
+import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+import { useContentStore } from '@/stores/content'
 
-const metrics = [
-  { label: 'Active members', value: '25,482' },
-  { label: 'Avg. points burn', value: '68%' },
-  { label: 'NPS last 30 days', value: '+56' }
-]
+const content = useContentStore()
+const { loyalty } = storeToRefs(content)
 </script>
 
 <style scoped>

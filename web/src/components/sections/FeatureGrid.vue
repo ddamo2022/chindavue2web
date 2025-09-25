@@ -3,18 +3,18 @@
     <header>
       <h2>Web-first experience with operational depth.</h2>
       <p>
-        Built on top of our existing API stack to keep logic in sync with the Vue 2 mobile app while
-        delivering a desktop-grade UI.
+        Built on top of our existing API stack to keep logic in sync with the Vue 2 mobile app while delivering a desktop-grade
+        UI.
       </p>
     </header>
     <div class="feature-grid__items">
-      <article v-for="feature in features" :key="feature.title" class="feature-grid__item">
+      <article v-for="feature in featureCards" :key="feature.title" class="feature-grid__item">
         <span class="feature-grid__icon" :style="{ background: feature.tint }">
           {{ feature.icon }}
         </span>
         <h3>{{ feature.title }}</h3>
         <p>{{ feature.description }}</p>
-        <ul v-if="feature.highlights">
+        <ul v-if="feature.highlights?.length">
           <li v-for="highlight in feature.highlights" :key="highlight">{{ highlight }}</li>
         </ul>
       </article>
@@ -23,32 +23,11 @@
 </template>
 
 <script setup>
-const features = [
-  {
-    title: 'Omni-channel ordering',
-    icon: '💠',
-    tint: 'linear-gradient(135deg, #6366f1, #a855f7)',
-    description:
-      'Responsive UI for dine-in, takeaway and delivery flows with keyboard-first support and accessibility baked in.',
-    highlights: ['Adaptive product cards', 'Table & queue management', 'Invoice-ready receipts']
-  },
-  {
-    title: 'Membership control center',
-    icon: '👑',
-    tint: 'linear-gradient(135deg, #f97316, #fb7185)',
-    description:
-      'Manage loyalty tiers, personalized offers, and stored value with real-time analytics directly on the dashboard.',
-    highlights: ['Tier rule builder', 'Segment designer', 'Reward automation']
-  },
-  {
-    title: 'Marketing automation',
-    icon: '📡',
-    tint: 'linear-gradient(135deg, #22d3ee, #3b82f6)',
-    description:
-      'Trigger email, SMS, and LINE campaigns using audience segments defined in the core platform.',
-    highlights: ['Journey orchestration', 'Dynamic voucher templates', 'Campaign attribution']
-  }
-]
+import { storeToRefs } from 'pinia'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { features: featureCards } = storeToRefs(content)
 </script>
 
 <style scoped>

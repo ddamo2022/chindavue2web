@@ -4,32 +4,42 @@
     <FeatureGrid />
     <ExperienceTimeline />
     <LoyaltyOverview />
-    <section class="home__showcase">
-      <article class="home__card">
-        <h2>Signature experiences</h2>
-        <p>
-          From augmented reality tastings to rooftop supper clubs, explore the journeys curated for members
-          across our flagship cities.
-        </p>
-        <RouterLink to="/experiences" class="button button--ghost">Discover the lineup</RouterLink>
-      </article>
-      <article class="home__card home__card--accent">
-        <h2>Visit our destinations</h2>
-        <p>
-          Browse immersive lounges, check amenities, and sync reservations with the same APIs powering the
-          mobile app.
-        </p>
-        <RouterLink to="/locations" class="button button--primary">Explore locations</RouterLink>
+    <section v-if="showcaseCards.length" class="home__showcase">
+      <article
+        v-for="card in showcaseCards"
+        :key="card.title"
+        :class="['home__card', card.accent ? 'home__card--accent' : null]"
+        :style="card.gradient ? { background: card.gradient } : undefined"
+      >
+        <h2>{{ card.title }}</h2>
+        <p>{{ card.description }}</p>
+        <component
+          :is="card.to ? RouterLink : 'a'"
+          v-bind="card.to
+            ? { to: card.to }
+            : { href: card.href || '#', target: card.external ? '_blank' : undefined, rel: card.external ? 'noopener' : undefined }
+          "
+          class="button"
+          :class="card.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        >
+          {{ card.label }}
+        </component>
       </article>
     </section>
   </div>
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
 import HeroPrimary from '@/components/hero/HeroPrimary.vue'
 import FeatureGrid from '@/components/sections/FeatureGrid.vue'
 import ExperienceTimeline from '@/components/sections/ExperienceTimeline.vue'
 import LoyaltyOverview from '@/components/sections/LoyaltyOverview.vue'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { showcaseCards } = storeToRefs(content)
 </script>
 
 <style scoped>

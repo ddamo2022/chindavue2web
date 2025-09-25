@@ -3,18 +3,17 @@
     <header>
       <h2>Guest journey mapped end-to-end.</h2>
       <p>
-        Our desktop suite mirrors the mobile touchpoints and shares the same API contracts. Start with
-        the familiar flows and iterate with richer storytelling, high-fidelity imagery, and advanced
-        loyalty rules.
+        Our desktop suite mirrors the mobile touchpoints and shares the same API contracts. Start with the familiar flows and
+        iterate with richer storytelling, high-fidelity imagery, and advanced loyalty rules.
       </p>
     </header>
     <ol class="timeline__steps">
-      <li v-for="step in steps" :key="step.title" class="timeline__step">
+      <li v-for="step in timelineSteps" :key="step.title" class="timeline__step">
         <span class="timeline__step-index">{{ step.index }}</span>
         <div class="timeline__step-body">
           <h3>{{ step.title }}</h3>
           <p>{{ step.description }}</p>
-          <div class="timeline__meta">
+          <div v-if="step.tags?.length" class="timeline__meta">
             <span v-for="tag in step.tags" :key="tag">{{ tag }}</span>
           </div>
         </div>
@@ -24,36 +23,11 @@
 </template>
 
 <script setup>
-const steps = [
-  {
-    index: '01',
-    title: 'Discover',
-    description:
-      'A storytelling landing page highlights signature menus, flagship locations, and brand collaborations. Built with modular hero, story and CTA sections.',
-    tags: ['Landing CMS', 'Menu previews', 'Location cards']
-  },
-  {
-    index: '02',
-    title: 'Engage & Join',
-    description:
-      'Guests create an account, bind their mobile/email, and unlock sign-up rewards. Identity is synced with the existing Uni-app membership service.',
-    tags: ['Unified auth', 'Real-time validation', 'Social sign-on']
-  },
-  {
-    index: '03',
-    title: 'Transact',
-    description:
-      'Responsive ordering, table service, and payment experiences integrated with the existing checkout APIs.',
-    tags: ['Cart sync', 'Table QR mode', 'Multi-channel pay']
-  },
-  {
-    index: '04',
-    title: 'Retain',
-    description:
-      'Members track points, redeem catalog rewards, and receive curated experiences. All powered by the loyalty endpoints already in production.',
-    tags: ['Points ledger', 'Reward redemption', 'Experience bundles']
-  }
-]
+import { storeToRefs } from 'pinia'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { timeline: timelineSteps } = storeToRefs(content)
 </script>
 
 <style scoped>

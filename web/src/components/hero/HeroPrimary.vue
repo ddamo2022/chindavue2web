@@ -1,42 +1,48 @@
 <template>
   <section class="hero">
     <div class="hero__content">
-      <p class="hero__eyebrow">NEXT-GEN HOSPITALITY PLATFORM</p>
-      <h1>Deliver a unified guest experience across dine-in, delivery and loyalty.</h1>
-      <p class="hero__lead">
-        Design inspired by our flagship concept. Engage guests with immersive storytelling, effortless
-        ordering, and a membership journey that feels bespoke.
-      </p>
-      <div class="hero__actions">
-        <RouterLink to="/register" class="button button--primary button--lg">Launch membership</RouterLink>
-        <RouterLink to="/demo" class="button button--ghost button--lg">Request a demo</RouterLink>
+      <p v-if="hero.eyebrow" class="hero__eyebrow">{{ hero.eyebrow }}</p>
+      <h1>{{ hero.title }}</h1>
+      <p class="hero__lead">{{ hero.description }}</p>
+      <div v-if="hero.ctas?.length" class="hero__actions">
+        <component
+          v-for="cta in hero.ctas"
+          :key="cta.label"
+          :is="cta.to ? RouterLink : 'a'"
+          v-bind="cta.to ? { to: cta.to } : { href: cta.href || '#', target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
+          class="button"
+          :class="['button--lg', cta.variant === 'primary' ? 'button--primary' : 'button--ghost']"
+        >
+          {{ cta.label }}
+        </component>
       </div>
-      <dl class="hero__stats">
-        <div>
-          <dt>25k+</dt>
-          <dd>Monthly active members</dd>
-        </div>
-        <div>
-          <dt>86%</dt>
-          <dd>Repeat purchase uplift</dd>
-        </div>
-        <div>
-          <dt>12</dt>
-          <dd>Markets with localized experience</dd>
+      <dl v-if="hero.stats?.length" class="hero__stats">
+        <div v-for="stat in hero.stats" :key="stat.label">
+          <dt>{{ stat.value }}</dt>
+          <dd>{{ stat.label }}</dd>
         </div>
       </dl>
     </div>
     <div class="hero__media">
       <div class="hero__card">
-        <img src="/hero-shot.svg" alt="Chinda dining" />
-        <div class="hero__badge">
-          <span class="hero__badge-label">Members first</span>
-          <p class="hero__badge-text">Personalized tasting menus, seasonal drinks, and curated pairings.</p>
+        <img :src="hero.image || '/hero-shot.svg'" alt="Chinda dining" />
+        <div v-if="hero.badge" class="hero__badge">
+          <span v-if="hero.badge.label" class="hero__badge-label">{{ hero.badge.label }}</span>
+          <p v-if="hero.badge.text" class="hero__badge-text">{{ hero.badge.text }}</p>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { hero } = storeToRefs(content)
+</script>
 
 <style scoped>
 .hero {
