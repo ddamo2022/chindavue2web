@@ -93,6 +93,13 @@ const goodsApi = {
   async list(params) {
     const response = await http.get(api.goods, { params })
     return unwrap(response, 'Unable to load menu items')
+  },
+  async search(storeId, params = {}) {
+    if (!storeId) {
+      throw new Error('Store ID is required to search menu items')
+    }
+    const response = await http.get(`${api.spss}/${storeId}`, { params })
+    return unwrap(response, 'Unable to search menu items')
   }
 }
 

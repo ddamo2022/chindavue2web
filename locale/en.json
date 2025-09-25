@@ -1596,7 +1596,16 @@
                                 "emptyMenu": "Menu items will appear once they are published for this category.",
                                 "emptyCategories": "No categories have been published for this service type yet.",
                                 "pointsLabel": "{count} pts",
-                                "unavailable": "Unavailable"
+                                "unavailable": "Unavailable",
+                                "searchLabel": "Search menu",
+                                "searchPlaceholder": "Search drinks, pastries, or experiences",
+                                "searchButton": "Search",
+                                "searching": "Searching…",
+                                "searchClear": "Clear search",
+                                "searchEmpty": "No menu items matched “{term}”.",
+                                "searchActive": "Showing {count} matches for “{term}”.",
+                                "searchError": "We couldn’t search the menu right now. Please try again.",
+                                "searchSelectStore": "Select a store before searching the menu."
                         },
                         "locations": {
                                 "title": "Locations",

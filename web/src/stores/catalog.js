@@ -191,6 +191,12 @@ export const useCatalogStore = defineStore('catalog', () => {
   const selectedCategoryId = ref('')
   const goodsError = ref('')
 
+  const searchTerm = ref('')
+  const searchResults = ref([])
+  const searchLoading = ref(false)
+  const searchError = ref('')
+  const hasActiveSearch = ref(false)
+
   const diningType = ref(0)
 
   const defaultLocation = computed(() => {
@@ -238,6 +244,14 @@ export const useCatalogStore = defineStore('catalog', () => {
       localStorage.setItem('shopId', id)
       sessionStorage.setItem('shopId', id)
     }
+  }
+
+  const clearSearch = () => {
+    searchTerm.value = ''
+    searchResults.value = []
+    searchLoading.value = false
+    searchError.value = ''
+    hasActiveSearch.value = false
   }
 
   const loadStores = async ({ refresh = false } = {}) => {
@@ -314,6 +328,7 @@ export const useCatalogStore = defineStore('catalog', () => {
     const normalizedId = String(storeId)
     selectedStoreId.value = normalizedId
     persistSelectedStore(normalizedId)
+    clearSearch()
     if (!skipDetail) {
       await loadStoreDetail(normalizedId)
     }
@@ -375,6 +390,7 @@ export const useCatalogStore = defineStore('catalog', () => {
     if (!categoryId || categoryId === selectedCategoryId.value) return
     const normalizedId = String(categoryId)
     selectedCategoryId.value = normalizedId
+    clearSearch()
     await loadGoods({ categoryId: normalizedId })
   }
 
@@ -382,8 +398,44 @@ export const useCatalogStore = defineStore('catalog', () => {
     const normalized = Number(type)
     if (!Number.isFinite(normalized)) return
     diningType.value = normalized
+    clearSearch()
     await loadCategories({ refresh: true })
   }
+
+  const searchGoods = async ({ keyword, storeId = selectedStoreId.value } = {}) => {
+    const trimmed = typeof keyword === 'string' ? keyword.trim() : searchTerm.value.trim()
+    if (!storeId) {
+      searchError.value = '__select__'
+      return
+    }
+    if (!trimmed) {
+      clearSearch()
+      return
+    }
+
+    searchTerm.value = trimmed
+    searchLoading.value = true
+    searchError.value = ''
+    hasActiveSearch.value = true
+
+    try {
+      const data = await goodsApi.search(String(storeId), {
+        keyword: trimmed,
+        page: 1,
+        size: 50,
+        diningType: diningType.value
+      })
+      searchResults.value = normalizeGoods(data)
+      searchError.value = ''
+    } catch (error) {
+      searchError.value = error?.message || '__error__'
+      searchResults.value = []
+    } finally {
+      searchLoading.value = false
+    }
+  }
+
+  const displayedGoods = computed(() => (hasActiveSearch.value ? searchResults.value : goods.value))
 
   const availableServices = computed(() => {
     const availability = serviceAvailability.value
@@ -437,6 +489,12 @@ export const useCatalogStore = defineStore('catalog', () => {
     goodsError,
     selectedCategoryId,
     diningType,
+    searchTerm,
+    searchResults,
+    searchLoading,
+    searchError,
+    hasActiveSearch,
+    displayedGoods,
     availableServices,
     loadStores,
     selectStore,
@@ -444,6 +502,8 @@ export const useCatalogStore = defineStore('catalog', () => {
     loadGoods,
     selectCategory,
     setDiningType,
+    searchGoods,
+    clearSearch,
     loadFeaturedStore,
     loadStoreDetail
   }

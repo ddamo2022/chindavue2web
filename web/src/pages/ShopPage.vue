@@ -68,13 +68,42 @@
         <p v-if="!categories.length && !categoriesLoading" class="shop__empty">{{ t('web.pages.shop.emptyCategories') }}</p>
       </aside>
       <main class="shop__content">
+        <form class="shop__search" @submit="onSearchSubmit">
+          <label class="shop__search-field">
+            <span>{{ t('web.pages.shop.searchLabel') }}</span>
+            <input
+              v-model="searchQuery"
+              type="search"
+              :placeholder="t('web.pages.shop.searchPlaceholder')"
+              :disabled="storesLoading"
+            />
+          </label>
+          <div class="shop__search-actions">
+            <button type="submit" class="button button--ghost" :disabled="searchLoading || storesLoading">
+              <span v-if="!searchLoading">{{ t('web.pages.shop.searchButton') }}</span>
+              <span v-else>{{ t('web.pages.shop.searching') }}</span>
+            </button>
+            <button
+              v-if="hasActiveSearch"
+              type="button"
+              class="button button--ghost"
+              @click="clearSearchTerm"
+              :disabled="searchLoading"
+            >
+              {{ t('web.pages.shop.searchClear') }}
+            </button>
+          </div>
+        </form>
         <div class="shop__toolbar">
-          <span v-if="goodsLoading">{{ t('web.pages.shop.loading') }}</span>
+          <span v-if="searchLoading || goodsLoading">{{ t('web.pages.shop.loading') }}</span>
+          <span v-else-if="hasActiveSearch" class="shop__result-label">
+            {{ t('web.pages.shop.searchActive', { count: activeResultsCount, term: searchTerm }) }}
+          </span>
           <span v-else>{{ t('web.pages.shop.resultCount', { count: goods.length }) }}</span>
         </div>
         <div class="shop__grid">
           <MenuItemCard
-            v-for="item in goods"
+            v-for="item in displayedGoods"
             :key="item.id"
             :title="item.name"
             :description="item.description"
@@ -92,15 +121,21 @@
             </template>
           </MenuItemCard>
         </div>
-        <p v-if="!goods.length && !goodsLoading" class="shop__empty">{{ t('web.pages.shop.emptyMenu') }}</p>
-        <p v-if="goodsError" class="shop__error">{{ goodsError }}</p>
+        <p v-if="hasActiveSearch && !displayedGoods.length && !searchLoading" class="shop__empty">
+          {{ t('web.pages.shop.searchEmpty', { term: searchTerm }) }}
+        </p>
+        <p v-else-if="!hasActiveSearch && !goods.length && !goodsLoading" class="shop__empty">
+          {{ t('web.pages.shop.emptyMenu') }}
+        </p>
+        <p v-if="searchErrorMessage" class="shop__error">{{ searchErrorMessage }}</p>
+        <p v-else-if="goodsError" class="shop__error">{{ goodsError }}</p>
       </main>
     </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useI18n } from 'vue-i18n'
@@ -121,7 +156,12 @@ const {
   goodsError,
   selectedCategoryId,
   diningType,
-  availableServices
+  availableServices,
+  searchTerm,
+  searchLoading,
+  searchError,
+  hasActiveSearch,
+  displayedGoods
 } = storeToRefs(catalog)
 
 const { t } = useI18n()
@@ -132,6 +172,14 @@ usePageMeta({
 })
 
 const services = availableServices
+const searchQuery = ref('')
+const activeResultsCount = computed(() => displayedGoods.value.length)
+const searchErrorMessage = computed(() => {
+  if (!searchError.value) return ''
+  if (searchError.value === '__select__') return t('web.pages.shop.searchSelectStore')
+  if (searchError.value === '__error__') return t('web.pages.shop.searchError')
+  return searchError.value
+})
 
 const statusCopy = (status) => {
   switch (status) {
@@ -166,6 +214,22 @@ const selectCategory = (id) => {
 
 const setDining = (value) => {
   catalog.setDiningType(value)
+}
+
+const runSearch = () => {
+  const term = (searchQuery.value || '').trim()
+  searchQuery.value = term
+  catalog.searchGoods({ keyword: term })
+}
+
+const clearSearchTerm = () => {
+  searchQuery.value = ''
+  catalog.clearSearch()
+}
+
+const onSearchSubmit = (event) => {
+  event.preventDefault()
+  runSearch()
 }
 
 onMounted(async () => {
@@ -369,11 +433,52 @@ onMounted(async () => {
   gap: 24px;
 }
 
+.shop__search {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.shop__search-field {
+  display: grid;
+  gap: 8px;
+  flex: 1 1 320px;
+  min-width: 260px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.shop__search-field input {
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.36);
+  padding: 14px 16px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop__search-field input:focus {
+  border-color: #6366f1;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+.shop__search-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .shop__toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #475569;
+}
+
+.shop__result-label {
+  font-weight: 600;
+  color: #312e81;
 }
 
 .shop__grid {

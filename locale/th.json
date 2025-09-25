@@ -1590,7 +1590,16 @@
                                 "emptyMenu": "หมวดหมู่นี้ยังไม่มีเมนู ระบบจะอัปเดตเมื่อมีการเผยแพร่",
                                 "emptyCategories": "ยังไม่มีหมวดหมู่สำหรับประเภทบริการนี้",
                                 "pointsLabel": "{count} คะแนน",
-                                "unavailable": "ไม่พร้อมให้บริการ"
+                                "unavailable": "ไม่พร้อมให้บริการ",
+                                "searchLabel": "ค้นหารายการเมนู",
+                                "searchPlaceholder": "ค้นหาเครื่องดื่ม อาหาร หรือประสบการณ์",
+                                "searchButton": "ค้นหา",
+                                "searching": "กำลังค้นหา…",
+                                "searchClear": "ล้างการค้นหา",
+                                "searchEmpty": "ไม่พบเมนูที่ตรงกับ “{term}”",
+                                "searchActive": "แสดง {count} รายการที่ตรงกับ “{term}”",
+                                "searchError": "ไม่สามารถค้นหาเมนูได้ในขณะนี้ โปรดลองอีกครั้ง",
+                                "searchSelectStore": "กรุณาเลือกสาขาก่อนค้นหาเมนู"
                         },
                         "locations": {
                                 "title": "สาขา",

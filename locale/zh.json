@@ -1619,7 +1619,16 @@
                                 "emptyMenu": "该分类暂未上架菜品。",
                                 "emptyCategories": "当前服务方式下暂无分类。",
                                 "pointsLabel": "{count} 积分",
-                                "unavailable": "暂不可用"
+                                "unavailable": "暂不可用",
+                                "searchLabel": "搜索菜单",
+                                "searchPlaceholder": "搜索饮品、餐点或体验",
+                                "searchButton": "搜索",
+                                "searching": "正在搜索…",
+                                "searchClear": "清除搜索",
+                                "searchEmpty": "没有找到与“{term}”匹配的菜品。",
+                                "searchActive": "共找到 {count} 个与“{term}”相关的结果。",
+                                "searchError": "暂时无法搜索菜单，请稍后再试。",
+                                "searchSelectStore": "请选择门店后再搜索菜单。"
                         },
                         "locations": {
                                 "title": "门店网络",
