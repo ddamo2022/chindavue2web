@@ -1,54 +1,63 @@
 <template>
   <header class="main-nav">
-    <RouterLink to="/" class="brand">
-      <img :src="brandLogo" :alt="brandTitle" class="brand__logo" />
-      <div class="brand__text">
-        <span class="brand__title">{{ brandTitle }}</span>
-        <span v-if="brandSubtitle" class="brand__subtitle">{{ brandSubtitle }}</span>
-      </div>
-    </RouterLink>
-    <nav class="main-nav__links">
-      <template v-for="link in normalizedLinks" :key="linkKey(link)">
-        <RouterLink
-          v-if="link.to"
-          :to="link.to"
-          class="main-nav__link"
-          active-class="main-nav__link--active"
+    <div class="main-nav__inner container">
+      <RouterLink to="/" class="brand">
+        <img :src="brandLogo" :alt="brandTitle" class="brand__logo" />
+        <div class="brand__text">
+          <span class="brand__title">{{ brandTitle }}</span>
+          <span v-if="brandSubtitle" class="brand__subtitle">{{ brandSubtitle }}</span>
+        </div>
+      </RouterLink>
+      <nav class="main-nav__links">
+        <template v-for="link in normalizedLinks" :key="linkKey(link)">
+          <RouterLink
+            v-if="link.to"
+            :to="link.to"
+            class="main-nav__link"
+            active-class="main-nav__link--active"
+          >
+            {{ link.label }}
+          </RouterLink>
+          <a
+            v-else
+            :href="link.href"
+            class="main-nav__link main-nav__link--external"
+            :target="link.external ? '_blank' : undefined"
+            :rel="link.external ? 'noopener' : undefined"
+          >
+            {{ link.label }}
+          </a>
+        </template>
+      </nav>
+      <div class="main-nav__actions">
+        <LanguageSwitcher class="main-nav__language" />
+        <div v-if="user" class="main-nav__session">
+          <RouterLink to="/dashboard" class="main-nav__account">
+            <span class="main-nav__avatar">{{ userInitials }}</span>
+            <div class="main-nav__details">
+              <span class="main-nav__name">{{ user.name }}</span>
+              <span class="main-nav__meta">
+                <template v-if="user.tier">{{ user.tier }} · </template>{{ userPointsLabel }}
+              </span>
+            </div>
+          </RouterLink>
+          <button class="main-nav__logout" type="button" @click="$emit('logout')">{{ logoutLabel }}</button>
+        </div>
+        <template v-else>
+          <RouterLink to="/login" class="button button--ghost">{{ loginLabel }}</RouterLink>
+          <RouterLink to="/register" class="button button--primary">{{ joinLabel }}</RouterLink>
+        </template>
+        <button
+          class="main-nav__toggle"
+          type="button"
+          :aria-expanded="menuOpen"
+          aria-controls="main-nav-drawer"
+          @click="$emit('toggle-menu')"
         >
-          {{ link.label }}
-        </RouterLink>
-        <a
-          v-else
-          :href="link.href"
-          class="main-nav__link main-nav__link--external"
-          :target="link.external ? '_blank' : undefined"
-          :rel="link.external ? 'noopener' : undefined"
-        >
-          {{ link.label }}
-        </a>
-      </template>
-    </nav>
-    <div class="main-nav__actions">
-      <LanguageSwitcher class="main-nav__language" />
-      <div v-if="user" class="main-nav__session">
-        <RouterLink to="/dashboard" class="main-nav__account">
-          <span class="main-nav__avatar">{{ userInitials }}</span>
-          <div class="main-nav__details">
-            <span class="main-nav__name">{{ user.name }}</span>
-            <span class="main-nav__meta">
-              <template v-if="user.tier">{{ user.tier }} · </template>{{ userPointsLabel }}
-            </span>
-          </div>
-        </RouterLink>
-        <button class="main-nav__logout" @click="$emit('logout')">{{ logoutLabel }}</button>
+          <span :class="['main-nav__burger', { 'main-nav__burger--open': menuOpen }]"></span>
+          <span class="sr-only">{{ toggleLabel }}</span>
+        </button>
       </div>
-      <template v-else>
-        <RouterLink to="/login" class="button button--ghost">{{ loginLabel }}</RouterLink>
-        <RouterLink to="/register" class="button button--primary">{{ joinLabel }}</RouterLink>
-      </template>
-      <button class="main-nav__toggle" @click="$emit('toggle-menu')">
-        <span :class="['main-nav__burger', { 'main-nav__burger--open': menuOpen }]"></span>
-      </button>
     </div>
   </header>
 </template>
@@ -119,15 +128,11 @@ const userPointsLabel = computed(() => {
 const loginLabel = computed(() => t('web.nav.login'))
 const joinLabel = computed(() => t('web.nav.join'))
 const logoutLabel = computed(() => t('web.nav.logout'))
+const toggleLabel = computed(() => (props.menuOpen ? t('web.nav.closeMenu') : t('web.nav.openMenu')))
 </script>
 
 <style scoped>
 .main-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 20px 5vw;
   position: sticky;
   top: 0;
   z-index: 20;
@@ -136,11 +141,23 @@ const logoutLabel = computed(() => t('web.nav.logout'))
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
+.main-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 18px;
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   color: inherit;
+}
+
+.brand:focus-visible {
+  outline-offset: 6px;
 }
 
 .brand__logo {
@@ -184,6 +201,11 @@ const logoutLabel = computed(() => t('web.nav.logout'))
 .main-nav__link:hover {
   background: rgba(99, 102, 241, 0.12);
   color: #312e81;
+}
+
+.main-nav__link:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.55);
+  outline-offset: 4px;
 }
 
 .main-nav__link--active {
@@ -262,6 +284,11 @@ const logoutLabel = computed(() => t('web.nav.logout'))
   color: #475569;
 }
 
+.main-nav__logout:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.55);
+  outline-offset: 4px;
+}
+
 .main-nav__toggle {
   width: 42px;
   height: 42px;
@@ -271,6 +298,11 @@ const logoutLabel = computed(() => t('web.nav.logout'))
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.main-nav__toggle:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.55);
+  outline-offset: 4px;
 }
 
 .main-nav__burger,

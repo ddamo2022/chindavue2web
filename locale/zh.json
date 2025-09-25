@@ -1442,6 +1442,8 @@
                         "login": "登录",
                         "join": "立即加入",
                         "logout": "退出登录",
+                        "openMenu": "打开导航菜单",
+                        "closeMenu": "关闭导航菜单",
                         "points": "{count} 积分"
                 },
                 "language": {
@@ -1451,6 +1453,9 @@
                                 "zh": "中文",
                                 "th": "ไทย"
                         }
+                },
+                "accessibility": {
+                        "skipToContent": "跳至主内容"
                 },
                 "footer": {
                         "description": "为会员和宾客打造统一的数字体验，随时预约餐位、下单配送，并解锁专属礼遇。",

@@ -1,34 +1,38 @@
 <template>
-  <section class="hero">
-    <div class="hero__content">
-      <p v-if="hero.eyebrow" class="hero__eyebrow">{{ hero.eyebrow }}</p>
-      <h1>{{ hero.title }}</h1>
-      <p class="hero__lead">{{ hero.description }}</p>
-      <div v-if="hero.ctas?.length" class="hero__actions">
-        <component
-          v-for="cta in hero.ctas"
-          :key="cta.label"
-          :is="cta.to ? RouterLink : 'a'"
-          v-bind="cta.to ? { to: cta.to } : { href: cta.href || '#', target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
-          class="button"
-          :class="['button--lg', cta.variant === 'primary' ? 'button--primary' : 'button--ghost']"
-        >
-          {{ cta.label }}
-        </component>
-      </div>
-      <dl v-if="hero.stats?.length" class="hero__stats">
-        <div v-for="stat in hero.stats" :key="stat.label">
-          <dt>{{ stat.value }}</dt>
-          <dd>{{ stat.label }}</dd>
+  <section class="hero section">
+    <div class="hero__inner container">
+      <div class="hero__content">
+        <p v-if="hero.eyebrow" class="hero__eyebrow">{{ hero.eyebrow }}</p>
+        <h1>{{ hero.title }}</h1>
+        <p class="hero__lead">{{ hero.description }}</p>
+        <div v-if="hero.ctas?.length" class="hero__actions">
+          <component
+            v-for="cta in hero.ctas"
+            :key="cta.label"
+            :is="cta.to ? RouterLink : 'a'"
+            v-bind="cta.to
+              ? { to: cta.to }
+              : { href: cta.href || '#', target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
+            class="button"
+            :class="['button--lg', cta.variant === 'primary' ? 'button--primary' : 'button--ghost']"
+          >
+            {{ cta.label }}
+          </component>
         </div>
-      </dl>
-    </div>
-    <div class="hero__media">
-      <div class="hero__card">
-        <img :src="hero.image || '/hero-shot.svg'" alt="Chinda dining" />
-        <div v-if="hero.badge" class="hero__badge">
-          <span v-if="hero.badge.label" class="hero__badge-label">{{ hero.badge.label }}</span>
-          <p v-if="hero.badge.text" class="hero__badge-text">{{ hero.badge.text }}</p>
+        <dl v-if="hero.stats?.length" class="hero__stats">
+          <div v-for="stat in hero.stats" :key="stat.label">
+            <dt>{{ stat.value }}</dt>
+            <dd>{{ stat.label }}</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="hero__media">
+        <div class="hero__card">
+          <img :src="hero.image || '/hero-shot.svg'" alt="Chinda dining" />
+          <div v-if="hero.badge" class="hero__badge">
+            <span v-if="hero.badge.label" class="hero__badge-label">{{ hero.badge.label }}</span>
+            <p v-if="hero.badge.text" class="hero__badge-text">{{ hero.badge.text }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -46,9 +50,23 @@ const { hero } = storeToRefs(content)
 
 <style scoped>
 .hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.16), transparent 50%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
   display: grid;
   gap: 48px;
-  padding: 96px 5vw 72px;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
@@ -112,7 +130,7 @@ const { hero } = storeToRefs(content)
 
 .hero__card img {
   display: block;
-  width: min(520px, 80vw);
+  width: min(520px, 100%);
   height: auto;
 }
 

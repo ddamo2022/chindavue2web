@@ -1,66 +1,68 @@
 <template>
   <footer class="site-footer">
-    <div class="site-footer__primary">
-      <div>
-        <h3>{{ brandTitle }}</h3>
-        <p>{{ description }}</p>
-        <div class="site-footer__contact">
-          <a v-if="supportEmail" :href="`mailto:${supportEmail}`">{{ supportEmail }}</a>
-          <a v-if="supportPhone" :href="`tel:${supportPhone}`">{{ supportPhone }}</a>
+    <div class="site-footer__inner container">
+      <div class="site-footer__primary">
+        <div>
+          <h3>{{ brandTitle }}</h3>
+          <p>{{ description }}</p>
+          <div class="site-footer__contact">
+            <a v-if="supportEmail" :href="`mailto:${supportEmail}`">{{ supportEmail }}</a>
+            <a v-if="supportPhone" :href="`tel:${supportPhone}`">{{ supportPhone }}</a>
+          </div>
+          <div v-if="footerCtas.length" class="site-footer__cta">
+            <component
+              v-for="cta in footerCtas"
+              :key="ctaKey(cta)"
+              :is="cta.to ? RouterLink : 'a'"
+              v-bind="cta.to
+                ? { to: cta.to }
+                : { href: cta.href, target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
+              class="button"
+              :class="cta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+            >
+              {{ cta.label }}
+            </component>
+          </div>
         </div>
-        <div v-if="footerCtas.length" class="site-footer__cta">
-          <component
-            v-for="cta in footerCtas"
-            :key="ctaKey(cta)"
-            :is="cta.to ? RouterLink : 'a'"
-            v-bind="cta.to
-              ? { to: cta.to }
-              : { href: cta.href, target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
-            class="button"
-            :class="cta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        <div v-if="sections.length" class="site-footer__links">
+          <div v-for="section in sections" :key="section.key">
+            <span v-if="section.label" class="site-footer__label">{{ section.label }}</span>
+            <template v-for="link in section.links" :key="linkKey(link)">
+              <RouterLink
+                v-if="link.to"
+                :to="link.to"
+                class="site-footer__link"
+              >
+                {{ link.label }}
+              </RouterLink>
+              <a
+                v-else
+                :href="link.href"
+                class="site-footer__link"
+                :target="link.external ? '_blank' : undefined"
+                :rel="link.external ? 'noopener' : undefined"
+              >
+                {{ link.label }}
+              </a>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© {{ copyrightYear }} {{ organization }}</span>
+        <div class="site-footer__socials">
+          <a
+            v-for="social in socialLinks"
+            :key="social.label"
+            :href="social.url"
+            class="site-footer__social"
+            :aria-label="social.label"
+            target="_blank"
+            rel="noopener"
           >
-            {{ cta.label }}
-          </component>
+            {{ social.abbr }}
+          </a>
         </div>
-      </div>
-      <div v-if="sections.length" class="site-footer__links">
-        <div v-for="section in sections" :key="section.key">
-          <span v-if="section.label" class="site-footer__label">{{ section.label }}</span>
-          <template v-for="link in section.links" :key="linkKey(link)">
-            <RouterLink
-              v-if="link.to"
-              :to="link.to"
-              class="site-footer__link"
-            >
-              {{ link.label }}
-            </RouterLink>
-            <a
-              v-else
-              :href="link.href"
-              class="site-footer__link"
-              :target="link.external ? '_blank' : undefined"
-              :rel="link.external ? 'noopener' : undefined"
-            >
-              {{ link.label }}
-            </a>
-          </template>
-        </div>
-      </div>
-    </div>
-    <div class="site-footer__bottom">
-      <span>© {{ copyrightYear }} {{ organization }}</span>
-      <div class="site-footer__socials">
-        <a
-          v-for="social in socialLinks"
-          :key="social.label"
-          :href="social.url"
-          class="site-footer__social"
-          :aria-label="social.label"
-          target="_blank"
-          rel="noopener"
-        >
-          {{ social.abbr }}
-        </a>
       </div>
     </div>
   </footer>
@@ -270,9 +272,14 @@ const socialLinks = computed(() => {
 <style scoped>
 .site-footer {
   margin-top: 80px;
-  padding: 80px 5vw 48px;
+  padding: 96px 0 48px;
   background: #0f172a;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: 64px;
 }
 
 .site-footer__primary {
@@ -332,8 +339,12 @@ const socialLinks = computed(() => {
   color: #ffffff;
 }
 
+.site-footer__link:focus-visible {
+  outline: 2px solid rgba(148, 163, 184, 0.6);
+  outline-offset: 2px;
+}
+
 .site-footer__bottom {
-  margin-top: 64px;
   border-top: 1px solid rgba(148, 163, 184, 0.24);
   padding-top: 24px;
   display: flex;

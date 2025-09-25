@@ -1,67 +1,67 @@
 <template>
-  <section class="loyalty">
-    <div class="loyalty__content">
-      <h2>{{ loyalty.headline }}</h2>
-      <p>{{ loyalty.copy }}</p>
-      <ul v-if="loyalty.tiers?.length" class="loyalty__tiers">
-        <li v-for="tier in loyalty.tiers" :key="tier.name" class="loyalty__tier">
-          <h3>{{ tier.name }}</h3>
-          <p>{{ tier.description }}</p>
-          <dl>
-            <div v-if="tier.qualification">
-              <dt>Qualification</dt>
-              <dd>{{ tier.qualification }}</dd>
-            </div>
-            <div v-if="tier.highlight">
-              <dt>Signature reward</dt>
-              <dd>{{ tier.highlight }}</dd>
-            </div>
-          </dl>
-        </li>
-      </ul>
-    </div>
-    <aside class="loyalty__aside">
-      <div class="loyalty__panel">
-        <h4>Points health snapshot</h4>
-        <ul v-if="loyalty.metrics?.length">
-          <li v-for="metric in loyalty.metrics" :key="metric.label">
-            <span>{{ metric.label }}</span>
-            <strong>{{ metric.value }}</strong>
+  <section class="loyalty section section--compact">
+    <div class="loyalty__inner container">
+      <div class="loyalty__content">
+        <h2>{{ loyalty.headline }}</h2>
+        <p>{{ loyalty.copy }}</p>
+        <ul v-if="loyalty.tiers?.length" class="loyalty__tiers">
+          <li v-for="tier in loyalty.tiers" :key="tier.name" class="loyalty__tier">
+            <h3>{{ tier.name }}</h3>
+            <p>{{ tier.description }}</p>
+            <dl>
+              <div v-if="tier.qualification">
+                <dt>Qualification</dt>
+                <dd>{{ tier.qualification }}</dd>
+              </div>
+              <div v-if="tier.highlight">
+                <dt>Signature reward</dt>
+                <dd>{{ tier.highlight }}</dd>
+              </div>
+            </dl>
           </li>
         </ul>
-        <component
-          v-if="loyalty.analyticsCta"
-          :is="loyalty.analyticsCta.to ? RouterLink : 'a'"
-          v-bind="loyalty.analyticsCta.to
-            ? { to: loyalty.analyticsCta.to }
-            : { href: loyalty.analyticsCta.href || '#', target: loyalty.analyticsCta.external ? '_blank' : undefined, rel: loyalty.analyticsCta.external ? 'noopener' : undefined }
-          "
-          class="button button--full"
-          :class="loyalty.analyticsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
-        >
-          {{ loyalty.analyticsCta.label }}
-        </component>
       </div>
-      <div class="loyalty__panel loyalty__panel--gradient">
-        <h4>Exchange marketplace</h4>
-        <p>
-          Curate experiences and merchandise using the existing points mall APIs. Manage stock, set point costs, and schedule
-          limited drops.
-        </p>
-        <component
-          v-if="loyalty.rewardsCta"
-          :is="loyalty.rewardsCta.to ? RouterLink : 'a'"
-          v-bind="loyalty.rewardsCta.to
-            ? { to: loyalty.rewardsCta.to }
-            : { href: loyalty.rewardsCta.href || '#', target: loyalty.rewardsCta.external ? '_blank' : undefined, rel: loyalty.rewardsCta.external ? 'noopener' : undefined }
-          "
-          class="button button--full"
-          :class="loyalty.rewardsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
-        >
-          {{ loyalty.rewardsCta.label }}
-        </component>
-      </div>
-    </aside>
+      <aside class="loyalty__aside">
+        <div class="loyalty__panel">
+          <h4>Points health snapshot</h4>
+          <ul v-if="loyalty.metrics?.length">
+            <li v-for="metric in loyalty.metrics" :key="metric.label">
+              <span>{{ metric.label }}</span>
+              <strong>{{ metric.value }}</strong>
+            </li>
+          </ul>
+          <component
+            v-if="loyalty.analyticsCta"
+            :is="loyalty.analyticsCta.to ? RouterLink : 'a'"
+            v-bind="loyalty.analyticsCta.to
+              ? { to: loyalty.analyticsCta.to }
+              : { href: loyalty.analyticsCta.href || '#', target: loyalty.analyticsCta.external ? '_blank' : undefined, rel: loyalty.analyticsCta.external ? 'noopener' : undefined }"
+            class="button button--full"
+            :class="loyalty.analyticsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+          >
+            {{ loyalty.analyticsCta.label }}
+          </component>
+        </div>
+        <div class="loyalty__panel loyalty__panel--gradient">
+          <h4>Exchange marketplace</h4>
+          <p>
+            Curate experiences and merchandise using the existing points mall APIs. Manage stock, set point costs, and schedule
+            limited drops.
+          </p>
+          <component
+            v-if="loyalty.rewardsCta"
+            :is="loyalty.rewardsCta.to ? RouterLink : 'a'"
+            v-bind="loyalty.rewardsCta.to
+              ? { to: loyalty.rewardsCta.to }
+              : { href: loyalty.rewardsCta.href || '#', target: loyalty.rewardsCta.external ? '_blank' : undefined, rel: loyalty.rewardsCta.external ? 'noopener' : undefined }"
+            class="button button--full"
+            :class="loyalty.rewardsCta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+          >
+            {{ loyalty.rewardsCta.label }}
+          </component>
+        </div>
+      </aside>
+    </div>
   </section>
 </template>
 
@@ -75,11 +75,11 @@ const { loyalty } = storeToRefs(content)
 </script>
 
 <style scoped>
-.loyalty {
-  padding: 96px 5vw;
+.loyalty__inner {
   display: grid;
   gap: 48px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: start;
 }
 
 .loyalty__content h2 {

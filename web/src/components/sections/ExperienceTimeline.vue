@@ -1,24 +1,26 @@
 <template>
-  <section class="timeline">
-    <header>
-      <h2>Guest journey mapped end-to-end.</h2>
-      <p>
-        Our desktop suite mirrors the mobile touchpoints and shares the same API contracts. Start with the familiar flows and
-        iterate with richer storytelling, high-fidelity imagery, and advanced loyalty rules.
-      </p>
-    </header>
-    <ol class="timeline__steps">
-      <li v-for="step in timelineSteps" :key="step.title" class="timeline__step">
-        <span class="timeline__step-index">{{ step.index }}</span>
-        <div class="timeline__step-body">
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
-          <div v-if="step.tags?.length" class="timeline__meta">
-            <span v-for="tag in step.tags" :key="tag">{{ tag }}</span>
+  <section class="timeline section">
+    <div class="timeline__inner container">
+      <header>
+        <h2>Guest journey mapped end-to-end.</h2>
+        <p>
+          Our desktop suite mirrors the mobile touchpoints and shares the same API contracts. Start with the familiar flows and
+          iterate with richer storytelling, high-fidelity imagery, and advanced loyalty rules.
+        </p>
+      </header>
+      <ol class="timeline__steps">
+        <li v-for="step in timelineSteps" :key="step.title" class="timeline__step">
+          <span class="timeline__step-index">{{ step.index }}</span>
+          <div class="timeline__step-body">
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
+            <div v-if="step.tags?.length" class="timeline__meta">
+              <span v-for="tag in step.tags" :key="tag">{{ tag }}</span>
+            </div>
           </div>
-        </div>
-      </li>
-    </ol>
+        </li>
+      </ol>
+    </div>
   </section>
 </template>
 
@@ -32,10 +34,12 @@ const { timeline: timelineSteps } = storeToRefs(content)
 
 <style scoped>
 .timeline {
-  padding: 96px 5vw;
   background: linear-gradient(180deg, #eef2ff 0%, #e0f2fe 100%);
   border-radius: 40px 40px 0 0;
   margin-top: 80px;
+}
+
+.timeline__inner {
   display: grid;
   gap: 48px;
 }

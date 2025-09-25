@@ -1,38 +1,40 @@
 <template>
-  <section v-if="cards.length" class="testimonials">
-    <header class="testimonials__header">
-      <h2>{{ title }}</h2>
-      <p v-if="description">{{ description }}</p>
-    </header>
-    <div class="testimonials__grid">
-      <article v-for="card in cards" :key="card.id" class="testimonials__card">
-        <div class="testimonials__icon" aria-hidden="true">“</div>
-        <p class="testimonials__quote">{{ card.quote }}</p>
-        <footer>
-          <div class="testimonials__profile">
-            <img
-              v-if="card.avatar"
-              :src="card.avatar"
-              :alt="card.author"
-              class="testimonials__avatar"
-              loading="lazy"
-            />
-            <div>
-              <p class="testimonials__author">{{ card.author }}</p>
-              <p v-if="card.subtitle" class="testimonials__subtitle">{{ card.subtitle }}</p>
+  <section v-if="cards.length" class="testimonials section section--compact">
+    <div class="testimonials__inner container">
+      <header class="testimonials__header">
+        <h2>{{ title }}</h2>
+        <p v-if="description">{{ description }}</p>
+      </header>
+      <div class="testimonials__grid">
+        <article v-for="card in cards" :key="card.id" class="testimonials__card">
+          <div class="testimonials__icon" aria-hidden="true">“</div>
+          <p class="testimonials__quote">{{ card.quote }}</p>
+          <footer>
+            <div class="testimonials__profile">
+              <img
+                v-if="card.avatar"
+                :src="card.avatar"
+                :alt="card.author"
+                class="testimonials__avatar"
+                loading="lazy"
+              />
+              <div>
+                <p class="testimonials__author">{{ card.author }}</p>
+                <p v-if="card.subtitle" class="testimonials__subtitle">{{ card.subtitle }}</p>
+              </div>
             </div>
-          </div>
-          <a
-            v-if="card.href"
-            :href="card.href"
-            class="testimonials__link"
-            :target="card.external ? '_blank' : undefined"
-            :rel="card.external ? 'noopener' : undefined"
-          >
-            {{ ctaLabel }}
-          </a>
-        </footer>
-      </article>
+            <a
+              v-if="card.href"
+              :href="card.href"
+              class="testimonials__link"
+              :target="card.external ? '_blank' : undefined"
+              :rel="card.external ? 'noopener' : undefined"
+            >
+              {{ ctaLabel }}
+            </a>
+          </footer>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -74,10 +76,9 @@ const cards = computed(() =>
 </script>
 
 <style scoped>
-.testimonials {
+.testimonials__inner {
   display: grid;
   gap: 32px;
-  padding: 40px 0;
 }
 
 .testimonials__header {

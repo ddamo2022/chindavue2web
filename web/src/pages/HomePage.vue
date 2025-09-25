@@ -7,7 +7,7 @@
     <LoyaltyOverview />
     <TestimonialsSection />
     <PressMentions />
-    <section v-if="showcaseCards.length" class="home__showcase">
+    <section v-if="showcaseCards.length" class="home__showcase container">
       <article
         v-for="card in showcaseCards"
         :key="card.title"

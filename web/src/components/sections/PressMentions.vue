@@ -1,29 +1,31 @@
 <template>
-  <section v-if="items.length" class="press">
-    <header class="press__header">
-      <h2>{{ title }}</h2>
-      <p v-if="description">{{ description }}</p>
-    </header>
-    <div class="press__grid">
-      <article v-for="mention in items" :key="mention.id" class="press__card">
-        <div class="press__card-head">
-          <span class="press__outlet">{{ mention.outlet }}</span>
-          <span v-if="mention.badge" class="press__badge">{{ mention.badge }}</span>
-        </div>
-        <p class="press__summary">{{ mention.summary }}</p>
-        <footer class="press__footer">
-          <span v-if="mention.date" class="press__date">{{ mention.date }}</span>
-          <a
-            v-if="mention.href"
-            :href="mention.href"
-            class="press__link"
-            :target="mention.external ? '_blank' : undefined"
-            :rel="mention.external ? 'noopener' : undefined"
-          >
-            {{ ctaLabel }}
-          </a>
-        </footer>
-      </article>
+  <section v-if="items.length" class="press section section--compact">
+    <div class="press__inner container">
+      <header class="press__header">
+        <h2>{{ title }}</h2>
+        <p v-if="description">{{ description }}</p>
+      </header>
+      <div class="press__grid">
+        <article v-for="mention in items" :key="mention.id" class="press__card">
+          <div class="press__card-head">
+            <span class="press__outlet">{{ mention.outlet }}</span>
+            <span v-if="mention.badge" class="press__badge">{{ mention.badge }}</span>
+          </div>
+          <p class="press__summary">{{ mention.summary }}</p>
+          <footer class="press__footer">
+            <span v-if="mention.date" class="press__date">{{ mention.date }}</span>
+            <a
+              v-if="mention.href"
+              :href="mention.href"
+              class="press__link"
+              :target="mention.external ? '_blank' : undefined"
+              :rel="mention.external ? 'noopener' : undefined"
+            >
+              {{ ctaLabel }}
+            </a>
+          </footer>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -58,10 +60,9 @@ const items = computed(() =>
 </script>
 
 <style scoped>
-.press {
+.press__inner {
   display: grid;
   gap: 32px;
-  padding: 20px 0 60px;
 }
 
 .press__header {

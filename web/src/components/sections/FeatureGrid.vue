@@ -1,23 +1,25 @@
 <template>
-  <section class="feature-grid">
-    <header>
-      <h2>Web-first experience with operational depth.</h2>
-      <p>
-        Built on top of our existing API stack to keep logic in sync with the Vue 2 mobile app while delivering a desktop-grade
-        UI.
-      </p>
-    </header>
-    <div class="feature-grid__items">
-      <article v-for="feature in featureCards" :key="feature.title" class="feature-grid__item">
-        <span class="feature-grid__icon" :style="{ background: feature.tint }">
-          {{ feature.icon }}
-        </span>
-        <h3>{{ feature.title }}</h3>
-        <p>{{ feature.description }}</p>
-        <ul v-if="feature.highlights?.length">
-          <li v-for="highlight in feature.highlights" :key="highlight">{{ highlight }}</li>
-        </ul>
-      </article>
+  <section class="feature-grid section section--compact">
+    <div class="feature-grid__inner container">
+      <header>
+        <h2>Web-first experience with operational depth.</h2>
+        <p>
+          Built on top of our existing API stack to keep logic in sync with the Vue 2 mobile app while delivering a desktop-grade
+          UI.
+        </p>
+      </header>
+      <div class="feature-grid__items">
+        <article v-for="feature in featureCards" :key="feature.title" class="feature-grid__item">
+          <span class="feature-grid__icon" :style="{ background: feature.tint }">
+            {{ feature.icon }}
+          </span>
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+          <ul v-if="feature.highlights?.length">
+            <li v-for="highlight in feature.highlights" :key="highlight">{{ highlight }}</li>
+          </ul>
+        </article>
+      </div>
     </div>
   </section>
 </template>
@@ -31,8 +33,7 @@ const { features: featureCards } = storeToRefs(content)
 </script>
 
 <style scoped>
-.feature-grid {
-  padding: 96px 5vw 40px;
+.feature-grid__inner {
   display: grid;
   gap: 48px;
 }

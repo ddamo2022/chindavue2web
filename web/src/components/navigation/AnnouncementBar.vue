@@ -1,17 +1,13 @@
 <template>
   <transition name="announcement">
-    <div
-      v-if="announcement"
-      :class="['announcement', `announcement--${announcement.tone}`]"
-      role="status"
-      aria-live="polite"
-    >
-      <div class="announcement__content">
-        <span v-if="announcement.icon" class="announcement__icon" aria-hidden="true">
-          {{ announcement.icon }}
-        </span>
-        <p class="announcement__message">{{ announcement.message }}</p>
-        <component
+    <div v-if="announcement" :class="['announcement', `announcement--${announcement.tone}`]">
+      <div class="announcement__container container" role="status" aria-live="polite">
+        <div class="announcement__content">
+          <span v-if="announcement.icon" class="announcement__icon" aria-hidden="true">
+            {{ announcement.icon }}
+          </span>
+          <p class="announcement__message">{{ announcement.message }}</p>
+          <component
           v-if="ctaProps"
           :is="ctaProps.component"
           v-bind="ctaProps.attrs"
@@ -20,8 +16,8 @@
         >
           {{ ctaProps.label }}
         </component>
-      </div>
-      <button
+        </div>
+        <button
         v-if="announcement.dismissible"
         class="announcement__close"
         type="button"
@@ -29,7 +25,8 @@
         aria-label="Dismiss announcement"
       >
         ×
-      </button>
+        </button>
+      </div>
     </div>
   </transition>
 </template>
@@ -89,13 +86,16 @@ const dismiss = () => {
 }
 
 .announcement {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.announcement__container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 14px 5vw;
-  font-size: 0.95rem;
-  color: #0f172a;
+  padding-block: 14px;
 }
 
 .announcement__content {
@@ -149,7 +149,7 @@ const dismiss = () => {
 }
 
 @media (max-width: 720px) {
-  .announcement {
+  .announcement__container {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
@@ -159,10 +159,6 @@ const dismiss = () => {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-  }
-
-  .announcement__cta {
-    margin-left: 0;
   }
 
   .announcement__close {

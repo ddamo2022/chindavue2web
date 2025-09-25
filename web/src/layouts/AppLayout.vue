@@ -1,5 +1,6 @@
 <template>
   <div class="app-shell">
+    <SkipNav />
     <AnnouncementBar />
     <MainNav
       :links="navLinks"
@@ -11,7 +12,7 @@
     />
     <NotificationStack />
     <transition name="fade">
-      <aside v-if="menuOpen" class="mobile-menu">
+      <aside v-if="menuOpen" id="main-nav-drawer" class="mobile-menu">
         <nav>
           <template v-for="link in navLinks" :key="link.key">
             <RouterLink
@@ -38,7 +39,7 @@
       </aside>
     </transition>
 
-    <main class="app-shell__content">
+    <main id="main-content" class="app-shell__content" tabindex="-1">
       <RouterView />
     </main>
 
@@ -56,6 +57,7 @@ import MainNav from '@/components/navigation/MainNav.vue'
 import SiteFooter from '@/components/navigation/SiteFooter.vue'
 import NotificationStack from '@/components/sections/NotificationStack.vue'
 import LanguageSwitcher from '@/components/navigation/LanguageSwitcher.vue'
+import SkipNav from '@/components/layout/SkipNav.vue'
 import { useSiteStore } from '@/stores/site'
 import { useAuthStore } from '@/stores/auth'
 import { useMemberStore } from '@/stores/member'

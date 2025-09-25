@@ -1,25 +1,27 @@
 <template>
-  <section v-if="partners.length" class="partner-marquee">
-    <div class="partner-marquee__header">
-      <p class="partner-marquee__eyebrow">{{ t('web.pages.home.partners.eyebrow') }}</p>
-      <h2>{{ t('web.pages.home.partners.title') }}</h2>
-      <p>{{ t('web.pages.home.partners.description') }}</p>
-    </div>
-    <div class="partner-marquee__grid" role="list">
-      <component
-        v-for="partner in partners"
-        :is="partner.href ? 'a' : 'div'"
-        :key="partner.name + partner.logo"
-        class="partner-marquee__item"
-        role="listitem"
-        :href="partner.href || undefined"
-        :target="partner.external ? '_blank' : undefined"
-        :rel="partner.external ? 'noopener noreferrer' : undefined"
-        :title="partner.name"
-      >
-        <img v-if="partner.logo" :src="partner.logo" :alt="partner.name" />
-        <span v-else>{{ partner.name }}</span>
-      </component>
+  <section v-if="partners.length" class="partner-marquee section section--compact">
+    <div class="partner-marquee__inner container">
+      <div class="partner-marquee__header">
+        <p class="partner-marquee__eyebrow">{{ t('web.pages.home.partners.eyebrow') }}</p>
+        <h2>{{ t('web.pages.home.partners.title') }}</h2>
+        <p>{{ t('web.pages.home.partners.description') }}</p>
+      </div>
+      <div class="partner-marquee__grid" role="list">
+        <component
+          v-for="partner in partners"
+          :is="partner.href ? 'a' : 'div'"
+          :key="partner.name + partner.logo"
+          class="partner-marquee__item"
+          role="listitem"
+          :href="partner.href || undefined"
+          :target="partner.external ? '_blank' : undefined"
+          :rel="partner.external ? 'noopener noreferrer' : undefined"
+          :title="partner.name"
+        >
+          <img v-if="partner.logo" :src="partner.logo" :alt="partner.name" />
+          <span v-else>{{ partner.name }}</span>
+        </component>
+      </div>
     </div>
   </section>
 </template>
@@ -36,9 +38,11 @@ const { partners } = storeToRefs(content)
 
 <style scoped>
 .partner-marquee {
-  padding: 40px 5vw 20px;
   border-radius: 32px;
   background: linear-gradient(130deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.1));
+}
+
+.partner-marquee__inner {
   display: grid;
   gap: 32px;
 }
@@ -107,8 +111,8 @@ const { partners } = storeToRefs(content)
 }
 
 @media (max-width: 768px) {
-  .partner-marquee {
-    padding: 32px 24px;
+  .partner-marquee__inner {
+    padding-inline: 0;
   }
 }
 </style>

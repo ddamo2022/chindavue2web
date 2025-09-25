@@ -1419,6 +1419,8 @@
                         "login": "Log in",
                         "join": "Join now",
                         "logout": "Sign out",
+                        "openMenu": "Open navigation",
+                        "closeMenu": "Close navigation",
                         "points": "{count} pts"
                 },
                 "language": {
@@ -1428,6 +1430,9 @@
                                 "zh": "中文",
                                 "th": "ไทย"
                         }
+                },
+                "accessibility": {
+                        "skipToContent": "Skip to main content"
                 },
                 "footer": {
                         "description": "A unified digital experience for our guests and members. Reserve tables, order delivery, and unlock exclusive perks from any device.",
