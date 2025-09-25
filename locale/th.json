@@ -1520,8 +1520,17 @@
                                 "loading": "กำลังโหลด…",
                                 "empty": "สิทธิประโยชน์จะปรากฏเมื่อมีการเผยแพร่จาก Uni-app",
                                 "redeem": "แลกรับ",
+                                "redeeming": "กำลังแลก…",
                                 "pointsLabel": "{count} คะแนน",
-                                "categoryFallback": "แนะนำ"
+                                "pointsCashLabel": "{points} คะแนน + {cash} {currency}",
+                                "categoryFallback": "แนะนำ",
+                                "balanceLoading": "กำลังซิงค์คะแนน…",
+                                "balanceLabel": "คะแนนที่พร้อมใช้งาน: {count}",
+                                "viewDashboard": "ดูแดชบอร์ด",
+                                "signInPrompt": "ลงชื่อเข้าใช้เพื่อแลกรางวัลได้ทุกอุปกรณ์",
+                                "signInButton": "ลงชื่อเข้าใช้",
+                                "lockedLabel": "ถูกล็อก",
+                                "lockedInsufficient": "สะสมเพิ่มอีก {shortfall} คะแนนเพื่อปลดล็อก"
                         },
                         "locations": {
                                 "title": "สาขา",
@@ -1558,9 +1567,10 @@
                                                 "points": "คะแนน",
                                                 "date": "วันที่"
                                         },
-                                "empty": "ยังไม่มีรายการคะแนน",
-                                "loading": "กำลังโหลดบัญชีคะแนน…",
-                                "fallbackAction": "กิจกรรม"
+                                        "empty": "ยังไม่มีรายการคะแนน",
+                                        "loading": "กำลังโหลดบัญชีคะแนน…",
+                                        "fallbackAction": "กิจกรรม",
+                                        "loadMore": "โหลดเพิ่มเติม"
                                 },
                                 "roadmap": {
                                         "title": "แผนงานประสบการณ์",
@@ -1743,7 +1753,11 @@
                                 "title": "ต้องเข้าสู่ระบบ",
                                 "message": "กรุณาล็อกอินเพื่อแลกรับสิทธิประโยชน์ข้ามอุปกรณ์"
                         },
-                        "redeemSuccess": {
+                        "insufficientPoints": {
+                                "title": "คะแนนไม่พอ",
+                                "message": "การแลกครั้งนี้ต้องใช้ {needed} คะแนน กรุณาสะสมเพิ่มแล้วลองอีกครั้ง"
+                        },
+"redeemSuccess": {
                                 "title": "ส่งคำขอแลกรับแล้ว",
                                 "message": "{name} จะพร้อมสำหรับคุณในไม่ช้า"
                         },

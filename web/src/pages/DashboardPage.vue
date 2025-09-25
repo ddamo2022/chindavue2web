@@ -48,6 +48,12 @@
             </tr>
           </tbody>
         </table>
+        <footer v-if="hasMoreLedger" class="dashboard__ledger-footer">
+          <button class="button button--ghost" @click="loadMoreLedger" :disabled="ledgerLoading">
+            <span v-if="!ledgerLoading">{{ t('web.pages.dashboard.ledger.loadMore') }}</span>
+            <span v-else>{{ t('web.pages.dashboard.ledger.loading') }}</span>
+          </button>
+        </footer>
       </article>
       <article class="panel">
         <h2>{{ t('web.pages.dashboard.roadmap.title') }}</h2>
@@ -148,6 +154,7 @@ const roadmap = computed(() => {
 })
 
 const ledgerLoading = computed(() => ledgerState.value.loading)
+const hasMoreLedger = computed(() => ledgerState.value.hasMore)
 const loading = computed(() => ledgerState.value.loading)
 
 const refresh = async () => {
@@ -156,6 +163,11 @@ const refresh = async () => {
     member.loadProfile({ silent: true }),
     member.loadLedger({ reset: true })
   ])
+}
+
+const loadMoreLedger = async () => {
+  if (!isAuthenticated.value) return
+  await member.loadLedger()
 }
 
 onMounted(() => {
@@ -196,6 +208,12 @@ onMounted(() => {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.dashboard__ledger-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .dashboard__panels {

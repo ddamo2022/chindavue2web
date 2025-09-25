@@ -1549,8 +1549,17 @@
                                 "loading": "加载中…",
                                 "empty": "当 Uni-app 上架礼遇后，这里会同步显示。",
                                 "redeem": "兑换",
+                                "redeeming": "正在兑换…",
                                 "pointsLabel": "{count} 积分",
-                                "categoryFallback": "精选"
+                                "pointsCashLabel": "{points} 积分 + {cash}{currency}",
+                                "categoryFallback": "精选",
+                                "balanceLoading": "积分同步中…",
+                                "balanceLabel": "可用积分：{count}",
+                                "viewDashboard": "查看仪表盘",
+                                "signInPrompt": "登录后即可在各终端兑换礼遇。",
+                                "signInButton": "立即登录",
+                                "lockedLabel": "已锁定",
+                                "lockedInsufficient": "再累积 {shortfall} 积分即可兑换。"
                         },
                         "locations": {
                                 "title": "门店网络",
@@ -1587,9 +1596,10 @@
                                                 "points": "积分",
                                                 "date": "日期"
                                         },
-                                "empty": "暂无积分记录。",
-                                "loading": "正在加载积分流水…",
-                                "fallbackAction": "会员动态"
+                                        "empty": "暂无积分记录。",
+                                        "loading": "正在加载积分流水…",
+                                        "fallbackAction": "会员动态",
+                                        "loadMore": "加载更多"
                                 },
                                 "roadmap": {
                                         "title": "体验路线图",
@@ -1772,7 +1782,11 @@
                                 "title": "需要登录",
                                 "message": "请先登录以便跨设备兑换礼遇。"
                         },
-                        "redeemSuccess": {
+                        "insufficientPoints": {
+                                "title": "积分不足",
+                                "message": "本次兑换需要 {needed} 积分，请先累积更多积分。"
+                        },
+"redeemSuccess": {
                                 "title": "兑换请求已提交",
                                 "message": "{name} 即将为您准备完成。"
                         },

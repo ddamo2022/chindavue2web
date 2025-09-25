@@ -1526,8 +1526,17 @@
                                 "loading": "Loading…",
                                 "empty": "Rewards will appear here once they are published in the Uni-app catalogue.",
                                 "redeem": "Redeem",
+                                "redeeming": "Redeeming…",
                                 "pointsLabel": "{count} pts",
-                                "categoryFallback": "Featured"
+                                "pointsCashLabel": "{points} pts + {cash} {currency}",
+                                "categoryFallback": "Featured",
+                                "balanceLoading": "Syncing points…",
+                                "balanceLabel": "Available points: {count}",
+                                "viewDashboard": "View dashboard",
+                                "signInPrompt": "Sign in to redeem rewards across devices.",
+                                "signInButton": "Sign in",
+                                "lockedLabel": "Locked",
+                                "lockedInsufficient": "Add {shortfall} more points to unlock this reward."
                         },
                         "locations": {
                                 "title": "Locations",
@@ -1564,9 +1573,10 @@
                                                 "points": "Points",
                                                 "date": "Date"
                                         },
-                                "empty": "No ledger entries yet.",
-                                "loading": "Loading ledger…",
-                                "fallbackAction": "Activity"
+                                        "empty": "No ledger entries yet.",
+                                        "loading": "Loading ledger…",
+                                        "fallbackAction": "Activity",
+                                        "loadMore": "Load more"
                                 },
                                 "roadmap": {
                                         "title": "Experience roadmap",
@@ -1753,7 +1763,11 @@
                                 "title": "Sign in required",
                                 "message": "Log in to redeem your rewards across devices."
                         },
-                        "redeemSuccess": {
+                        "insufficientPoints": {
+                                "title": "Not enough points",
+                                "message": "This reward requires {needed} points. Keep earning and try again soon."
+                        },
+"redeemSuccess": {
                                 "title": "Redemption requested",
                                 "message": "{name} will be ready for you shortly."
                         },

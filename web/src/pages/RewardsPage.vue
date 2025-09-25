@@ -3,6 +3,23 @@
     <header>
       <h1>{{ t('web.pages.rewards.title') }}</h1>
       <p>{{ t('web.pages.rewards.description') }}</p>
+      <div class="rewards-page__summary">
+        <template v-if="isAuthenticated">
+          <p>
+            <span v-if="summaryLoading">{{ t('web.pages.rewards.balanceLoading') }}</span>
+            <span v-else>{{ t('web.pages.rewards.balanceLabel', { count: formattedBalance }) }}</span>
+          </p>
+          <RouterLink to="/dashboard" class="rewards-page__link">
+            {{ t('web.pages.rewards.viewDashboard') }}
+          </RouterLink>
+        </template>
+        <template v-else>
+          <p>{{ t('web.pages.rewards.signInPrompt') }}</p>
+          <RouterLink to="/login" class="button button--ghost">
+            {{ t('web.pages.rewards.signInButton') }}
+          </RouterLink>
+        </template>
+      </div>
       <div class="rewards-page__filters">
         <label>
           <span>{{ t('web.pages.rewards.filters.category') }}</span>
@@ -26,14 +43,20 @@
 
     <div class="rewards-page__grid">
       <RewardCard
-        v-for="reward in rewards"
+        v-for="reward in catalog"
         :key="reward.id"
-        :title="reward.name"
-        :description="reward.intro"
-        :image="reward.cover || placeholder"
+        :title="reward.title"
+        :description="reward.description"
+        :image="reward.image"
         :points="reward.points"
-        :category="reward.category?.name || reward.category || t('web.pages.rewards.categoryFallback')"
-        :disabled="!isAuthenticated"
+        :cash="reward.cash"
+        :currency="reward.currency"
+        :category="reward.category"
+        :locked="reward.locked"
+        :lock-reason="reward.lockReason"
+        :loading="redeeming === reward.id"
+        :action-label="actionLabel"
+        :disabled="redeeming === reward.id"
         @redeem="redeemReward(reward)"
       />
     </div>
@@ -44,8 +67,8 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import RewardCard from '@/components/cards/RewardCard.vue'
 import { rewardsApi, memberApi } from '@/api/client'
@@ -60,6 +83,7 @@ const auth = useAuthStore()
 const member = useMemberStore()
 const router = useRouter()
 const { isAuthenticated } = storeToRefs(auth)
+const { profile, pointsBalance, profileLoading } = storeToRefs(member)
 const rewards = ref([])
 const categories = ref([])
 const placeholder = '/reward-placeholder.svg'
@@ -69,6 +93,7 @@ const filters = reactive({
 })
 const loading = ref(false)
 const categoriesLoading = ref(false)
+const redeeming = ref('')
 const { t } = useI18n()
 
 usePageMeta({
@@ -103,6 +128,64 @@ const loadRewards = async () => {
   }
 }
 
+const summaryLoading = computed(() => isAuthenticated.value && profileLoading.value)
+const formattedBalance = computed(() => pointsBalance.value.toLocaleString())
+
+const formatNumber = (value) => {
+  const number = Number(value)
+  if (Number.isNaN(number)) return 0
+  return number
+}
+
+const resolveRewardId = (reward) =>
+  reward?.id ??
+  reward?.goods_id ??
+  reward?.goodsId ??
+  reward?.good_id ??
+  reward?.product_id ??
+  reward?.spu_id ??
+  null
+
+const catalog = computed(() =>
+  rewards.value.map((entry, index) => {
+    const id = resolveRewardId(entry) || `reward-${index}`
+    const points = formatNumber(entry.integral ?? entry.points ?? entry.integralnum ?? entry.score)
+    const cash = formatNumber(entry.money ?? entry.cash ?? 0)
+    const currency = entry.currency || entry.money_unit || 'THB'
+    const title = entry.name || entry.title || t('web.pages.rewards.categoryFallback')
+    const description = entry.intro || entry.description || entry.desc || ''
+    const category =
+      entry.category?.name ||
+      entry.category_name ||
+      entry.category ||
+      entry.type_name ||
+      t('web.pages.rewards.categoryFallback')
+    const image = entry.cover || entry.icon || entry.image || entry.pic || placeholder
+    const locked = Boolean(isAuthenticated.value && points > pointsBalance.value)
+    const shortfall = Math.max(points - pointsBalance.value, 0)
+    const lockReason = locked
+      ? t('web.pages.rewards.lockedInsufficient', { shortfall: shortfall.toLocaleString() })
+      : ''
+    return {
+      id,
+      raw: entry,
+      title,
+      description,
+      category,
+      image,
+      points,
+      cash,
+      currency,
+      locked,
+      lockReason
+    }
+  })
+)
+
+const actionLabel = computed(() =>
+  isAuthenticated.value ? t('web.pages.rewards.redeem') : t('web.pages.rewards.signInButton')
+)
+
 const redeemReward = async (reward) => {
   if (!isAuthenticated.value) {
     site.notify({
@@ -113,11 +196,31 @@ const redeemReward = async (reward) => {
     router.push({ name: 'login', query: { redirect: '/rewards' } })
     return
   }
+  if (reward.locked) {
+    site.notify({
+      title: t('web.notifications.insufficientPoints.title'),
+      message: t('web.notifications.insufficientPoints.message', {
+        needed: reward.points.toLocaleString()
+      }),
+      tone: 'warning'
+    })
+    return
+  }
+  const rewardId = resolveRewardId(reward.raw)
+  if (!rewardId) {
+    site.notify({
+      title: t('web.notifications.redeemFailed.title'),
+      message: t('web.notifications.redeemFailed.message'),
+      tone: 'error'
+    })
+    return
+  }
   try {
-    await memberApi.redeem({ reward_id: reward.id })
+    redeeming.value = reward.id
+    await memberApi.redeem({ reward_id: rewardId })
     site.notify({
       title: t('web.notifications.redeemSuccess.title'),
-      message: t('web.notifications.redeemSuccess.message', { name: reward.name }),
+      message: t('web.notifications.redeemSuccess.message', { name: reward.title }),
       tone: 'success'
     })
     member.loadProfile({ silent: true }).catch(() => {})
@@ -127,12 +230,28 @@ const redeemReward = async (reward) => {
       message: t('web.notifications.redeemFailed.message'),
       tone: 'error'
     })
+  } finally {
+    redeeming.value = ''
   }
 }
 
 onMounted(async () => {
+  if (isAuthenticated.value && !profile.value) {
+    member.loadProfile({ silent: true }).catch(() => {})
+  }
   await Promise.all([loadCategories(), loadRewards()])
 })
+
+watch(
+  () => isAuthenticated.value,
+  (value) => {
+    if (value) {
+      member.loadProfile({ silent: true }).catch(() => {})
+    } else {
+      redeeming.value = ''
+    }
+  }
+)
 
 </script>
 
@@ -157,6 +276,24 @@ onMounted(async () => {
 .rewards-page p {
   color: #475569;
   line-height: 1.7;
+}
+
+.rewards-page__summary {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.rewards-page__summary p {
+  margin: 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rewards-page__link {
+  font-weight: 600;
+  color: #6366f1;
 }
 
 .rewards-page__filters {
