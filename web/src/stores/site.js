@@ -49,6 +49,145 @@ const normalizeWebConfig = (siteInfo) => {
   return siteInfo
 }
 
+const ANNOUNCEMENT_STORAGE_KEY = 'chinda-web-announcement-dismissed'
+
+const readDismissedAnnouncements = () => {
+  if (typeof window === 'undefined') return []
+  try {
+    const stored = localStorage.getItem(ANNOUNCEMENT_STORAGE_KEY)
+    if (!stored) return []
+    const parsed = JSON.parse(stored)
+    if (!Array.isArray(parsed)) return []
+    return parsed
+      .map((entry) => {
+        if (typeof entry === 'string') {
+          const id = entry.trim()
+          return id ? { id, hash: null } : null
+        }
+        if (entry && typeof entry === 'object') {
+          const id = typeof entry.id === 'string' ? entry.id.trim() : ''
+          if (!id) return null
+          const hash = typeof entry.hash === 'string' ? entry.hash : null
+          return { id, hash }
+        }
+        return null
+      })
+      .filter((entry) => entry && entry.id)
+  } catch (error) {
+    console.warn('Unable to read dismissed announcements', error)
+  }
+  return []
+}
+
+const persistDismissedAnnouncements = (entries) => {
+  if (typeof window === 'undefined') return
+  try {
+    const payload = entries
+      .filter((entry) => entry && entry.id)
+      .map((entry) => ({ id: entry.id, hash: entry.hash || null }))
+    if (!payload.length) {
+      localStorage.removeItem(ANNOUNCEMENT_STORAGE_KEY)
+    } else {
+      localStorage.setItem(ANNOUNCEMENT_STORAGE_KEY, JSON.stringify(payload))
+    }
+  } catch (error) {
+    console.warn('Unable to persist dismissed announcements', error)
+  }
+}
+
+const ensureText = (value) => (typeof value === 'string' ? value.trim() : '')
+
+const createAnnouncementFingerprint = (entry) =>
+  JSON.stringify({
+    message: entry.message,
+    tone: entry.tone,
+    cta: entry.cta
+      ? {
+          label: entry.cta.label,
+          to: entry.cta.to,
+          href: entry.cta.href
+        }
+      : null
+  })
+
+const normalizeAnnouncementTone = (tone) => {
+  const normalized = ensureText(tone).toLowerCase()
+  if (['success', 'positive', 'good', 'ready'].includes(normalized)) return 'success'
+  if (['warning', 'caution', 'alert'].includes(normalized)) return 'warning'
+  if (['error', 'danger', 'critical'].includes(normalized)) return 'danger'
+  if (['promo', 'highlight', 'brand'].includes(normalized)) return 'promo'
+  return 'info'
+}
+
+const normalizeAnnouncementCta = (cta) => {
+  if (!cta) return null
+  const label = ensureText(cta.label || cta.title || cta.text)
+  const to = typeof cta.to === 'string' ? cta.to : undefined
+  const hrefCandidate = cta.href ?? cta.url
+  const href = typeof hrefCandidate === 'string' ? hrefCandidate : undefined
+  if (!label || !(to || href)) return null
+  const external = Boolean(cta.external || (!to && href && /^https?:/i.test(href)))
+  const variant = cta.variant || cta.style || 'ghost'
+  return {
+    label,
+    to,
+    href,
+    external,
+    variant: variant === 'primary' ? 'primary' : 'ghost'
+  }
+}
+
+const extractAnnouncement = (source) => {
+  if (!source) return null
+  if (Array.isArray(source)) {
+    return source.map((item) => extractAnnouncement(item)).find(Boolean) || null
+  }
+  if (typeof source === 'string') {
+    const message = ensureText(source)
+    return message
+      ? {
+          id: message,
+          message,
+          tone: 'info',
+          dismissible: true,
+          cta: null,
+          icon: ''
+        }
+      : null
+  }
+  if (typeof source !== 'object') return null
+  if (source.enabled === false || source.active === false) return null
+
+  const message =
+    ensureText(source.message || source.text || source.copy || source.description || source.body) || ''
+  if (!message) return null
+  const id = ensureText(source.id || source.key || source.slug || source.code || message) || message
+  const tone = normalizeAnnouncementTone(source.tone || source.variant || source.style)
+  const cta = normalizeAnnouncementCta(source.cta || source.action || (Array.isArray(source.ctas) ? source.ctas[0] : null))
+  const dismissible = source.dismissible !== false
+  const icon = ensureText(source.icon || source.emoji || '')
+
+  if (source.start || source.end || source.startDate || source.endDate) {
+    const now = Date.now()
+    const start = source.start || source.startDate
+    const end = source.end || source.endDate
+    if (start) {
+      const startTime = new Date(start).getTime()
+      if (!Number.isNaN(startTime) && startTime > now) {
+        return null
+      }
+    }
+    if (end) {
+      const endTime = new Date(end).getTime()
+      if (!Number.isNaN(endTime) && endTime < now) {
+        return null
+      }
+    }
+  }
+
+  return { id, message, tone, dismissible, cta, icon }
+}
+
 export const useSiteStore = defineStore('site', () => {
   const notifications = ref([])
   const config = reactive({
@@ -57,6 +196,7 @@ export const useSiteStore = defineStore('site', () => {
   })
   const loading = ref(false)
   const ready = ref(false)
+  const dismissedAnnouncements = ref(readDismissedAnnouncements())
 
   const applySiteMetadata = (info) => {
     if (typeof document !== 'undefined' && info?.name) {
@@ -115,6 +255,47 @@ export const useSiteStore = defineStore('site', () => {
     }, 4000)
   }
 
+  const announcementConfig = computed(() => {
+    const info = config.siteInfo || {}
+    const webConfig = info.web || {}
+    return (
+      extractAnnouncement(webConfig.announcement || webConfig.banner || webConfig.notice) ||
+      extractAnnouncement(info.announcement || info.notice || info.banner) ||
+      null
+    )
+  })
+
+  const announcement = computed(() => {
+    const candidate = announcementConfig.value
+    if (!candidate) return null
+    const existing = dismissedAnnouncements.value.find((entry) => entry.id === candidate.id)
+    if (existing) return null
+    return candidate
+  })
+
+  const dismissAnnouncement = (id) => {
+    if (!id) return
+    if (dismissedAnnouncements.value.find((entry) => entry.id === id)) return
+    const candidate = announcementConfig.value
+    const hash = candidate && candidate.id === id ? createAnnouncementFingerprint(candidate) : null
+    dismissedAnnouncements.value = [...dismissedAnnouncements.value, { id, hash }]
+    persistDismissedAnnouncements(dismissedAnnouncements.value)
+  }
+
+  watch(announcementConfig, (value) => {
+    if (!value) return
+    const index = dismissedAnnouncements.value.findIndex((entry) => entry.id === value.id)
+    if (index === -1) return
+    const fingerprint = createAnnouncementFingerprint(value)
+    const entry = dismissedAnnouncements.value[index]
+    if (entry.hash && entry.hash === fingerprint) return
+    dismissedAnnouncements.value = [
+      ...dismissedAnnouncements.value.slice(0, index),
+      ...dismissedAnnouncements.value.slice(index + 1)
+    ]
+    persistDismissedAnnouncements(dismissedAnnouncements.value)
+  })
+
   watch(
     () => config.siteInfo,
     (info) => {
@@ -131,6 +312,8 @@ export const useSiteStore = defineStore('site', () => {
     loading,
     ready,
     brandName,
+    announcement,
+    dismissAnnouncement,
     loadConfig,
     notify
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="app-shell">
+    <AnnouncementBar />
     <MainNav
       :links="navLinks"
       :brand="brand"
@@ -50,6 +51,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import AnnouncementBar from '@/components/navigation/AnnouncementBar.vue'
 import MainNav from '@/components/navigation/MainNav.vue'
 import SiteFooter from '@/components/navigation/SiteFooter.vue'
 import NotificationStack from '@/components/sections/NotificationStack.vue'
