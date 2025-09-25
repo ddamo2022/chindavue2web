@@ -22,6 +22,7 @@
             {{ link.label }}
           </RouterLink>
         </nav>
+        <LanguageSwitcher class="mobile-menu__language" />
       </aside>
     </transition>
 
@@ -35,11 +36,13 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import MainNav from '@/components/navigation/MainNav.vue'
 import SiteFooter from '@/components/navigation/SiteFooter.vue'
 import NotificationStack from '@/components/sections/NotificationStack.vue'
+import LanguageSwitcher from '@/components/navigation/LanguageSwitcher.vue'
 import { useSiteStore } from '@/stores/site'
 import { useAuthStore } from '@/stores/auth'
 import { useMemberStore } from '@/stores/member'
@@ -48,6 +51,7 @@ const menuOpen = ref(false)
 const site = useSiteStore()
 const auth = useAuthStore()
 const member = useMemberStore()
+const { t } = useI18n()
 
 const { brandName } = storeToRefs(site)
 const { profile: authProfile, isAuthenticated } = storeToRefs(auth)
@@ -66,21 +70,24 @@ watch(isAuthenticated, (value) => {
   }
 })
 
-const baseLinks = [
-  { label: 'Home', to: '/' },
-  { label: 'Experiences', to: '/experiences' },
-  { label: 'Membership', to: '/membership' },
-  { label: 'Rewards', to: '/rewards' },
-  { label: 'Dashboard', to: '/dashboard' },
-  { label: 'Locations', to: '/locations' },
-  { label: 'Support', to: '/support' }
+const navEntries = [
+  { key: 'home', to: '/' },
+  { key: 'experiences', to: '/experiences' },
+  { key: 'membership', to: '/membership' },
+  { key: 'rewards', to: '/rewards' },
+  { key: 'dashboard', to: '/dashboard' },
+  { key: 'locations', to: '/locations' },
+  { key: 'support', to: '/support' }
 ]
 
 const navLinks = computed(() => {
-  if (isAuthenticated.value) {
-    return baseLinks
-  }
-  return baseLinks.filter((link) => link.to !== '/dashboard')
+  const entries = isAuthenticated.value
+    ? navEntries
+    : navEntries.filter((entry) => entry.to !== '/dashboard')
+  return entries.map((entry) => ({
+    ...entry,
+    label: t(`web.nav.${entry.key}`)
+  }))
 })
 
 const brand = computed(() => {
@@ -136,6 +143,10 @@ const handleLogout = async () => {
   background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(10px);
   z-index: 15;
+}
+
+.mobile-menu__language {
+  margin-top: 24px;
 }
 
 .mobile-menu__link {

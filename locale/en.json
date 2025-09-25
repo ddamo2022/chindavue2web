@@ -1398,15 +1398,64 @@
 		"apply_refund": "Apply for Refund",
 		"select_refund_reason": "Please Select Refund Reason"
 	},
-	"privacy": {
-		"privacy_policy_title": "User Privacy Protection Guidelines",
-		"privacy_policy_intro": "Thank you for using our service. Before using this mini program, you should read and agree to",
-		"privacy_policy_link": "Mini Program Privacy Protection Guidelines",
-		"privacy_policy_agreement": "If you agree to the Mini Program Privacy Protection Guidelines, please click 'Agree' to start using.",
-		"reject_button": "Reject",
-		"agree_button": "Agree",
-		"default_privacy_policy_name": "User Privacy Protection Guidelines"
-	}
+        "privacy": {
+                "privacy_policy_title": "User Privacy Protection Guidelines",
+                "privacy_policy_intro": "Thank you for using our service. Before using this mini program, you should read and agree to",
+                "privacy_policy_link": "Mini Program Privacy Protection Guidelines",
+                "privacy_policy_agreement": "If you agree to the Mini Program Privacy Protection Guidelines, please click 'Agree' to start using.",
+                "reject_button": "Reject",
+                "agree_button": "Agree",
+                "default_privacy_policy_name": "User Privacy Protection Guidelines"
+        },
+        "web": {
+                "nav": {
+                        "home": "Home",
+                        "experiences": "Experiences",
+                        "membership": "Membership",
+                        "rewards": "Rewards",
+                        "dashboard": "Dashboard",
+                        "locations": "Locations",
+                        "support": "Support",
+                        "login": "Log in",
+                        "join": "Join now",
+                        "logout": "Sign out",
+                        "points": "{count} pts"
+                },
+                "language": {
+                        "label": "Select language",
+                        "options": {
+                                "en": "English",
+                                "zh": "中文",
+                                "th": "ไทย"
+                        }
+                },
+                "footer": {
+                        "description": "A unified digital experience for our guests and members. Reserve tables, order delivery, and unlock exclusive perks from any device.",
+                        "ctaJoin": "Become a member",
+                        "ctaSupport": "Contact support",
+                        "sections": {
+                                "platform": "Platform",
+                                "resources": "Resources",
+                                "legal": "Legal"
+                        },
+                        "links": {
+                                "overview": "Overview",
+                                "experiences": "Experiences",
+                                "membership": "Membership tiers",
+                                "rewards": "Rewards catalog",
+                                "locations": "Flagship locations",
+                                "dashboard": "Operations dashboard",
+                                "demo": "Request a demo",
+                                "implementation": "Implementation guide",
+                                "brand": "Brand assets",
+                                "api": "API documentation",
+                                "security": "Security center",
+                                "terms": "Terms",
+                                "privacy": "Privacy",
+                                "cookies": "Cookies"
+                        }
+                }
+        }
 
 
 }

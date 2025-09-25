@@ -8,7 +8,8 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@common': fileURLToPath(new URL('../common', import.meta.url)),
-      '@static': fileURLToPath(new URL('../static', import.meta.url))
+      '@static': fileURLToPath(new URL('../static', import.meta.url)),
+      '@locale': fileURLToPath(new URL('../locale', import.meta.url))
     }
   },
   server: {

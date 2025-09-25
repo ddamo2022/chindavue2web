@@ -9,33 +9,33 @@
           <a v-if="supportPhone" :href="`tel:${supportPhone}`">{{ supportPhone }}</a>
         </div>
         <div class="site-footer__cta">
-          <RouterLink to="/register" class="button button--primary">Become a member</RouterLink>
-          <RouterLink to="/support" class="button button--ghost">Contact support</RouterLink>
+          <RouterLink to="/register" class="button button--primary">{{ t('web.footer.ctaJoin') }}</RouterLink>
+          <RouterLink to="/support" class="button button--ghost">{{ t('web.footer.ctaSupport') }}</RouterLink>
         </div>
       </div>
       <div class="site-footer__links">
         <div>
-          <span class="site-footer__label">Platform</span>
-          <RouterLink to="/" class="site-footer__link">Overview</RouterLink>
-          <RouterLink to="/experiences" class="site-footer__link">Experiences</RouterLink>
-          <RouterLink to="/membership" class="site-footer__link">Membership tiers</RouterLink>
-          <RouterLink to="/rewards" class="site-footer__link">Rewards catalog</RouterLink>
-          <RouterLink to="/locations" class="site-footer__link">Flagship locations</RouterLink>
-          <RouterLink to="/dashboard" class="site-footer__link">Operations dashboard</RouterLink>
+          <span class="site-footer__label">{{ t('web.footer.sections.platform') }}</span>
+          <RouterLink to="/" class="site-footer__link">{{ t('web.footer.links.overview') }}</RouterLink>
+          <RouterLink to="/experiences" class="site-footer__link">{{ t('web.footer.links.experiences') }}</RouterLink>
+          <RouterLink to="/membership" class="site-footer__link">{{ t('web.footer.links.membership') }}</RouterLink>
+          <RouterLink to="/rewards" class="site-footer__link">{{ t('web.footer.links.rewards') }}</RouterLink>
+          <RouterLink to="/locations" class="site-footer__link">{{ t('web.footer.links.locations') }}</RouterLink>
+          <RouterLink to="/dashboard" class="site-footer__link">{{ t('web.footer.links.dashboard') }}</RouterLink>
         </div>
         <div>
-          <span class="site-footer__label">Resources</span>
-          <RouterLink to="/demo" class="site-footer__link">Request a demo</RouterLink>
-          <a class="site-footer__link" href="#">Implementation guide</a>
-          <a class="site-footer__link" href="#">Brand assets</a>
-          <a class="site-footer__link" href="#">API documentation</a>
-          <a class="site-footer__link" href="#">Security center</a>
+          <span class="site-footer__label">{{ t('web.footer.sections.resources') }}</span>
+          <RouterLink to="/demo" class="site-footer__link">{{ t('web.footer.links.demo') }}</RouterLink>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.implementation') }}</a>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.brand') }}</a>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.api') }}</a>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.security') }}</a>
         </div>
         <div>
-          <span class="site-footer__label">Legal</span>
-          <a class="site-footer__link" href="#">Terms</a>
-          <a class="site-footer__link" href="#">Privacy</a>
-          <a class="site-footer__link" href="#">Cookies</a>
+          <span class="site-footer__label">{{ t('web.footer.sections.legal') }}</span>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.terms') }}</a>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.privacy') }}</a>
+          <a class="site-footer__link" href="#">{{ t('web.footer.links.cookies') }}</a>
         </div>
       </div>
     </div>
@@ -60,19 +60,21 @@
 
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { useSiteStore } from '@/stores/site'
 
 const site = useSiteStore()
 const { config, brandName } = storeToRefs(site)
+const { t } = useI18n()
 
 const description = computed(() => {
   const info = config.value.siteInfo || {}
   return (
     info.description ||
     info.summary ||
-    'A unified digital experience for our guests and members. Reserve tables, order delivery, and unlock exclusive perks from any device.'
+    t('web.footer.description')
   )
 })
 

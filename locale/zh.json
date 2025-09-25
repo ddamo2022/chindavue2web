@@ -1409,11 +1409,11 @@
 		"agree_button": "同意",
 		"default_privacy_policy_name": "《用户隐私保护指引》"
 	},
-	"shop_activity": {
-		"activity_rules": "活动规则",
-		"activity_type": "活动类型",
-		"full_discount": "满额立减",
-		"discount": "满减折扣",
+        "shop_activity": {
+                "activity_rules": "活动规则",
+                "activity_type": "活动类型",
+                "full_discount": "满额立减",
+                "discount": "满减折扣",
 		"new_customer_discount": "新客立减",
 		"activity_time": "活动时间",
 		"usage_scenario": "使用场景",
@@ -1427,9 +1427,58 @@
 		"all_products": "全部商品",
 		"specified_products_applicable": "指定商品适用",
 		"specified_products_not_applicable": "指定商品不适用",
-		"activity_products": "活动商品",
-		"activity_details": "活动详情"
-	}
+                "activity_products": "活动商品",
+                "activity_details": "活动详情"
+        },
+        "web": {
+                "nav": {
+                        "home": "首页",
+                        "experiences": "体验",
+                        "membership": "会员",
+                        "rewards": "积分礼遇",
+                        "dashboard": "运营仪表盘",
+                        "locations": "门店",
+                        "support": "支持",
+                        "login": "登录",
+                        "join": "立即加入",
+                        "logout": "退出登录",
+                        "points": "{count} 积分"
+                },
+                "language": {
+                        "label": "选择语言",
+                        "options": {
+                                "en": "English",
+                                "zh": "中文",
+                                "th": "ไทย"
+                        }
+                },
+                "footer": {
+                        "description": "为会员和宾客打造统一的数字体验，随时预约餐位、下单配送，并解锁专属礼遇。",
+                        "ctaJoin": "成为会员",
+                        "ctaSupport": "联系支持",
+                        "sections": {
+                                "platform": "平台",
+                                "resources": "资源",
+                                "legal": "条款"
+                        },
+                        "links": {
+                                "overview": "概览",
+                                "experiences": "体验",
+                                "membership": "会员等级",
+                                "rewards": "积分礼遇",
+                                "locations": "旗舰门店",
+                                "dashboard": "运营仪表盘",
+                                "demo": "申请演示",
+                                "implementation": "实施指南",
+                                "brand": "品牌素材",
+                                "api": "API 文档",
+                                "security": "安全中心",
+                                "terms": "使用条款",
+                                "privacy": "隐私政策",
+                                "cookies": "Cookie 政策"
+                        }
+                }
+        }
 
 
 }

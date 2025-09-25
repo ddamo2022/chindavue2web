@@ -19,6 +19,7 @@
       </RouterLink>
     </nav>
     <div class="main-nav__actions">
+      <LanguageSwitcher class="main-nav__language" />
       <div v-if="user" class="main-nav__session">
         <RouterLink to="/dashboard" class="main-nav__account">
           <span class="main-nav__avatar">{{ userInitials }}</span>
@@ -29,11 +30,11 @@
             </span>
           </div>
         </RouterLink>
-        <button class="main-nav__logout" @click="$emit('logout')">Logout</button>
+        <button class="main-nav__logout" @click="$emit('logout')">{{ logoutLabel }}</button>
       </div>
       <template v-else>
-        <RouterLink to="/login" class="button button--ghost">Log in</RouterLink>
-        <RouterLink to="/register" class="button button--primary">Join now</RouterLink>
+        <RouterLink to="/login" class="button button--ghost">{{ loginLabel }}</RouterLink>
+        <RouterLink to="/register" class="button button--primary">{{ joinLabel }}</RouterLink>
       </template>
       <button class="main-nav__toggle" @click="$emit('toggle-menu')">
         <span :class="['main-nav__burger', { 'main-nav__burger--open': menuOpen }]"></span>
@@ -44,7 +45,9 @@
 
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
+import LanguageSwitcher from '@/components/navigation/LanguageSwitcher.vue'
 
 const props = defineProps({
   links: {
@@ -67,6 +70,8 @@ const props = defineProps({
 
 defineEmits(['toggle-menu', 'logout'])
 
+const { t } = useI18n()
+
 const brandTitle = computed(() => props.brand?.title || 'Chinda')
 const brandSubtitle = computed(() => props.brand?.subtitle || 'Experience Platform')
 const brandLogo = computed(() => props.brand?.logo || '/logo.svg')
@@ -83,8 +88,13 @@ const userInitials = computed(() => {
 
 const userPointsLabel = computed(() => {
   const points = Number(props.user?.points ?? 0)
-  return `${Number.isFinite(points) ? points.toLocaleString() : 0} pts`
+  const formatted = Number.isFinite(points) ? points.toLocaleString() : '0'
+  return t('web.nav.points', { count: formatted })
 })
+
+const loginLabel = computed(() => t('web.nav.login'))
+const joinLabel = computed(() => t('web.nav.join'))
+const logoutLabel = computed(() => t('web.nav.logout'))
 </script>
 
 <style scoped>
@@ -161,6 +171,10 @@ const userPointsLabel = computed(() => {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.main-nav__language {
+  display: none;
 }
 
 .main-nav__session {
@@ -264,6 +278,10 @@ const userPointsLabel = computed(() => {
 @media (min-width: 960px) {
   .main-nav__links {
     display: flex;
+  }
+
+  .main-nav__language {
+    display: inline-flex;
   }
 
   .main-nav__toggle {

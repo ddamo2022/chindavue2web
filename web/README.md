@@ -16,9 +16,10 @@ The dev server runs on http://localhost:4173/ by default.
 
 - `src/layouts` – Application shell, navigation, and footer
 - `src/pages` – Route-based views for home, membership, rewards, dashboard, and support
-- `src/components` – Reusable UI elements including hero sections, forms, cards, and notifications
+- `src/components` – Reusable UI elements including hero sections, forms, cards, notifications, and the language switcher
 - `src/api` – Axios client that reuses the existing `common/api.js` endpoint map from the Vue 2 project
 - `src/stores` – Pinia stores for site configuration and authentication session management
+- `src/plugins/i18n.js` – Vue I18n instance that reuses the shared locale dictionaries and syncs language choice with Uni-app storage
 
 ## API integration
 
