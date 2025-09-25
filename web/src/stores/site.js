@@ -2,6 +2,53 @@ import { defineStore } from 'pinia'
 import { computed, reactive, ref, watch } from 'vue'
 import api from '@common/api.js'
 
+const parseMaybeObject = (payload, contextLabel) => {
+  if (!payload) return null
+  if (typeof payload === 'object') return payload
+  if (typeof payload === 'string') {
+    try {
+      const parsed = JSON.parse(payload)
+      return typeof parsed === 'object' && parsed !== null ? parsed : null
+    } catch (error) {
+      console.warn(`Unable to parse ${contextLabel || 'payload'}`, error)
+    }
+  }
+  return null
+}
+
+const normalizeWebConfig = (siteInfo) => {
+  if (!siteInfo || typeof siteInfo !== 'object') return siteInfo
+  if (siteInfo.web && typeof siteInfo.web === 'string') {
+    const parsedWeb = parseMaybeObject(siteInfo.web, 'siteInfo.web')
+    if (parsedWeb) {
+      siteInfo.web = parsedWeb
+    }
+  }
+  if (siteInfo.navigation && typeof siteInfo.navigation === 'string') {
+    const parsedNav = parseMaybeObject(siteInfo.navigation, 'siteInfo.navigation')
+    if (parsedNav) {
+      siteInfo.navigation = parsedNav
+    }
+  }
+  if (siteInfo.web && typeof siteInfo.web === 'object') {
+    const navigation = siteInfo.web.navigation
+    if (navigation && typeof navigation === 'string') {
+      const parsed = parseMaybeObject(navigation, 'siteInfo.web.navigation')
+      if (parsed) {
+        siteInfo.web.navigation = parsed
+      }
+    }
+    const footer = siteInfo.web.footer
+    if (footer && typeof footer === 'string') {
+      const parsed = parseMaybeObject(footer, 'siteInfo.web.footer')
+      if (parsed) {
+        siteInfo.web.footer = parsed
+      }
+    }
+  }
+  return siteInfo
+}
+
 export const useSiteStore = defineStore('site', () => {
   const notifications = ref([])
   const config = reactive({
@@ -27,8 +74,22 @@ export const useSiteStore = defineStore('site', () => {
         throw new Error(`Config request failed with status ${response.status}`)
       }
       const data = await response.json()
-      config.siteInfo = data?.siteInfo || data || null
-      config.layout = data?.layout || null
+      const siteInfo =
+        parseMaybeObject(data?.siteInfo, 'siteInfo') ||
+        parseMaybeObject(data, 'configRoot') ||
+        data?.siteInfo ||
+        data ||
+        null
+      const normalizedSiteInfo = normalizeWebConfig(siteInfo || {})
+      config.siteInfo = normalizedSiteInfo || null
+
+      const layoutSource =
+        parseMaybeObject(data?.layout, 'layout') ||
+        parseMaybeObject(normalizedSiteInfo?.layout, 'siteInfo.layout') ||
+        data?.layout ||
+        normalizedSiteInfo?.layout ||
+        null
+      config.layout = typeof layoutSource === 'object' && layoutSource !== null ? layoutSource : null
       if (config.siteInfo?.uniacid && typeof window !== 'undefined') {
         localStorage.setItem('uniacid', config.siteInfo.uniacid)
       }

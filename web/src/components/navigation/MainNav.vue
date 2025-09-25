@@ -8,15 +8,25 @@
       </div>
     </RouterLink>
     <nav class="main-nav__links">
-      <RouterLink
-        v-for="link in links"
-        :key="link.to"
-        :to="link.to"
-        class="main-nav__link"
-        active-class="main-nav__link--active"
-      >
-        {{ link.label }}
-      </RouterLink>
+      <template v-for="link in normalizedLinks" :key="linkKey(link)">
+        <RouterLink
+          v-if="link.to"
+          :to="link.to"
+          class="main-nav__link"
+          active-class="main-nav__link--active"
+        >
+          {{ link.label }}
+        </RouterLink>
+        <a
+          v-else
+          :href="link.href"
+          class="main-nav__link main-nav__link--external"
+          :target="link.external ? '_blank' : undefined"
+          :rel="link.external ? 'noopener' : undefined"
+        >
+          {{ link.label }}
+        </a>
+      </template>
     </nav>
     <div class="main-nav__actions">
       <LanguageSwitcher class="main-nav__language" />
@@ -75,6 +85,20 @@ const { t } = useI18n()
 const brandTitle = computed(() => props.brand?.title || 'Chinda')
 const brandSubtitle = computed(() => props.brand?.subtitle || 'Experience Platform')
 const brandLogo = computed(() => props.brand?.logo || '/logo.svg')
+
+const normalizedLinks = computed(() =>
+  props.links
+    .map((link) => ({
+      ...link,
+      label: typeof link.label === 'string' ? link.label : '',
+      to: typeof link.to === 'string' ? link.to : undefined,
+      href: typeof link.href === 'string' ? link.href : undefined,
+      external: Boolean(link.external)
+    }))
+    .filter((link) => link.label && (link.to || link.href))
+)
+
+const linkKey = (link) => link.key || link.to || link.href || link.label
 
 const userInitials = computed(() => {
   if (!props.user?.name) return 'MB'
@@ -165,6 +189,12 @@ const logoutLabel = computed(() => t('web.nav.logout'))
 .main-nav__link--active {
   color: #312e81;
   background: rgba(99, 102, 241, 0.18);
+}
+
+.main-nav__link--external::after {
+  content: '↗';
+  font-size: 0.7em;
+  margin-left: 6px;
 }
 
 .main-nav__actions {

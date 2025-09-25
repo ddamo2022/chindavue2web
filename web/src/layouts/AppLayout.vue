@@ -12,15 +12,26 @@
     <transition name="fade">
       <aside v-if="menuOpen" class="mobile-menu">
         <nav>
-          <RouterLink
-            v-for="link in navLinks"
-            :key="link.to"
-            :to="link.to"
-            class="mobile-menu__link"
-            @click="menuOpen = false"
-          >
-            {{ link.label }}
-          </RouterLink>
+          <template v-for="link in navLinks" :key="link.key">
+            <RouterLink
+              v-if="link.to"
+              :to="link.to"
+              class="mobile-menu__link"
+              @click="closeMenu"
+            >
+              {{ link.label }}
+            </RouterLink>
+            <a
+              v-else-if="link.href"
+              :href="link.href"
+              class="mobile-menu__link"
+              :target="link.external ? '_blank' : undefined"
+              :rel="link.external ? 'noopener' : undefined"
+              @click="closeMenu"
+            >
+              {{ link.label }}
+            </a>
+          </template>
         </nav>
         <LanguageSwitcher class="mobile-menu__language" />
       </aside>
@@ -57,6 +68,30 @@ const { brandName } = storeToRefs(site)
 const { profile: authProfile, isAuthenticated } = storeToRefs(auth)
 const { profile: memberProfile, pointsBalance } = storeToRefs(member)
 
+const ensureArray = (value) => (Array.isArray(value) ? value : [])
+const ensureText = (value) => (typeof value === 'string' ? value.trim() : '')
+const normalizeLinkTarget = (value) => (typeof value === 'string' ? value : undefined)
+
+const translateNavKey = (key) => {
+  if (!key) return ''
+  const navPath = `web.nav.${key}`
+  const navLabel = t(navPath)
+  if (navLabel !== navPath) return navLabel
+  const footerPath = `web.footer.links.${key}`
+  const footerLabel = t(footerPath)
+  return footerLabel !== footerPath ? footerLabel : key
+}
+
+const navBlueprint = [
+  { key: 'home', to: '/', requiresAuth: false },
+  { key: 'experiences', to: '/experiences', requiresAuth: false },
+  { key: 'membership', to: '/membership', requiresAuth: false },
+  { key: 'rewards', to: '/rewards', requiresAuth: false },
+  { key: 'dashboard', to: '/dashboard', requiresAuth: true },
+  { key: 'locations', to: '/locations', requiresAuth: false },
+  { key: 'support', to: '/support', requiresAuth: false }
+]
+
 onMounted(() => {
   site.loadConfig()
   if (isAuthenticated.value && !memberProfile.value) {
@@ -70,24 +105,67 @@ watch(isAuthenticated, (value) => {
   }
 })
 
-const navEntries = [
-  { key: 'home', to: '/' },
-  { key: 'experiences', to: '/experiences' },
-  { key: 'membership', to: '/membership' },
-  { key: 'rewards', to: '/rewards' },
-  { key: 'dashboard', to: '/dashboard' },
-  { key: 'locations', to: '/locations' },
-  { key: 'support', to: '/support' }
-]
+const navConfig = computed(() => {
+  const info = site.config.siteInfo || {}
+  const webNavigation = info.web?.navigation || info.navigation || {}
+  if (Array.isArray(webNavigation)) return { links: webNavigation }
+  return typeof webNavigation === 'object' && webNavigation !== null ? webNavigation : {}
+})
+
+const normalizedRemoteLinks = computed(() => {
+  const config = navConfig.value
+  return ensureArray(config.links || config.items || config.routes)
+    .map((item) => {
+      const label = ensureText(item.label ?? item.title ?? item.text)
+      const to = normalizeLinkTarget(item.to)
+      const hrefCandidate = item.href ?? item.url
+      const href = normalizeLinkTarget(hrefCandidate)
+      if (!label && !(to || href)) return null
+      const key = ensureText(item.key ?? item.id ?? '') || to || href || label
+      const requiresAuth = Boolean(item.requiresAuth ?? item.protected ?? item.auth)
+      const external = Boolean(item.external || (!to && href && /^https?:/i.test(href)))
+      return {
+        key,
+        label,
+        to,
+        href,
+        external,
+        requiresAuth
+      }
+    })
+    .filter((link) => link && (link.to || link.href))
+})
+
+const fallbackNavLinks = computed(() =>
+  navBlueprint.map((entry) => ({
+    key: entry.key,
+    to: entry.to,
+    href: undefined,
+    external: false,
+    requiresAuth: entry.requiresAuth,
+    label: translateNavKey(entry.key)
+  }))
+)
 
 const navLinks = computed(() => {
-  const entries = isAuthenticated.value
-    ? navEntries
-    : navEntries.filter((entry) => entry.to !== '/dashboard')
-  return entries.map((entry) => ({
-    ...entry,
-    label: t(`web.nav.${entry.key}`)
-  }))
+  const source = normalizedRemoteLinks.value.length ? normalizedRemoteLinks.value : fallbackNavLinks.value
+  return source
+    .map((entry) => ({
+      ...entry,
+      label: entry.label || (entry.key ? translateNavKey(entry.key) : ''),
+      to: normalizeLinkTarget(entry.to),
+      href: normalizeLinkTarget(entry.href),
+      external: Boolean(entry.external || (!entry.to && entry.href && /^https?:/i.test(entry.href))),
+      requiresAuth: Boolean(entry.requiresAuth)
+    }))
+    .filter((entry) => {
+      if (entry.requiresAuth && !isAuthenticated.value) return false
+      return entry.label && (entry.to || entry.href)
+    })
+    .map((entry) => ({
+      ...entry,
+      key: entry.key || entry.to || entry.href || entry.label
+    }))
 })
 
 const brand = computed(() => {
@@ -120,6 +198,10 @@ const navUser = computed(() => {
 
 const handleLogout = async () => {
   await auth.logout()
+  menuOpen.value = false
+}
+
+const closeMenu = () => {
   menuOpen.value = false
 }
 </script>
