@@ -1455,6 +1455,16 @@
                                 "th": "ไทย"
                         }
                 },
+                "system": {
+                        "connectivity": {
+                                "offline": "系统暂时无法连接到 Chinda 服务。",
+                                "offlineDetail": "请检查网络连接，稍后再试。",
+                                "retry": "重试",
+                                "checking": "正在重新连接…",
+                                "checkingDetail": "正在恢复数据，请稍候。",
+                                "lastChecked": "上次检查时间 {time}"
+                        }
+                },
                 "accessibility": {
                         "skipToContent": "跳至主内容"
                 },

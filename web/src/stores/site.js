@@ -390,6 +390,27 @@ export const useSiteStore = defineStore('site', () => {
   const layoutLoading = ref(false)
   const layoutHydrated = ref(false)
   const dismissedAnnouncements = ref(readDismissedAnnouncements())
+  const connectivity = reactive({
+    status: 'idle',
+    error: '',
+    lastChecked: 0
+  })
+
+  const markConnectivityChecking = () => {
+    connectivity.status = 'checking'
+  }
+
+  const markConnectivityOnline = () => {
+    connectivity.status = 'online'
+    connectivity.error = ''
+    connectivity.lastChecked = Date.now()
+  }
+
+  const markConnectivityOffline = (error) => {
+    connectivity.status = 'offline'
+    connectivity.error = typeof error === 'string' ? error : error?.message || ''
+    connectivity.lastChecked = Date.now()
+  }
 
   const applySiteMetadata = (info) => {
     if (typeof document !== 'undefined' && info?.name) {
@@ -401,6 +422,7 @@ export const useSiteStore = defineStore('site', () => {
     if (ready.value && !force) return
     if (loading.value) return
     loading.value = true
+    markConnectivityChecking()
     try {
       const response = await fetch(resolveConfigUrl(), {
         credentials: 'include',
@@ -436,8 +458,10 @@ export const useSiteStore = defineStore('site', () => {
         await loadLayout({ force: true })
       }
       ready.value = true
+      markConnectivityOnline()
     } catch (error) {
       console.warn('Unable to load remote config', error)
+      markConnectivityOffline(error)
     } finally {
       loading.value = false
     }
@@ -522,6 +546,14 @@ export const useSiteStore = defineStore('site', () => {
     { immediate: true }
   )
 
+  const connectivityStatus = computed(() => connectivity.status)
+  const connectivityError = computed(() => connectivity.error)
+  const connectivityLastChecked = computed(() => connectivity.lastChecked)
+
+  const retryConnectivity = async () => {
+    await loadConfig({ force: true })
+  }
+
   const brandName = computed(() => config.siteInfo?.name || 'Chinda Experience Platform')
 
   return {
@@ -536,6 +568,10 @@ export const useSiteStore = defineStore('site', () => {
     loadLayout,
     layoutLoading,
     layoutHydrated,
-    notify
+    notify,
+    connectivityStatus,
+    connectivityError,
+    connectivityLastChecked,
+    retryConnectivity
   }
 })

@@ -2,6 +2,7 @@
   <div class="app-shell">
     <SkipNav />
     <AnnouncementBar />
+    <ConnectivityBanner />
     <MainNav
       :links="navLinks"
       :brand="brand"
@@ -58,6 +59,7 @@ import SiteFooter from '@/components/navigation/SiteFooter.vue'
 import NotificationStack from '@/components/sections/NotificationStack.vue'
 import LanguageSwitcher from '@/components/navigation/LanguageSwitcher.vue'
 import SkipNav from '@/components/layout/SkipNav.vue'
+import ConnectivityBanner from '@/components/navigation/ConnectivityBanner.vue'
 import { useSiteStore } from '@/stores/site'
 import { useAuthStore } from '@/stores/auth'
 import { useMemberStore } from '@/stores/member'

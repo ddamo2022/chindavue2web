@@ -1432,6 +1432,16 @@
                                 "th": "ไทย"
                         }
                 },
+                "system": {
+                        "connectivity": {
+                                "offline": "We’re having trouble reaching the Chinda services.",
+                                "offlineDetail": "Please check your network connection or try again in a moment.",
+                                "retry": "Retry",
+                                "checking": "Reconnecting…",
+                                "checkingDetail": "Hold on while we restore your dashboard data.",
+                                "lastChecked": "Last checked {time}"
+                        }
+                },
                 "accessibility": {
                         "skipToContent": "Skip to main content"
                 },
