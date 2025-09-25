@@ -1773,6 +1773,13 @@
                                         "emailPrompt": "Email partners@chinda.co for urgent requests."
                                 }
                         },
+                        "notFound": {
+                                "metaTitle": "Page not found",
+                                "eyebrow": "404",
+                                "title": "We couldn’t find that page.",
+                                "description": "The address may be out of date or the page may have moved. Return to the homepage to keep exploring the Chinda experience.",
+                                "cta": "Back to homepage"
+                        },
                         "homeMeta": {
                                 "title": "Chinda experience platform",
                                 "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile."

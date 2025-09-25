@@ -1792,9 +1792,20 @@
                                                 "面向桌面的设计系统起步包"
                                         ],
                                         "availabilityTitle": "可预约时间",
-                                        "availabilityBody": "周一至周五 10:00–18:00（ICT），支持线上或上门演示",
-                                        "emailPrompt": "如需加急，请发送邮件至 partners@chinda.co。"
+                                "availabilityBody": "周一至周五 10:00–18:00（ICT），支持线上或上门演示",
+                                "emailPrompt": "如需加急，请发送邮件至 partners@chinda.co。"
                                 }
+                        },
+                        "notFound": {
+                                "metaTitle": "页面不存在",
+                                "eyebrow": "404",
+                                "title": "未找到您访问的页面。",
+                                "description": "访问的地址可能已失效，或页面已被移动。返回首页，继续探索 Chinda 的数字体验。",
+                                "cta": "返回首页"
+                        },
+                        "homeMeta": {
+                                "title": "Chinda 体验平台",
+                                "description": "为桌面与移动端打造的全渠道忠诚度、预订与待客体验。"
                         }
                 },
                 "auth": {
