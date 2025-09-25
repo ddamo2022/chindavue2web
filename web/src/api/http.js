@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getActivePinia } from 'pinia'
 import api from '@common/api.js'
 import siteinfo from '@common/siteinfo.js'
 import { useAuthStore } from '@/stores/auth'
@@ -8,8 +9,40 @@ if (!api.platform) {
   api.platform = 'h5'
 }
 
+const resolveBaseUrl = () => {
+  if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE) {
+    return import.meta.env.VITE_API_BASE
+  }
+
+  if (typeof window !== 'undefined' && window.__CHINDA_API_BASE__) {
+    return window.__CHINDA_API_BASE__
+  }
+
+  try {
+    if (getActivePinia()) {
+      const siteStore = useSiteStore()
+      const siteInfo = siteStore?.config?.siteInfo || siteinfo || {}
+      if (typeof siteInfo.siteroot === 'string' && siteInfo.siteroot) {
+        return siteInfo.siteroot
+      }
+    }
+  } catch (error) {
+    // Pinia may not be initialised yet during module evaluation; ignore and continue.
+  }
+
+  if (typeof siteinfo?.siteroot === 'string' && siteinfo.siteroot) {
+    return siteinfo.siteroot
+  }
+
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return window.location.origin
+  }
+
+  return ''
+}
+
 const http = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE || '',
+  baseURL: resolveBaseUrl(),
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
@@ -27,6 +60,11 @@ const ensureHeaders = (config) => {
   const auth = useAuthStore()
 
   const siteInfo = site.config.siteInfo || siteinfo
+
+  const baseCandidate = resolveBaseUrl()
+  if (baseCandidate && config.baseURL !== baseCandidate) {
+    config.baseURL = baseCandidate
+  }
 
   config.headers.appType = api.platform || 'h5'
   if (siteInfo?.uniacid) {
