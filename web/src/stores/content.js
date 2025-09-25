@@ -55,6 +55,113 @@ const normalizeHighlights = (input) =>
     .map((entry) => ensureText(entry))
     .filter(Boolean)
 
+const normalizeDetails = (input) =>
+  ensureArray(input)
+    .map((entry) => ensureText(entry))
+    .filter(Boolean)
+
+const normalizeHeroCards = (cards, fallback) => {
+  const normalized = ensureArray(cards)
+    .map((card) => {
+      const title = ensureText(card.title ?? card.heading ?? card.name)
+      const description = ensureText(card.description ?? card.body ?? card.copy)
+      if (!title || !description) return null
+      return { title, description }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizeJourneySteps = (steps, fallback) => {
+  const normalized = ensureArray(steps)
+    .map((step, index) => {
+      const title = ensureText(step.title ?? step.name)
+      const description = ensureText(step.description ?? step.body ?? step.copy)
+      if (!title || !description) return null
+      const time = ensureText(step.time ?? step.label ?? step.index) || `T-${(index + 1) * 7} days`
+      const tags = normalizeHighlights(step.tags ?? step.highlights)
+      return { title, description, time, tags }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizeLocationsList = (locations, fallback) => {
+  const normalized = ensureArray(locations)
+    .map((location) => {
+      const name = ensureText(location.name ?? location.title)
+      const region = ensureText(location.region ?? location.area ?? location.country)
+      const story = ensureText(location.story ?? location.description ?? location.copy)
+      if (!name || !story) return null
+      const highlights = normalizeHighlights(location.highlights ?? location.amenities ?? location.features)
+      const phone = ensureText(location.phone ?? location.tel ?? location.contact)
+      const cta = normalizeCta(location.cta, {
+        label: 'Plan a visit',
+        to: '/demo',
+        variant: 'ghost',
+        external: false
+      })
+      return {
+        name,
+        region,
+        story,
+        highlights,
+        phone,
+        cta
+      }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizeSupportPlans = (plans, fallback) => {
+  const normalized = ensureArray(plans)
+    .map((plan) => {
+      const name = ensureText(plan.name ?? plan.title)
+      const description = ensureText(plan.description ?? plan.summary ?? plan.copy)
+      if (!name || !description) return null
+      const items = normalizeHighlights(plan.items ?? plan.features ?? plan.points)
+      const cta = normalizeCta(plan.cta, {
+        label: 'Talk to us',
+        to: '/demo',
+        variant: 'ghost',
+        external: false
+      })
+      return { name, description, items, cta }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizeSupportContacts = (contacts, fallback, siteInfo) => {
+  const normalized = ensureArray(contacts)
+    .map((contact) => {
+      const title = ensureText(contact.title ?? contact.name)
+      const description = ensureText(contact.description ?? contact.summary ?? contact.copy)
+      if (!title && !description) return null
+      const email = ensureText(contact.email ?? contact.mail)
+      const phone = ensureText(contact.phone ?? contact.tel)
+      const href = typeof contact.href === 'string' ? contact.href : undefined
+      return {
+        title,
+        description,
+        email: email || ensureText(siteInfo?.email || siteInfo?.contactEmail || siteInfo?.serviceEmail),
+        phone: phone || ensureText(siteInfo?.tel || siteInfo?.phone),
+        href
+      }
+    })
+    .filter(Boolean)
+  if (normalized.length) return normalized
+  const info = siteInfo || {}
+  return fallback.map((entry) => ({
+    title: entry.title,
+    description: entry.description,
+    email: entry.email || ensureText(info.email || info.contactEmail || info.serviceEmail) || '',
+    phone: entry.phone || ensureText(info.tel || info.phone || info.contactPhone) || '',
+    href: entry.href
+  }))
+}
+
 const normalizeTiers = (tiers, fallback) => {
   const normalized = ensureArray(tiers)
     .map((tier) => {
@@ -290,6 +397,163 @@ const defaultLoyalty = {
   rewardsCta: { label: 'Explore catalog', to: '/rewards', variant: 'primary', external: false }
 }
 
+const defaultExperiencesHero = {
+  eyebrow: 'SIGNATURE PROGRAMMING',
+  title: 'Immersive journeys crafted for the desktop era.',
+  description:
+    'Explore seasonal happenings, chef collaborations, and mixology labs designed to keep members inspired. Reserve directly from the web or sync with the mobile app—every touchpoint shares the same APIs.',
+  ctas: [
+    { label: 'Unlock membership', to: '/register', variant: 'primary', external: false },
+    { label: 'Plan an event', to: '/demo', variant: 'ghost', external: false }
+  ],
+  cards: [
+    {
+      title: 'Chef residencies',
+      description: 'Omakase pop-ups, guest collaborations, and live storytelling broadcast to every seat.'
+    },
+    {
+      title: 'Immersive lounges',
+      description: 'Projection-mapped mixology labs and listening bars, all powered by the shared loyalty stack.'
+    }
+  ]
+}
+
+const defaultExperiences = [
+  {
+    title: 'Aurora tasting flight',
+    type: 'Chef series',
+    description:
+      'Six-course tasting with augmented reality pairings beamed to each table for interactive stories.',
+    details: ['Limited to 24 seats nightly', 'Sommelier-guided cellar access', 'Digital tasting journal sync'],
+    schedule: 'Fridays & Saturdays · Chinda Bangkok',
+    cta: { label: 'Reserve a table', to: '/login', variant: 'primary', external: false }
+  },
+  {
+    title: 'Midnight botanicals',
+    type: 'Mixology lab',
+    description:
+      'Hands-on cocktail atelier featuring Thai botanicals, wearable sensors, and live music curated by resident DJs.',
+    details: ['Member +1 invitations', 'Interactive leaderboards', 'Recipe library in app'],
+    schedule: 'Bi-weekly · Chinda Clubhouse',
+    cta: { label: 'Join the waitlist', to: '/register', variant: 'ghost', external: false }
+  },
+  {
+    title: 'City lights supper club',
+    type: 'Pop-up',
+    description:
+      'One-night-only rooftop collaborations bringing guest chefs and artists together for immersive dining.',
+    details: ['Dynamic seat maps', 'Exclusive merch drops', 'Priority for Aurora tier'],
+    schedule: 'Quarterly rotation · Global cities',
+    cta: { label: 'Explore locations', to: '/locations', variant: 'ghost', external: false }
+  }
+]
+
+const defaultExperienceJourney = [
+  {
+    time: 'T-14 days',
+    title: 'Discovery & storytelling',
+    description: 'Members explore the microsite with cinematic layouts, while marketing automation delivers targeted previews.'
+  },
+  {
+    time: 'T-7 days',
+    title: 'Personalized booking',
+    description: 'Seat selection syncs with the Uni-app reservation API to honour deposits, stored value, and vouchers.'
+  },
+  {
+    time: 'Event day',
+    title: 'On-site check-in',
+    description: 'QR codes generated on desktop scan into the mobile host console, ensuring a seamless welcome experience.'
+  },
+  {
+    time: 'Post-event',
+    title: 'Rewards & content recap',
+    description: 'Desktop dashboards visualize feedback, points, and media galleries so members relive the moment.'
+  }
+]
+
+const defaultLocationsHero = {
+  title: 'Flagship locations',
+  description:
+    'Desktop visitors can browse spaces, amenities, and live availability before syncing reservations to the Uni-app mobile wallet. Each lounge is designed with hybrid dining and digital storytelling in mind.',
+  cards: [
+    {
+      title: 'Bangkok · Riverside',
+      description: 'Immersive LED galleries, private tasting suites, and riverside terraces with projection mapping.'
+    },
+    {
+      title: 'Singapore · Marina',
+      description: 'Skyline views with mixology theatre, AI-personalized menus, and after-hours supper clubs.'
+    }
+  ],
+  mapNote: 'Interactive map coming soon — synced with existing store endpoints.'
+}
+
+const defaultLocations = [
+  {
+    name: 'Chinda Bangkok',
+    region: 'Thailand',
+    story: 'Multi-sensory dining with Thai botanicals, a members-only listening lounge, and private river cruises.',
+    highlights: ['24/7 concierge desk', 'LINE mini-app integration', 'Loyalty point redemption at bar'],
+    phone: '+6625551234',
+    cta: { label: 'Plan a visit', to: '/register', variant: 'ghost', external: false }
+  },
+  {
+    name: 'Chinda Singapore',
+    region: 'Singapore',
+    story: 'Suspended gardens, omakase counters, and interactive chef tables broadcast to remote guests.',
+    highlights: ['Chef residency program', 'Corporate suites', 'Data-driven sustainability tracker'],
+    phone: '+6565557890',
+    cta: { label: 'Book a consultation', to: '/demo', variant: 'ghost', external: false }
+  },
+  {
+    name: 'Chinda Tokyo',
+    region: 'Japan',
+    story: 'Neo-noir aesthetics with underground listening bar, curated whisky vaults, and projection art corridors.',
+    highlights: ['In-language concierge', 'Digital collectibles', 'Aurora tier speakeasy'],
+    phone: '+8135550468',
+    cta: { label: 'Explore experiences', to: '/experiences', variant: 'ghost', external: false }
+  }
+]
+
+const defaultSupportPlans = [
+  {
+    name: 'Launch assist',
+    description: 'Fast-track your go-live with design templates and API walkthroughs.',
+    items: ['Brand & UI kit', 'API playbook', 'Onboarding webinar'],
+    cta: { label: 'Talk to us', to: '/demo', variant: 'ghost', external: false }
+  },
+  {
+    name: 'Growth partner',
+    description: 'Optimize conversion with analytics reviews and campaign planning.',
+    items: ['Quarterly business review', 'Campaign planning', 'Advanced segmentation workshops'],
+    cta: { label: 'Chat with success', to: '/demo', variant: 'ghost', external: false }
+  },
+  {
+    name: 'Enterprise',
+    description: 'Dedicated squad for multi-market rollouts and custom development.',
+    items: ['Dedicated success manager', 'Custom component library', 'Solution engineering support'],
+    cta: { label: 'Schedule a strategy call', to: '/demo', variant: 'ghost', external: false }
+  }
+]
+
+const defaultSupportContacts = [
+  {
+    title: 'Global concierge',
+    description: 'Email our concierge desk or call the hotline for immediate assistance.',
+    email: 'concierge@chinda.co',
+    phone: '+66 2 555 1234'
+  },
+  {
+    title: 'Technology partners',
+    description: 'Work with certified specialists for POS integrations, analytics, and custom journeys.'
+  },
+  {
+    title: 'Knowledge base',
+    description: 'Access implementation guides, best practices, and recorded training sessions.',
+    href: '/support'
+  }
+]
+
 const mergePanels = (source = {}, fallback) => ({
   analyticsCta: normalizeCta(source.analyticsCta, fallback.analyticsCta),
   rewardsCta: normalizeCta(source.rewardsCta, fallback.rewardsCta)
@@ -421,11 +685,133 @@ export const useContentStore = defineStore('content', () => {
     }
   })
 
+  const experiencesConfig = computed(
+    () =>
+      marketing.value.experiences ||
+      marketing.value.experiencesPage ||
+      marketing.value.events ||
+      marketing.value.programming ||
+      {}
+  )
+
+  const experiencesHero = computed(() => {
+    const config = experiencesConfig.value || {}
+    const heroSource = config.hero || config.header || {}
+    const eyebrow = ensureText(heroSource.eyebrow ?? config.eyebrow)
+    const title = ensureText(heroSource.title ?? config.title)
+    const description = ensureText(heroSource.description ?? heroSource.copy ?? config.description)
+    const ctas = normalizeCtas(heroSource.ctas || heroSource.actions || config.ctas, defaultExperiencesHero.ctas)
+    const cards = normalizeHeroCards(heroSource.cards || config.cards, defaultExperiencesHero.cards)
+    return {
+      eyebrow: eyebrow || defaultExperiencesHero.eyebrow,
+      title: title || defaultExperiencesHero.title,
+      description: description || defaultExperiencesHero.description,
+      ctas,
+      cards
+    }
+  })
+
+  const experiences = computed(() => {
+    const config = experiencesConfig.value || {}
+    const remote = ensureArray(config.list || config.items || config.cards || marketing.value.experiencesList)
+      .map((item) => {
+        const title = ensureText(item.title ?? item.name)
+        const description = ensureText(item.description ?? item.summary ?? item.copy)
+        if (!title || !description) return null
+        const type = ensureText(item.type ?? item.category)
+        const details = normalizeDetails(item.details ?? item.highlights ?? item.points)
+        const schedule = ensureText(item.schedule ?? item.time ?? item.subtitle)
+        const cta = normalizeCta(item.cta, {
+          label: 'Reserve now',
+          to: '/register',
+          variant: 'primary',
+          external: false
+        })
+        return {
+          title,
+          description,
+          type,
+          details,
+          schedule,
+          cta
+        }
+      })
+      .filter(Boolean)
+    return remote.length ? remote : defaultExperiences
+  })
+
+  const experienceJourney = computed(() => {
+    const config = experiencesConfig.value || {}
+    return normalizeJourneySteps(
+      config.journey || config.timeline || marketing.value.experienceJourney,
+      defaultExperienceJourney
+    )
+  })
+
+  const locationsConfig = computed(
+    () =>
+      marketing.value.locations ||
+      marketing.value.locationsPage ||
+      marketing.value.destinations ||
+      marketing.value.spaces ||
+      {}
+  )
+
+  const locationsHero = computed(() => {
+    const config = locationsConfig.value || {}
+    const heroSource = config.hero || config.header || {}
+    const title = ensureText(heroSource.title ?? config.title) || defaultLocationsHero.title
+    const description = ensureText(heroSource.description ?? heroSource.copy ?? config.description)
+    const cards = normalizeHeroCards(heroSource.cards || config.cards, defaultLocationsHero.cards)
+    const mapNote = ensureText(config.mapNote ?? heroSource.mapNote ?? heroSource.note) || defaultLocationsHero.mapNote
+    const ctas = normalizeCtas(heroSource.ctas || heroSource.actions || config.ctas, [])
+    return {
+      title,
+      description: description || defaultLocationsHero.description,
+      cards,
+      mapNote,
+      ctas
+    }
+  })
+
+  const locations = computed(() => {
+    const config = locationsConfig.value || {}
+    return normalizeLocationsList(
+      config.list || config.locations || config.items || marketing.value.locationsList,
+      defaultLocations
+    )
+  })
+
+  const supportConfig = computed(
+    () => marketing.value.support || marketing.value.enablement || marketing.value.services || {}
+  )
+
+  const supportPlans = computed(() => {
+    const config = supportConfig.value || {}
+    return normalizeSupportPlans(config.plans || config.tiers || config.packages, defaultSupportPlans)
+  })
+
+  const supportContacts = computed(() => {
+    const config = supportConfig.value || {}
+    return normalizeSupportContacts(
+      config.contacts || config.points || config.resources,
+      defaultSupportContacts,
+      site.config.siteInfo
+    )
+  })
+
   return {
     hero,
     features,
     timeline,
     showcaseCards,
-    loyalty
+    loyalty,
+    experiencesHero,
+    experiences,
+    experienceJourney,
+    locationsHero,
+    locations,
+    supportPlans,
+    supportContacts
   }
 })

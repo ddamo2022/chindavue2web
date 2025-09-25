@@ -1,41 +1,61 @@
 <template>
   <section class="locations">
     <header class="locations__hero">
-      <h1>Flagship locations</h1>
-      <p>
-        Desktop visitors can browse spaces, amenities, and live availability before syncing reservations to
-        the Uni-app mobile wallet. Each lounge is designed with hybrid dining and digital storytelling in
-        mind.
-      </p>
-      <div class="locations__hero-grid">
-        <div class="locations__hero-card">
-          <strong>Bangkok · Riverside</strong>
-          <p>Immersive LED galleries, private tasting suites, and riverside terraces with projection mapping.</p>
-        </div>
-        <div class="locations__hero-card">
-          <strong>Singapore · Marina</strong>
-          <p>Skyline views with mixology theatre, AI-personalized menus, and after-hours supper clubs.</p>
-        </div>
+      <h1>{{ hero.title }}</h1>
+      <p v-if="hero.description">{{ hero.description }}</p>
+      <div v-if="hero.cards.length" class="locations__hero-grid">
+        <article v-for="card in hero.cards" :key="card.title" class="locations__hero-card">
+          <strong>{{ card.title }}</strong>
+          <p>{{ card.description }}</p>
+        </article>
+      </div>
+      <div v-if="hero.ctas && hero.ctas.length" class="locations__hero-actions">
+        <component
+          v-for="cta in hero.ctas"
+          :key="cta.label + (cta.to || cta.href || '')"
+          :is="cta.to ? RouterLink : 'a'"
+          v-bind="cta.to
+            ? { to: cta.to }
+            : { href: cta.href || '#', target: cta.external ? '_blank' : undefined, rel: cta.external ? 'noopener' : undefined }"
+          class="button button--lg"
+          :class="cta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        >
+          {{ cta.label }}
+        </component>
       </div>
     </header>
 
-    <div class="locations__map">
-      <span>Interactive map coming soon — synced with existing store endpoints.</span>
+    <div class="locations__map" v-if="hero.mapNote">
+      <span>{{ hero.mapNote }}</span>
     </div>
 
-    <div class="locations__grid">
+    <div v-if="locations.length" class="locations__grid">
       <article v-for="location in locations" :key="location.name" class="locations__card">
         <header>
           <h2>{{ location.name }}</h2>
-          <span>{{ location.region }}</span>
+          <span v-if="location.region">{{ location.region }}</span>
         </header>
         <p>{{ location.story }}</p>
-        <ul>
+        <ul v-if="location.highlights.length">
           <li v-for="highlight in location.highlights" :key="highlight">{{ highlight }}</li>
         </ul>
         <footer>
-          <a :href="`tel:${location.phone}`" class="locations__phone">{{ location.phone }}</a>
-          <RouterLink :to="location.cta" class="button button--ghost">Plan a visit</RouterLink>
+          <a v-if="location.phone" :href="`tel:${location.phone}`" class="locations__phone">{{ location.phone }}</a>
+          <component
+            v-if="location.cta"
+            :is="location.cta.to ? RouterLink : 'a'"
+            v-bind="location.cta.to
+              ? { to: location.cta.to }
+              : {
+                  href: location.cta.href || '#',
+                  target: location.cta.external ? '_blank' : undefined,
+                  rel: location.cta.external ? 'noopener' : undefined
+                }"
+            class="button button--ghost"
+            :class="location.cta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+          >
+            {{ location.cta.label }}
+          </component>
         </footer>
       </article>
     </div>
@@ -43,35 +63,12 @@
 </template>
 
 <script setup>
-const locations = [
-  {
-    name: 'Chinda Bangkok',
-    region: 'Thailand',
-    story:
-      'Multi-sensory dining with Thai botanicals, a members-only listening lounge, and private river cruises.',
-    highlights: ['24/7 concierge desk', 'LINE mini-app integration', 'Loyalty point redemption at bar'],
-    phone: '+6625551234',
-    cta: '/register'
-  },
-  {
-    name: 'Chinda Singapore',
-    region: 'Singapore',
-    story:
-      'Suspended gardens, omakase counters, and interactive chef tables broadcast to remote guests.',
-    highlights: ['Chef residency program', 'Corporate suites', 'Data-driven sustainability tracker'],
-    phone: '+6565557890',
-    cta: '/demo'
-  },
-  {
-    name: 'Chinda Tokyo',
-    region: 'Japan',
-    story:
-      'Neo-noir aesthetics with underground listening bar, curated whisky vaults, and projection art corridors.',
-    highlights: ['In-language concierge', 'Digital collectibles', 'Aurora tier speakeasy'],
-    phone: '+8135550468',
-    cta: '/experiences'
-  }
-]
+import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { locationsHero: hero, locations } = storeToRefs(content)
 </script>
 
 <style scoped>
@@ -115,6 +112,12 @@ const locations = [
 .locations__hero-card strong {
   font-size: 1.2rem;
   color: #312e81;
+}
+
+.locations__hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .locations__map {

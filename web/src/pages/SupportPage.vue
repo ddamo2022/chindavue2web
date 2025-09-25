@@ -8,52 +8,50 @@
       </p>
     </header>
 
-    <div class="support__grid">
+    <div v-if="plans.length" class="support__grid">
       <article class="support__card" v-for="plan in plans" :key="plan.name">
         <h2>{{ plan.name }}</h2>
         <p>{{ plan.description }}</p>
-        <ul>
+        <ul v-if="plan.items.length">
           <li v-for="item in plan.items" :key="item">{{ item }}</li>
         </ul>
-        <button class="button button--ghost">Talk to us</button>
+        <component
+          v-if="plan.cta"
+          :is="plan.cta.to ? RouterLink : 'a'"
+          v-bind="plan.cta.to
+            ? { to: plan.cta.to }
+            : { href: plan.cta.href || '#', target: plan.cta.external ? '_blank' : undefined, rel: plan.cta.external ? 'noopener' : undefined }"
+          class="button"
+          :class="plan.cta.variant === 'primary' ? 'button--primary' : 'button--ghost'"
+        >
+          {{ plan.cta.label }}
+        </component>
       </article>
     </div>
 
-    <section class="support__contact">
-      <div>
-        <h3>Global concierge</h3>
-        <p>Email <a href="mailto:concierge@chinda.co">concierge@chinda.co</a> or call +66 2 555 1234.</p>
-      </div>
-      <div>
-        <h3>Technology partners</h3>
-        <p>Work with our certified partners for POS integrations, analytics, and custom journeys.</p>
-      </div>
-      <div>
-        <h3>Knowledge base</h3>
-        <p>Access implementation guides, best practices, and recorded training sessions.</p>
-      </div>
+    <section v-if="contacts.length" class="support__contact">
+      <article v-for="contact in contacts" :key="contact.title">
+        <h3>{{ contact.title }}</h3>
+        <p v-if="contact.description">{{ contact.description }}</p>
+        <p v-if="contact.email">
+          Email <a :href="`mailto:${contact.email}`">{{ contact.email }}</a>
+        </p>
+        <p v-if="contact.phone">
+          Call <a :href="`tel:${contact.phone}`">{{ contact.phone }}</a>
+        </p>
+        <a v-if="contact.href" :href="contact.href" class="support__link">Explore resources</a>
+      </article>
     </section>
   </section>
 </template>
 
 <script setup>
-const plans = [
-  {
-    name: 'Launch assist',
-    description: 'Fast-track your go-live with design templates and API walkthroughs.',
-    items: ['Brand & UI kit', 'API playbook', 'Onboarding webinar']
-  },
-  {
-    name: 'Growth partner',
-    description: 'Optimize conversion with analytics reviews and campaign planning.',
-    items: ['Quarterly business review', 'Campaign planning', 'Advanced segmentation workshops']
-  },
-  {
-    name: 'Enterprise',
-    description: 'Dedicated squad for multi-market rollouts and custom development.',
-    items: ['Dedicated success manager', 'Custom component library', 'Solution engineering support']
-  }
-]
+import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+import { useContentStore } from '@/stores/content'
+
+const content = useContentStore()
+const { supportPlans: plans, supportContacts: contacts } = storeToRefs(content)
 </script>
 
 <style scoped>
@@ -115,7 +113,16 @@ const plans = [
   padding: 40px;
 }
 
+.support__contact article {
+  display: grid;
+  gap: 12px;
+}
+
 .support__contact a {
   color: #a855f7;
+}
+
+.support__link {
+  font-weight: 600;
 }
 </style>
