@@ -1481,7 +1481,17 @@
                 "pages": {
                         "home": {
                                 "title": "Chinda 体验平台",
-                                "description": "为桌面与移动打造的全渠道会员、预订与待客体验。"
+                                "description": "为桌面与移动打造的全渠道会员、预订与待客体验。",
+                                "testimonials": {
+                                        "title": "合作伙伴的真实声音",
+                                        "description": "来自亚太地区的运营团队如何利用 Chinda 构建一致的桌面故事与会员旅程。",
+                                        "cta": "查看案例"
+                                },
+                                "press": {
+                                        "title": "媒体报道",
+                                        "description": "了解国际媒体对 Chinda 旗舰体验平台的评价。",
+                                        "cta": "阅读报道"
+                                }
                         },
                         "experiences": {
                                 "title": "体验",

@@ -4,6 +4,8 @@
     <FeatureGrid />
     <ExperienceTimeline />
     <LoyaltyOverview />
+    <TestimonialsSection />
+    <PressMentions />
     <section v-if="showcaseCards.length" class="home__showcase">
       <article
         v-for="card in showcaseCards"
@@ -36,6 +38,8 @@ import HeroPrimary from '@/components/hero/HeroPrimary.vue'
 import FeatureGrid from '@/components/sections/FeatureGrid.vue'
 import ExperienceTimeline from '@/components/sections/ExperienceTimeline.vue'
 import LoyaltyOverview from '@/components/sections/LoyaltyOverview.vue'
+import TestimonialsSection from '@/components/sections/TestimonialsSection.vue'
+import PressMentions from '@/components/sections/PressMentions.vue'
 import { useContentStore } from '@/stores/content'
 import { usePageMeta } from '@/composables/usePageMeta'
 

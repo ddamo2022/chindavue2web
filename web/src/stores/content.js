@@ -60,6 +60,54 @@ const normalizeDetails = (input) =>
     .map((entry) => ensureText(entry))
     .filter(Boolean)
 
+const normalizeTestimonialsList = (input, fallback) => {
+  const normalized = ensureArray(input)
+    .map((entry) => {
+      const quote = ensureText(entry.quote ?? entry.testimonial ?? entry.body ?? entry.copy)
+      const author = ensureText(entry.author ?? entry.name ?? entry.person)
+      if (!quote || !author) return null
+      const role = ensureText(entry.role ?? entry.title ?? entry.position)
+      const company = ensureText(entry.company ?? entry.organization ?? entry.org)
+      const avatar = ensureText(entry.avatar ?? entry.photo ?? entry.image)
+      const href = typeof entry.href === 'string' ? entry.href : typeof entry.url === 'string' ? entry.url : undefined
+      const external = Boolean(entry.external || (href && /^https?:/i.test(href)))
+      return {
+        quote,
+        author,
+        role,
+        company,
+        avatar,
+        href,
+        external
+      }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
+const normalizePressList = (input, fallback) => {
+  const normalized = ensureArray(input)
+    .map((entry) => {
+      const outlet = ensureText(entry.outlet ?? entry.publication ?? entry.source ?? entry.title)
+      const summary = ensureText(entry.summary ?? entry.snippet ?? entry.description ?? entry.copy)
+      if (!outlet || !summary) return null
+      const href = typeof entry.href === 'string' ? entry.href : typeof entry.url === 'string' ? entry.url : undefined
+      const date = ensureText(entry.date ?? entry.publishedAt ?? entry.time)
+      const badge = ensureText(entry.badge ?? entry.label ?? '')
+      const external = Boolean(entry.external || (href && /^https?:/i.test(href || '')))
+      return {
+        outlet,
+        summary,
+        href,
+        date,
+        badge,
+        external
+      }
+    })
+    .filter(Boolean)
+  return normalized.length ? normalized : fallback
+}
+
 const normalizeHeroCards = (cards, fallback) => {
   const normalized = ensureArray(cards)
     .map((card) => {
@@ -554,6 +602,62 @@ const defaultSupportContacts = [
   }
 ]
 
+const defaultTestimonialsSection = {
+  title: 'Trusted by teams crafting hospitality at scale.',
+  description:
+    'Operators across Asia use Chinda to orchestrate member journeys, unify reservations, and deliver cinematic brand stories on every screen.'
+}
+
+const defaultTestimonials = [
+  {
+    quote:
+      'We replaced three legacy tools with Chinda’s desktop portal. Marketing now launches journeys in hours, and guest services finally shares the same live data as the mobile team.',
+    author: 'Somsri V.',
+    role: 'Director of Customer Experience',
+    company: 'Bangkok Hospitality Group'
+  },
+  {
+    quote:
+      'Integrating the rewards catalogue was effortless. We reused our Uni-app endpoints and immediately unlocked desktop redemptions for premium members.',
+    author: 'Niran P.',
+    role: 'Head of Loyalty',
+    company: 'Siam Discovery Labs'
+  },
+  {
+    quote:
+      'The operations dashboard gives our concierge team real-time visibility into ledger activity. It has become the single source of truth for member engagements.',
+    author: 'Alice Chen',
+    role: 'VP, Guest Services',
+    company: 'Harborlight Collective'
+  }
+]
+
+const defaultPressSection = {
+  title: 'In the press',
+  description: 'See how global publications are covering the flagship Chinda experience platform.'
+}
+
+const defaultPressMentions = [
+  {
+    outlet: 'Monocle',
+    summary: '“Chinda’s immersive lounges blend physical design with responsive digital touchpoints for a new era of hospitality.”',
+    href: 'https://monocle.com/',
+    badge: 'Feature'
+  },
+  {
+    outlet: 'Wallpaper*',
+    summary: '“From AR tastings to concierge dashboards, the platform redefines what members expect from premium dining.”',
+    href: 'https://www.wallpaper.com/',
+    badge: 'Design'
+  },
+  {
+    outlet: 'Tech in Asia',
+    summary: '“A unified loyalty stack that helps operators launch campaigns across LINE, email, and in-venue displays.”',
+    href: 'https://www.techinasia.com/',
+    badge: 'Product'
+  }
+]
+
 const mergePanels = (source = {}, fallback) => ({
   analyticsCta: normalizeCta(source.analyticsCta, fallback.analyticsCta),
   rewardsCta: normalizeCta(source.rewardsCta, fallback.rewardsCta)
@@ -800,6 +904,59 @@ export const useContentStore = defineStore('content', () => {
     )
   })
 
+  const testimonialsConfig = computed(
+    () =>
+      marketing.value.testimonials ||
+      marketing.value.quotes ||
+      marketing.value.voices ||
+      marketing.value.testimonialSection ||
+      {}
+  )
+
+  const testimonialsMeta = computed(() => {
+    const config = testimonialsConfig.value || {}
+    const header = config.header || {}
+    const title =
+      ensureText(config.title || header.title || config.heading) || defaultTestimonialsSection.title
+    const description =
+      ensureText(config.description || header.description || config.subtitle) || defaultTestimonialsSection.description
+    return { title, description }
+  })
+
+  const testimonials = computed(() => {
+    const config = testimonialsConfig.value || {}
+    return normalizeTestimonialsList(
+      config.list || config.items || config.testimonials || marketing.value.testimonialList,
+      defaultTestimonials
+    )
+  })
+
+  const pressConfig = computed(
+    () =>
+      marketing.value.press ||
+      marketing.value.pressroom ||
+      marketing.value.media ||
+      marketing.value.news ||
+      {}
+  )
+
+  const pressMeta = computed(() => {
+    const config = pressConfig.value || {}
+    const header = config.header || {}
+    const title = ensureText(config.title || header.title || config.heading) || defaultPressSection.title
+    const description =
+      ensureText(config.description || header.description || config.subtitle) || defaultPressSection.description
+    return { title, description }
+  })
+
+  const pressMentions = computed(() => {
+    const config = pressConfig.value || {}
+    return normalizePressList(
+      config.list || config.items || config.press || marketing.value.pressMentions,
+      defaultPressMentions
+    )
+  })
+
   return {
     hero,
     features,
@@ -812,6 +969,10 @@ export const useContentStore = defineStore('content', () => {
     locationsHero,
     locations,
     supportPlans,
-    supportContacts
+    supportContacts,
+    testimonials,
+    testimonialsMeta,
+    pressMentions,
+    pressMeta
   }
 })

@@ -1458,7 +1458,17 @@
                 "pages": {
                         "home": {
                                 "title": "Chinda experience platform",
-                                "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile."
+                                "description": "Omnichannel loyalty, reservations, and hospitality experiences built for desktop and mobile.",
+                                "testimonials": {
+                                        "title": "Voices from our partners",
+                                        "description": "How leading operators orchestrate desktop storytelling, campaigns, and loyalty using Chinda.",
+                                        "cta": "Read story"
+                                },
+                                "press": {
+                                        "title": "In the press",
+                                        "description": "Global publications covering the flagship Chinda experience platform.",
+                                        "cta": "Read article"
+                                }
                         },
                         "experiences": {
                                 "title": "Experiences",
