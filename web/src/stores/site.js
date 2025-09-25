@@ -56,6 +56,57 @@ const ANNOUNCEMENT_STORAGE_KEY = 'chinda-web-announcement-dismissed'
 
 const isAbsoluteUrl = (value) => typeof value === 'string' && /^https?:/i.test(value)
 
+const defaultLayoutParams = { page: 'index', id: '1' }
+
+const readLocale = () => {
+  if (typeof window === 'undefined') return 'en'
+  const stored =
+    window.localStorage.getItem('uni_lang') ||
+    window.localStorage.getItem('lang') ||
+    window.navigator?.language?.split('-')[0]
+  return stored || 'en'
+}
+
+const readSessionToken = () => {
+  if (typeof window === 'undefined') return ''
+  const keys = [
+    { storage: window.localStorage, key: 'chinda-web-session' },
+    { storage: window.sessionStorage, key: 'chinda-web-session-temp' }
+  ]
+  for (const entry of keys) {
+    try {
+      const value = entry.storage.getItem(entry.key)
+      if (!value) continue
+      const parsed = JSON.parse(value)
+      if (parsed && parsed.token) return parsed.token
+    } catch (error) {
+      console.warn('Unable to parse stored session payload', error)
+    }
+  }
+  try {
+    const legacy = window.localStorage.getItem('token')
+    return legacy || ''
+  } catch (error) {
+    return ''
+  }
+}
+
+const readStoredShopId = (info) => {
+  if (typeof window !== 'undefined') {
+    const stored = window.localStorage.getItem('shopId') || window.sessionStorage.getItem('shopId')
+    if (stored) return stored
+  }
+  return (
+    info?.defaultStoreId ||
+    info?.default_store_id ||
+    info?.shopId ||
+    info?.shop_id ||
+    siteinfo?.defaultStoreId ||
+    siteinfo?.default_store_id ||
+    ''
+  )
+}
+
 const resolveApiBase = () => {
   if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) {
     return import.meta.env.VITE_API_BASE
@@ -86,6 +137,109 @@ const resolveConfigUrl = () => {
     }
   }
   return endpoint
+}
+
+const resolveLayoutParams = (info, overrides = {}) => {
+  const source = info || {}
+  const webConfig = source.web || {}
+  const params = { ...defaultLayoutParams }
+  const pageCandidate =
+    overrides.page ||
+    webConfig.layoutPage ||
+    webConfig.page ||
+    source.layoutPage ||
+    source.page
+  const idCandidate =
+    overrides.id ||
+    webConfig.layoutId ||
+    webConfig.layout_id ||
+    webConfig.id ||
+    source.layoutId ||
+    source.layout_id ||
+    source.id
+  if (pageCandidate) {
+    params.page = String(pageCandidate)
+  }
+  if (idCandidate) {
+    params.id = String(idCandidate)
+  }
+  if (overrides.page) {
+    params.page = String(overrides.page)
+  }
+  if (overrides.id) {
+    params.id = String(overrides.id)
+  }
+  return params
+}
+
+const resolveLayoutUrl = (params = {}) => {
+  const endpoint = api.layout
+  let url
+  if (isAbsoluteUrl(endpoint)) {
+    url = new URL(endpoint)
+  } else {
+    const base = resolveApiBase()
+    if (!base) return ''
+    url = new URL(endpoint, base)
+  }
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, value)
+    }
+  })
+  return url.toString()
+}
+
+const createRequestHeaders = (info) => {
+  const headers = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    appType: api.platform || 'h5',
+    module: 'yb_wm_v3',
+    lang: readLocale()
+  }
+  const source = info || siteinfo || {}
+  const uniacid = source.uniacid || siteinfo.uniacid
+  if (uniacid) {
+    headers.uniacid = uniacid
+  }
+  const shopId = readStoredShopId(source)
+  if (shopId) {
+    headers.shopId = shopId
+  }
+  const token = readSessionToken()
+  if (token) {
+    headers.Authorization = `Bearer ${token}`
+  }
+  return headers
+}
+
+const fetchLayoutConfig = async (info, params = {}) => {
+  const mergedParams = resolveLayoutParams(info, params)
+  const url = resolveLayoutUrl(mergedParams)
+  if (!url) return null
+  try {
+    const response = await fetch(url, {
+      credentials: 'include',
+      headers: createRequestHeaders(info)
+    })
+    if (!response.ok) {
+      throw new Error(`Layout request failed with status ${response.status}`)
+    }
+    const payload = await response.json()
+    if (payload?.code === 200 && payload.data) {
+      return payload.data
+    }
+    if (payload?.data && !payload.code) {
+      return payload.data
+    }
+    if (payload && typeof payload === 'object') {
+      return payload.layout || payload
+    }
+  } catch (error) {
+    console.warn('Unable to load layout configuration', error)
+  }
+  return null
 }
 
 const readDismissedAnnouncements = () => {
@@ -233,6 +387,8 @@ export const useSiteStore = defineStore('site', () => {
   })
   const loading = ref(false)
   const ready = ref(false)
+  const layoutLoading = ref(false)
+  const layoutHydrated = ref(false)
   const dismissedAnnouncements = ref(readDismissedAnnouncements())
 
   const applySiteMetadata = (info) => {
@@ -276,11 +432,31 @@ export const useSiteStore = defineStore('site', () => {
         localStorage.setItem('uniacid', config.siteInfo.uniacid)
       }
       applySiteMetadata(config.siteInfo)
+      if (!layoutHydrated.value || force) {
+        await loadLayout({ force: true })
+      }
       ready.value = true
     } catch (error) {
       console.warn('Unable to load remote config', error)
     } finally {
       loading.value = false
+    }
+  }
+
+  const loadLayout = async ({ force = false, params = {} } = {}) => {
+    if (layoutLoading.value) return config.layout
+    if (config.layout && !force) return config.layout
+    layoutLoading.value = true
+    try {
+      const info = config.siteInfo || siteinfo || {}
+      const data = await fetchLayoutConfig(info, params)
+      if (data && typeof data === 'object') {
+        config.layout = data
+        layoutHydrated.value = true
+      }
+      return config.layout
+    } finally {
+      layoutLoading.value = false
     }
   }
 
@@ -357,6 +533,9 @@ export const useSiteStore = defineStore('site', () => {
     announcement,
     dismissAnnouncement,
     loadConfig,
+    loadLayout,
+    layoutLoading,
+    layoutHydrated,
     notify
   }
 })
