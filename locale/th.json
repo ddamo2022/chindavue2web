@@ -1762,8 +1762,8 @@
                         "login": {
                                 "title": "ยินดีต้อนรับกลับ",
                                 "subtitle": "เข้าสู่ระบบเพื่อจัดการสมาชิก การจอง และสิทธิประโยชน์",
-                                "email": "อีเมล",
-                                "emailPlaceholder": "you@example.com",
+                                "identifier": "อีเมลหรือเบอร์มือถือ",
+                                "identifierPlaceholder": "กรอกอีเมลหรือเบอร์โทรศัพท์",
                                 "password": "รหัสผ่าน",
                                 "remember": "จดจำการเข้าสู่ระบบ",
                                 "forgot": "ลืมรหัสผ่าน?",
@@ -1777,8 +1777,6 @@
                                 "subtitle": "สร้างบัญชีเพื่อเข้าถึงการจอง โต๊ะพิเศษ และรางวัล",
                                 "firstName": "ชื่อ",
                                 "lastName": "นามสกุล",
-                                "email": "อีเมล",
-                                "mobile": "เบอร์โทร (ไม่บังคับ)",
                                 "code": "รหัสยืนยัน",
                                 "codePlaceholder": "กรอกรหัส 6 หลัก",
                                 "password": "รหัสผ่าน",
@@ -1787,36 +1785,49 @@
                                 "submit": "สร้างบัญชี",
                                 "submitting": "กำลังสร้าง…",
                                 "hint": "มีบัญชีอยู่แล้ว?",
-                                "hintCta": "เข้าสู่ระบบ"
+                                "hintCta": "เข้าสู่ระบบ",
+                                "contactToggleAria": "เลือกวิธีรับรหัสยืนยัน"
                         },
                         "reset": {
-                                "email": "อีเมล",
                                 "code": "รหัสยืนยัน",
                                 "codePlaceholder": "กรอกรหัส 6 หลัก",
                                 "password": "รหัสผ่านใหม่",
                                 "confirm": "ยืนยันรหัสผ่าน",
                                 "submit": "บันทึกรหัสผ่านใหม่",
                                 "submitting": "กำลังบันทึก…",
-                                "back": "กลับไปหน้าล็อกอิน"
+                                "back": "กลับไปหน้าล็อกอิน",
+                                "contactToggleAria": "เลือกวิธียืนยันตัวตนของคุณ"
                         },
                         "shared": {
                                 "sendCode": "ส่งรหัส",
                                 "sending": "กำลังส่ง…",
-                                "resend": "ส่งอีกครั้งใน {seconds} วินาที"
+                                "resend": "ส่งอีกครั้งใน {seconds} วินาที",
+                                "contactToggle": {
+                                        "email": "ใช้อีเมล",
+                                        "phone": "ใช้เบอร์มือถือ"
+                                },
+                                "contactLabel": {
+                                        "email": "อีเมล",
+                                        "phone": "เบอร์มือถือ"
+                                },
+                                "contactPlaceholder": {
+                                        "email": "you@example.com",
+                                        "phone": "+66 0952151888"
+                                }
                         }
                 },
                 "notifications": {
-                        "emailRequired": {
-                                "title": "กรุณากรอกอีเมลก่อน",
-                                "message": "กรอกอีเมลเพื่อให้เราส่งรหัสยืนยัน"
+                        "contactRequired": {
+                                "title": "กรอกข้อมูลติดต่อก่อน",
+                                "message": "โปรดระบุอีเมลหรือเบอร์มือถือเพื่อรับรหัสยืนยัน"
                         },
                         "verificationRegister": {
                                 "title": "ส่งรหัสยืนยันแล้ว",
-                                "message": "โปรดตรวจสอบกล่องจดหมายสำหรับรหัสลงทะเบียน"
+                                "message": "ตรวจสอบอีเมลหรือ SMS เพื่อดูรหัสลงทะเบียน"
                         },
                         "verificationReset": {
                                 "title": "ส่งรหัสยืนยันแล้ว",
-                                "message": "โปรดตรวจสอบกล่องจดหมายสำหรับรหัสรีเซ็ต"
+                                "message": "ตรวจสอบอีเมลหรือ SMS เพื่อดูรหัสรีเซ็ตรหัสผ่าน"
                         },
                         "unableToSend": {
                                 "title": "ไม่สามารถส่งรหัส",

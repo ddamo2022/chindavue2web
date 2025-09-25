@@ -1791,8 +1791,8 @@
                         "login": {
                                 "title": "欢迎回来",
                                 "subtitle": "登录以管理会员、预约与礼遇。",
-                                "email": "邮箱",
-                                "emailPlaceholder": "you@example.com",
+                                "identifier": "邮箱或手机号",
+                                "identifierPlaceholder": "请输入邮箱或手机号",
                                 "password": "密码",
                                 "remember": "保持登录状态",
                                 "forgot": "忘记密码？",
@@ -1806,8 +1806,6 @@
                                 "subtitle": "创建会员账号，畅享专属预约、品鉴活动与积分礼遇。",
                                 "firstName": "名",
                                 "lastName": "姓",
-                                "email": "邮箱",
-                                "mobile": "手机（选填）",
                                 "code": "验证码",
                                 "codePlaceholder": "输入 6 位验证码",
                                 "password": "密码",
@@ -1816,36 +1814,49 @@
                                 "submit": "创建账号",
                                 "submitting": "创建中…",
                                 "hint": "已有账号？",
-                                "hintCta": "立即登录"
+                                "hintCta": "立即登录",
+                                "contactToggleAria": "选择接收验证码的方式"
                         },
                         "reset": {
-                                "email": "邮箱",
                                 "code": "验证码",
                                 "codePlaceholder": "输入 6 位验证码",
                                 "password": "新密码",
                                 "confirm": "确认密码",
                                 "submit": "保存新密码",
                                 "submitting": "保存中…",
-                                "back": "返回登录"
+                                "back": "返回登录",
+                                "contactToggleAria": "选择验证身份的方式"
                         },
                         "shared": {
                                 "sendCode": "发送验证码",
                                 "sending": "发送中…",
-                                "resend": "{seconds}s 后可重新发送"
+                                "resend": "{seconds}s 后可重新发送",
+                                "contactToggle": {
+                                        "email": "使用邮箱",
+                                        "phone": "使用手机号"
+                                },
+                                "contactLabel": {
+                                        "email": "邮箱",
+                                        "phone": "手机号"
+                                },
+                                "contactPlaceholder": {
+                                        "email": "you@example.com",
+                                        "phone": "+66 0952151888"
+                                }
                         }
                 },
                 "notifications": {
-                        "emailRequired": {
-                                "title": "请先填写邮箱",
-                                "message": "请提供邮箱以便发送验证码。"
+                        "contactRequired": {
+                                "title": "请先填写联系方式",
+                                "message": "请输入邮箱或手机号以接收验证码。"
                         },
                         "verificationRegister": {
                                 "title": "验证码已发送",
-                                "message": "请查看邮箱获取注册验证码。"
+                                "message": "请检查邮箱或短信获取注册验证码。"
                         },
                         "verificationReset": {
                                 "title": "验证码已发送",
-                                "message": "请查看邮箱获取重置验证码。"
+                                "message": "请检查邮箱或短信获取重置验证码。"
                         },
                         "unableToSend": {
                                 "title": "验证码发送失败",

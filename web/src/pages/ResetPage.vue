@@ -12,13 +12,45 @@
     </div>
 
     <form class="reset__form" @submit.prevent="onSubmit">
-      <label>
-        <span>{{ t('web.auth.reset.email') }}</span>
+      <div class="reset__toggle" role="group" :aria-label="t('web.auth.reset.contactToggleAria')">
+        <button
+          type="button"
+          class="reset__toggle-button"
+          :class="{ 'reset__toggle-button--active': contactMethod === 'email' }"
+          :aria-pressed="contactMethod === 'email'"
+          @click="setContactMethod('email')"
+        >
+          {{ t('web.auth.shared.contactToggle.email') }}
+        </button>
+        <button
+          type="button"
+          class="reset__toggle-button"
+          :class="{ 'reset__toggle-button--active': contactMethod === 'phone' }"
+          :aria-pressed="contactMethod === 'phone'"
+          @click="setContactMethod('phone')"
+        >
+          {{ t('web.auth.shared.contactToggle.phone') }}
+        </button>
+      </div>
+      <label v-if="contactMethod === 'email'">
+        <span>{{ contactLabel }}</span>
         <input
           v-model.trim="form.email"
           type="email"
           required
-          :placeholder="t('web.auth.login.emailPlaceholder')"
+          autocomplete="email"
+          :placeholder="contactPlaceholder"
+        />
+      </label>
+      <label v-else>
+        <span>{{ contactLabel }}</span>
+        <input
+          v-model.trim="form.phone"
+          type="tel"
+          inputmode="tel"
+          autocomplete="tel"
+          required
+          :placeholder="contactPlaceholder"
         />
       </label>
       <div class="reset__code-row">
@@ -54,7 +86,7 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, reactive, ref, computed } from 'vue'
+import { computed, onBeforeUnmount, reactive, ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useSiteStore } from '@/stores/site'
 import { useI18n } from 'vue-i18n'
@@ -66,6 +98,7 @@ const loading = ref(false)
 const sending = ref(false)
 const countdown = ref(0)
 const timer = ref()
+const contactMethod = ref('email')
 const { t } = useI18n()
 
 usePageMeta({
@@ -75,6 +108,7 @@ usePageMeta({
 
 const form = reactive({
   email: '',
+  phone: '',
   code: '',
   password: '',
   confirm: ''
@@ -83,6 +117,13 @@ const form = reactive({
 const helpEmail = computed(() => t('web.pages.reset.helpEmail'))
 const helpPhone = computed(() => t('web.pages.reset.helpPhone'))
 const helpPhoneHref = computed(() => `tel:${helpPhone.value.replace(/\s+/g, '')}`)
+
+const contactLabel = computed(() => t(`web.auth.shared.contactLabel.${contactMethod.value}`))
+const contactPlaceholder = computed(() => t(`web.auth.shared.contactPlaceholder.${contactMethod.value}`))
+const contactValue = computed(() =>
+  contactMethod.value === 'email' ? form.email.trim() : form.phone.trim()
+)
+const contactType = computed(() => (contactMethod.value === 'phone' ? 1 : 0))
 
 const clearTimer = () => {
   if (timer.value) {
@@ -102,18 +143,29 @@ const startCountdown = () => {
   }, 1000)
 }
 
+const setContactMethod = (method) => {
+  if (contactMethod.value === method) return
+  contactMethod.value = method
+  form.code = ''
+  countdown.value = 0
+  clearTimer()
+}
+
 const sendCode = async () => {
-  if (!form.email) {
+  if (!contactValue.value) {
     site.notify({
-      title: t('web.notifications.emailRequired.title'),
-      message: t('web.notifications.emailRequired.message'),
+      title: t('web.notifications.contactRequired.title'),
+      message: t('web.notifications.contactRequired.message'),
       tone: 'neutral'
     })
     return
   }
   sending.value = true
   try {
-    await auth.sendResetCode({ email: form.email, type: 0 })
+    const type = contactType.value
+    const email = type === 0 ? contactValue.value : ''
+    const phone = type === 1 ? contactValue.value : ''
+    await auth.sendResetCode({ email, phone, type })
     site.notify({
       title: t('web.notifications.verificationReset.title'),
       message: t('web.notifications.verificationReset.message'),
@@ -132,6 +184,14 @@ const sendCode = async () => {
 }
 
 const onSubmit = async () => {
+  if (!contactValue.value) {
+    site.notify({
+      title: t('web.notifications.contactRequired.title'),
+      message: t('web.notifications.contactRequired.message'),
+      tone: 'neutral'
+    })
+    return
+  }
   if (form.password !== form.confirm) {
     site.notify({
       title: t('web.notifications.passwordMismatchReset.title'),
@@ -142,18 +202,20 @@ const onSubmit = async () => {
   }
   loading.value = true
   try {
+    const type = contactType.value
     await auth.requestPasswordReset({
-      email: form.email,
+      email: type === 0 ? form.email.trim() : '',
+      phone: type === 1 ? form.phone.trim() : '',
       code: form.code,
       password: form.password,
-      type: 0
+      type
     })
     site.notify({
       title: t('web.notifications.passwordUpdated.title'),
       message: t('web.notifications.passwordUpdated.message'),
       tone: 'success'
     })
-    Object.assign(form, { email: '', code: '', password: '', confirm: '' })
+    Object.assign(form, { email: '', phone: '', code: '', password: '', confirm: '' })
     clearTimer()
     countdown.value = 0
   } catch (error) {
@@ -204,6 +266,38 @@ onBeforeUnmount(() => {
   gap: 18px;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
   max-width: 420px;
+}
+
+.reset__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.08);
+  width: fit-content;
+}
+
+.reset__toggle-button {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reset__toggle-button--active {
+  background: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 18px 32px rgba(79, 70, 229, 0.28);
+}
+
+.reset__toggle-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
 }
 
 label {

@@ -4,12 +4,13 @@
     <p>{{ t('web.auth.login.subtitle') }}</p>
 
     <label>
-      <span>{{ t('web.auth.login.email') }}</span>
+      <span>{{ t('web.auth.login.identifier') }}</span>
       <input
-        v-model="credentials.email"
-        type="email"
+        v-model="credentials.identifier"
+        type="text"
         required
-        :placeholder="t('web.auth.login.emailPlaceholder')"
+        autocomplete="username"
+        :placeholder="t('web.auth.login.identifierPlaceholder')"
       />
     </label>
     <label>
@@ -46,7 +47,7 @@ const loading = ref(false)
 const { t } = useI18n()
 
 const credentials = reactive({
-  email: '',
+  identifier: '',
   password: '',
   remember: true
 })
@@ -54,7 +55,11 @@ const credentials = reactive({
 const onSubmit = async () => {
   try {
     loading.value = true
-    await auth.login(credentials)
+    await auth.login({
+      identifier: credentials.identifier.trim(),
+      password: credentials.password,
+      remember: credentials.remember
+    })
   } finally {
     loading.value = false
   }
@@ -88,6 +93,7 @@ label {
   color: #475569;
 }
 
+input[type='text'],
 input[type='email'],
 input[type='password'] {
   border-radius: 14px;

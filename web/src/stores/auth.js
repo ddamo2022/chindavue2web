@@ -88,8 +88,12 @@ export const useAuthStore = defineStore('auth', () => {
   const login = async (credentials) => {
     status.value = 'loading'
     try {
-      const { email, password, remember = true } = credentials
-      const response = await authApi.login({ username: email, password })
+      const { identifier, password, remember = true } = credentials
+      const username = typeof identifier === 'string' ? identifier.trim() : ''
+      if (!username || !password) {
+        throw new Error('Missing credentials')
+      }
+      const response = await authApi.login({ username, password })
       setSession(response, { remember })
       await memberStore.loadProfile({ silent: true }).catch(() => {})
       status.value = 'authenticated'

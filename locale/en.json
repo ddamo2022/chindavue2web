@@ -1772,8 +1772,8 @@
                         "login": {
                                 "title": "Welcome back",
                                 "subtitle": "Log in to manage your membership, reservations, and rewards.",
-                                "email": "Email",
-                                "emailPlaceholder": "you@example.com",
+                                "identifier": "Email or mobile number",
+                                "identifierPlaceholder": "Enter email address or phone number",
                                 "password": "Password",
                                 "remember": "Keep me signed in",
                                 "forgot": "Forgot password?",
@@ -1787,8 +1787,6 @@
                                 "subtitle": "Create a member account to access table reservations, tasting events, and loyalty rewards.",
                                 "firstName": "First name",
                                 "lastName": "Last name",
-                                "email": "Email",
-                                "mobile": "Mobile number (optional)",
                                 "code": "Verification code",
                                 "codePlaceholder": "Enter 6-digit code",
                                 "password": "Password",
@@ -1797,36 +1795,49 @@
                                 "submit": "Create account",
                                 "submitting": "Creating…",
                                 "hint": "Already have an account?",
-                                "hintCta": "Sign in"
+                                "hintCta": "Sign in",
+                                "contactToggleAria": "Choose how you want to receive verification codes"
                         },
                         "reset": {
-                                "email": "Email",
                                 "code": "Verification code",
                                 "codePlaceholder": "Enter 6-digit code",
                                 "password": "New password",
                                 "confirm": "Confirm password",
                                 "submit": "Save new password",
                                 "submitting": "Saving…",
-                                "back": "Return to sign in"
+                                "back": "Return to sign in",
+                                "contactToggleAria": "Choose how we should verify your identity"
                         },
                         "shared": {
                                 "sendCode": "Send code",
                                 "sending": "Sending…",
-                                "resend": "Resend in {seconds}s"
+                                "resend": "Resend in {seconds}s",
+                                "contactToggle": {
+                                        "email": "Use email",
+                                        "phone": "Use mobile number"
+                                },
+                                "contactLabel": {
+                                        "email": "Email",
+                                        "phone": "Mobile number"
+                                },
+                                "contactPlaceholder": {
+                                        "email": "you@example.com",
+                                        "phone": "+66 0952151888"
+                                }
                         }
                 },
                 "notifications": {
-                        "emailRequired": {
-                                "title": "Enter email first",
-                                "message": "Provide your email so we can send a verification code."
+                        "contactRequired": {
+                                "title": "Enter contact first",
+                                "message": "Provide your email or mobile number so we can send a verification code."
                         },
                         "verificationRegister": {
                                 "title": "Verification sent",
-                                "message": "Check your inbox for the registration code."
+                                "message": "Check your email or SMS inbox for the registration code."
                         },
                         "verificationReset": {
                                 "title": "Verification sent",
-                                "message": "Check your inbox for the reset code."
+                                "message": "Check your email or SMS inbox for the reset code."
                         },
                         "unableToSend": {
                                 "title": "Unable to send code",
