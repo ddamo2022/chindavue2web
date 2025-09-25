@@ -90,6 +90,7 @@ const navBlueprint = [
   { key: 'home', to: '/', requiresAuth: false },
   { key: 'experiences', to: '/experiences', requiresAuth: false },
   { key: 'membership', to: '/membership', requiresAuth: false },
+  { key: 'shop', to: '/shop', requiresAuth: false },
   { key: 'rewards', to: '/rewards', requiresAuth: false },
   { key: 'dashboard', to: '/dashboard', requiresAuth: true },
   { key: 'locations', to: '/locations', requiresAuth: false },

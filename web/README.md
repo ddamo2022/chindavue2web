@@ -4,13 +4,23 @@ A desktop-first marketing and membership experience that mirrors the existing Un
 
 ## Getting started
 
-```bash
-cd web
-npm install
-npm run dev
-```
+1. Duplicate the environment template and adjust it if you have a staging gateway:
 
-The dev server runs on http://localhost:4173/ by default.
+   ```bash
+   cd web
+   cp .env.example .env.local
+   ```
+
+   By default the client points at the production API host (`https://www.vdamo.com`). Override `VITE_API_BASE` if you need to test against a different backend.
+
+2. Install dependencies and launch the Vite dev server:
+
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+The dev server runs on http://localhost:4173/ by default and proxies API traffic directly to the host declared in `VITE_API_BASE`.
 
 ## Structure
 
@@ -31,7 +41,6 @@ The layout draws inspiration from the provided Figma references: immersive hero 
 
 ## Next steps
 
-- Bind real authentication and loyalty data via the shared API endpoints
-- Connect marketing automation events and analytics dashboards
-- Expand localization using the existing locale assets
-- Harden accessibility and keyboard navigation across interactive components
+- Expand analytics and marketing event tracking for the new desktop journeys
+- Finish responsive refinements for tablet breakpoints and large display widths
+- Continue enriching CMS-driven content now that the remote configuration feed is live

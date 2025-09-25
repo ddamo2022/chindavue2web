@@ -65,4 +65,31 @@ const rewardsApi = {
   }
 }
 
-export { authApi, memberApi, rewardsApi, unwrap }
+const storeApi = {
+  async list(params) {
+    const response = await http.get(api.dplb, { params })
+    return unwrap(response, 'Unable to load stores')
+  },
+  async detail(storeId, params) {
+    if (!storeId) throw new Error('Store ID is required')
+    const response = await http.get(`${api.dplb}/${storeId}`, { params })
+    return unwrap(response, 'Unable to load store details')
+  },
+  async featured(params) {
+    const response = await http.get(api.mrmd, { params })
+    return unwrap(response, 'Unable to load featured store')
+  }
+}
+
+const goodsApi = {
+  async categories(params) {
+    const response = await http.get(api.gCategory, { params })
+    return unwrap(response, 'Unable to load menu categories')
+  },
+  async list(params) {
+    const response = await http.get(api.goods, { params })
+    return unwrap(response, 'Unable to load menu items')
+  }
+}
+
+export { authApi, memberApi, rewardsApi, storeApi, goodsApi, unwrap }

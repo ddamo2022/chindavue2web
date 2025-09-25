@@ -59,21 +59,97 @@
         </footer>
       </article>
     </div>
+
+    <div class="locations__stores">
+      <h2>{{ t('web.pages.locations.liveHeading') }}</h2>
+      <p>{{ t('web.pages.locations.liveDescription') }}</p>
+      <div class="locations__store-grid">
+        <article v-for="store in normalizedStores" :key="store.id" class="locations__store-card">
+          <header>
+            <div>
+              <h3>{{ store.name }}</h3>
+              <span v-if="store.region">{{ store.region }}</span>
+            </div>
+            <span class="locations__status" :data-status="store.statusLabel">{{ store.statusCopy }}</span>
+          </header>
+          <p v-if="store.address">{{ store.address }}</p>
+          <p v-if="store.hours" class="locations__hours">{{ store.hours }}</p>
+          <ul v-if="store.labels && store.labels.length" class="locations__tags">
+            <li v-for="tag in store.labels" :key="tag">{{ tag }}</li>
+          </ul>
+          <footer>
+            <a v-if="store.phone" :href="`tel:${store.phone}`">{{ store.phone }}</a>
+            <a :href="store.link" target="_blank" rel="noopener" class="button button--ghost button--sm">
+              {{ t('web.pages.locations.viewMenu') }}
+            </a>
+            <button
+              type="button"
+              class="button button--sm"
+              :class="{ 'button--primary': store.isSelected }"
+              @click="selectStore(store.id)"
+            >
+              {{ store.isSelected ? t('web.pages.locations.selectedStore') : t('web.pages.locations.selectStore') }}
+            </button>
+          </footer>
+        </article>
+      </div>
+      <p v-if="storesLoading" class="locations__loading">{{ t('web.pages.locations.loadingStores') }}</p>
+      <p v-if="!storesLoading && !stores.length" class="locations__empty">
+        {{ t('web.pages.locations.emptyStores') }}
+      </p>
+    </div>
   </section>
 </template>
 
 <script setup>
+import { computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useContentStore } from '@/stores/content'
+import { useCatalogStore } from '@/stores/catalog'
 import { usePageMeta } from '@/composables/usePageMeta'
 
 const content = useContentStore()
+const catalog = useCatalogStore()
 const { locationsHero: hero, locations } = storeToRefs(content)
+const { stores, storesLoading, selectedStoreId } = storeToRefs(catalog)
+const { t } = useI18n()
 
 usePageMeta({
   titleKey: 'web.pages.locations.title',
   descriptionKey: 'web.pages.locations.description'
+})
+
+const statusCopy = (status) => {
+  switch (status) {
+    case 'open':
+      return t('web.pages.shop.status.open')
+    case 'busy':
+      return t('web.pages.shop.status.busy')
+    case 'closed':
+      return t('web.pages.shop.status.closed')
+    default:
+      return t('web.pages.shop.status.unknown')
+  }
+}
+
+const normalizedStores = computed(() =>
+  stores.value.map((store) => ({
+    ...store,
+    statusCopy: statusCopy(store.statusLabel),
+    isSelected: String(store.id) === String(selectedStoreId.value)
+  }))
+)
+
+const selectStore = (id) => {
+  catalog.selectStore(id)
+}
+
+onMounted(() => {
+  if (!stores.value.length && !storesLoading.value) {
+    catalog.loadStores({ refresh: true })
+  }
 })
 </script>
 
@@ -198,7 +274,116 @@ usePageMeta({
 }
 
 .locations__phone {
-  font-weight: 700;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.locations__stores {
+  display: grid;
+  gap: 24px;
+}
+
+.locations__store-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.locations__store-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 16px;
+}
+
+.locations__store-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.locations__store-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
   color: #0f172a;
+}
+
+.locations__status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+}
+
+.locations__status[data-status='open'] {
+  background: rgba(22, 163, 74, 0.15);
+  color: #15803d;
+}
+
+.locations__status[data-status='busy'] {
+  background: rgba(251, 191, 36, 0.15);
+  color: #b45309;
+}
+
+.locations__status[data-status='closed'] {
+  background: rgba(239, 68, 68, 0.15);
+  color: #b91c1c;
+}
+
+.locations__hours {
+  color: #475569;
+  font-weight: 500;
+}
+
+.locations__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.locations__tags li {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4338ca;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.locations__store-card footer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.locations__store-card footer a {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.locations__loading {
+  color: #475569;
+  font-weight: 500;
+}
+
+.locations__empty {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .locations {
+    padding-top: 80px;
+  }
 }
 </style>

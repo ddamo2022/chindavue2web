@@ -1435,6 +1435,7 @@
                         "home": "首页",
                         "experiences": "体验",
                         "membership": "会员",
+                        "shop": "菜单",
                         "rewards": "积分礼遇",
                         "dashboard": "运营仪表盘",
                         "locations": "门店",
@@ -1470,6 +1471,7 @@
                                 "overview": "概览",
                                 "experiences": "体验",
                                 "membership": "会员等级",
+                                "shop": "桌面菜单",
                                 "rewards": "积分礼遇",
                                 "locations": "旗舰门店",
                                 "dashboard": "运营仪表盘",
@@ -1581,9 +1583,44 @@
                                 "lockedLabel": "已锁定",
                                 "lockedInsufficient": "再累积 {shortfall} 积分即可兑换。"
                         },
+                        "shop": {
+                                "breadcrumbHome": "首页",
+                                "title": "线上点餐菜单",
+                                "description": "在桌面端浏览与 Uni-app 实时同步的菜品目录与图文介绍，保持与移动端一致的点餐体验。",
+                                "storeLabel": "当前门店",
+                                "addressLabel": "地址",
+                                "storePicker": "切换门店",
+                                "serviceLabel": "服务方式",
+                                "service": {
+                                        "pickup": "到店自取",
+                                        "delivery": "外送配送"
+                                },
+                                "status": {
+                                        "open": "营业中",
+                                        "busy": "繁忙",
+                                        "closed": "休息中",
+                                        "unknown": "状态未知"
+                                },
+                                "openH5": "打开移动端点餐",
+                                "menuHeading": "菜单分类",
+                                "loading": "正在加载菜品…",
+                                "resultCount": "共 {count} 道菜",
+                                "orderButton": "前往点餐",
+                                "emptyMenu": "该分类暂未上架菜品。",
+                                "emptyCategories": "当前服务方式下暂无分类。",
+                                "pointsLabel": "{count} 积分",
+                                "unavailable": "暂不可用"
+                        },
                         "locations": {
                                 "title": "门店网络",
-                                "description": "探索区域内的旗舰品鉴室、私密酒吧与合作快闪。"
+                                "description": "探索区域内的旗舰品鉴室、私密酒吧与合作快闪。",
+                                "liveHeading": "实时门店列表",
+                                "liveDescription": "直接读取 Uni-app 接口的门店数据，快速跳转桌面菜单。",
+                                "viewMenu": "查看菜单",
+                                "selectStore": "设为默认门店",
+                                "selectedStore": "当前默认门店",
+                                "loadingStores": "正在同步门店列表…",
+                                "emptyStores": "当 CMS 配置门店后，这里会自动展示。"
                         },
                         "support": {
                                 "title": "支持与赋能",

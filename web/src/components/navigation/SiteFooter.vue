@@ -184,6 +184,7 @@ const defaultSections = computed(() => [
       { key: 'overview', to: '/', label: t('web.footer.links.overview') },
       { key: 'experiences', to: '/experiences', label: t('web.footer.links.experiences') },
       { key: 'membership', to: '/membership', label: t('web.footer.links.membership') },
+      { key: 'shop', to: '/shop', label: t('web.footer.links.shop') },
       { key: 'rewards', to: '/rewards', label: t('web.footer.links.rewards') },
       { key: 'locations', to: '/locations', label: t('web.footer.links.locations') },
       { key: 'dashboard', to: '/dashboard', label: t('web.footer.links.dashboard') }

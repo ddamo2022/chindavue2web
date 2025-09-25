@@ -1412,6 +1412,7 @@
                         "home": "Home",
                         "experiences": "Experiences",
                         "membership": "Membership",
+                        "shop": "Menu",
                         "rewards": "Rewards",
                         "dashboard": "Dashboard",
                         "locations": "Locations",
@@ -1447,6 +1448,7 @@
                                 "overview": "Overview",
                                 "experiences": "Experiences",
                                 "membership": "Membership tiers",
+                                "shop": "Desktop menu",
                                 "rewards": "Rewards catalog",
                                 "locations": "Flagship locations",
                                 "dashboard": "Operations dashboard",
@@ -1558,9 +1560,44 @@
                                 "lockedLabel": "Locked",
                                 "lockedInsufficient": "Add {shortfall} more points to unlock this reward."
                         },
+                        "shop": {
+                                "breadcrumbHome": "Home",
+                                "title": "Order from the Chinda menu",
+                                "description": "Explore the live Uni-app catalogue with full-size imagery, category descriptions, and pricing synchronized with the mobile experience.",
+                                "storeLabel": "Current store",
+                                "addressLabel": "Address",
+                                "storePicker": "Switch store",
+                                "serviceLabel": "Service type",
+                                "service": {
+                                        "pickup": "Pick up",
+                                        "delivery": "Delivery"
+                                },
+                                "status": {
+                                        "open": "Open",
+                                        "busy": "Busy",
+                                        "closed": "Closed",
+                                        "unknown": "Status unavailable"
+                                },
+                                "openH5": "View mobile ordering",
+                                "menuHeading": "Menu categories",
+                                "loading": "Loading items…",
+                                "resultCount": "{count} items",
+                                "orderButton": "Order now",
+                                "emptyMenu": "Menu items will appear once they are published for this category.",
+                                "emptyCategories": "No categories have been published for this service type yet.",
+                                "pointsLabel": "{count} pts",
+                                "unavailable": "Unavailable"
+                        },
                         "locations": {
                                 "title": "Locations",
-                                "description": "Discover flagship tasting rooms, speakeasies, and partner pop-ups around the region."
+                                "description": "Discover flagship tasting rooms, speakeasies, and partner pop-ups around the region.",
+                                "liveHeading": "Live store network",
+                                "liveDescription": "Browse the real-time store list pulled from the Uni-app API and jump into the desktop menu.",
+                                "viewMenu": "View menu",
+                                "selectStore": "Set as default",
+                                "selectedStore": "Default store",
+                                "loadingStores": "Syncing store list…",
+                                "emptyStores": "Stores will appear once they are published in the CMS."
                         },
                         "support": {
                                 "title": "Support & enablement",

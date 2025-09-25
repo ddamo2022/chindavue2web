@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, ref, watch } from 'vue'
 import api from '@common/api.js'
+import siteinfoModule from '@common/siteinfo.js'
+
+const siteinfo = siteinfoModule?.default ?? siteinfoModule ?? {}
 
 const parseMaybeObject = (payload, contextLabel) => {
   if (!payload) return null
@@ -50,6 +53,40 @@ const normalizeWebConfig = (siteInfo) => {
 }
 
 const ANNOUNCEMENT_STORAGE_KEY = 'chinda-web-announcement-dismissed'
+
+const isAbsoluteUrl = (value) => typeof value === 'string' && /^https?:/i.test(value)
+
+const resolveApiBase = () => {
+  if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) {
+    return import.meta.env.VITE_API_BASE
+  }
+  if (typeof window !== 'undefined' && window.__CHINDA_API_BASE__) {
+    return window.__CHINDA_API_BASE__
+  }
+  if (typeof siteinfo.siteroot === 'string' && siteinfo.siteroot) {
+    return siteinfo.siteroot
+  }
+  if (typeof window !== 'undefined') {
+    return window.location.origin
+  }
+  return ''
+}
+
+const resolveConfigUrl = () => {
+  const endpoint = api.config
+  if (isAbsoluteUrl(endpoint)) {
+    return endpoint
+  }
+  const base = resolveApiBase()
+  if (base) {
+    try {
+      return new URL(endpoint, base).toString()
+    } catch (error) {
+      console.warn('Unable to construct config URL with base', base, error)
+    }
+  }
+  return endpoint
+}
 
 const readDismissedAnnouncements = () => {
   if (typeof window === 'undefined') return []
@@ -209,7 +246,12 @@ export const useSiteStore = defineStore('site', () => {
     if (loading.value) return
     loading.value = true
     try {
-      const response = await fetch(api.config, { credentials: 'include' })
+      const response = await fetch(resolveConfigUrl(), {
+        credentials: 'include',
+        headers: {
+          Accept: 'application/json'
+        }
+      })
       if (!response.ok) {
         throw new Error(`Config request failed with status ${response.status}`)
       }
