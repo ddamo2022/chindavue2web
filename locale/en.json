@@ -1650,6 +1650,23 @@
                                         "fallbackAction": "Activity",
                                         "loadMore": "Load more"
                                 },
+                                "redemptions": {
+                                        "title": "Redemption history",
+                                        "description": "Track recent catalog redemptions synced from the loyalty service.",
+                                        "headers": {
+                                                "reward": "Reward",
+                                                "spend": "Spend",
+                                                "status": "Status",
+                                                "date": "Date"
+                                        },
+                                        "empty": "No redemption orders yet.",
+                                        "loading": "Loading redemptions…",
+                                        "fallbackReward": "Reward",
+                                        "pointsShort": "pts",
+                                        "pendingSpend": "Pending",
+                                        "statusPending": "Processing",
+                                        "loadMore": "Load more"
+                                },
                                 "roadmap": {
                                         "title": "Experience roadmap",
                                         "description": "Align cross-functional teams with upcoming releases.",

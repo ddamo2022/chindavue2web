@@ -56,6 +56,40 @@
         </footer>
       </article>
       <article class="panel">
+        <h2>{{ t('web.pages.dashboard.redemptions.title') }}</h2>
+        <p>{{ t('web.pages.dashboard.redemptions.description') }}</p>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t('web.pages.dashboard.redemptions.headers.reward') }}</th>
+              <th>{{ t('web.pages.dashboard.redemptions.headers.spend') }}</th>
+              <th>{{ t('web.pages.dashboard.redemptions.headers.status') }}</th>
+              <th>{{ t('web.pages.dashboard.redemptions.headers.date') }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="entry in redemptionsPreview" :key="entry.id">
+              <td>{{ entry.reward }}</td>
+              <td class="redemption-spend">{{ entry.spend }}</td>
+              <td class="redemption-status">{{ entry.status }}</td>
+              <td>{{ entry.date }}</td>
+            </tr>
+            <tr v-if="!redemptionsPreview.length && !redemptionsLoading">
+              <td colspan="4" class="dashboard__empty">{{ t('web.pages.dashboard.redemptions.empty') }}</td>
+            </tr>
+            <tr v-if="redemptionsLoading">
+              <td colspan="4" class="dashboard__empty">{{ t('web.pages.dashboard.redemptions.loading') }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <footer v-if="hasMoreRedemptions" class="dashboard__ledger-footer">
+          <button class="button button--ghost" @click="loadMoreRedemptions" :disabled="redemptionsLoading">
+            <span v-if="!redemptionsLoading">{{ t('web.pages.dashboard.redemptions.loadMore') }}</span>
+            <span v-else>{{ t('web.pages.dashboard.redemptions.loading') }}</span>
+          </button>
+        </footer>
+      </article>
+      <article class="panel">
         <h2>{{ t('web.pages.dashboard.roadmap.title') }}</h2>
         <p>{{ t('web.pages.dashboard.roadmap.description') }}</p>
         <ul class="roadmap">
@@ -83,7 +117,7 @@ import { usePageMeta } from '@/composables/usePageMeta'
 
 const member = useMemberStore()
 const auth = useAuthStore()
-const { profile, ledger, ledgerState, pointsBalance, storedValueBalance } = storeToRefs(member)
+const { profile, ledger, ledgerState, redemptions, redemptionState, pointsBalance, storedValueBalance } = storeToRefs(member)
 const { isAuthenticated } = storeToRefs(auth)
 const { t, tm } = useI18n()
 
@@ -105,6 +139,22 @@ const formatCurrency = (value) => {
 const formatPoints = (value) => {
   const number = Number(value || 0)
   return `${number > 0 ? '+' : ''}${number}`
+}
+
+const formatRedemptionSpend = (entry) => {
+  const goods = entry.goods || {}
+  const points = Number(
+    goods.integral ?? entry.integral ?? entry.integralnum ?? entry.integralNum ?? entry.score ?? entry.points ?? 0
+  )
+  const cash = Number(goods.money ?? entry.money ?? entry.amount ?? entry.price ?? 0)
+  const segments = []
+  if (Number.isFinite(points) && points > 0) {
+    segments.push(`${points.toLocaleString()} ${t('web.pages.dashboard.redemptions.pointsShort')}`)
+  }
+  if (Number.isFinite(cash) && cash > 0) {
+    segments.push(formatCurrency(cash))
+  }
+  return segments.length ? segments.join(' + ') : t('web.pages.dashboard.redemptions.pendingSpend')
 }
 
 const metrics = computed(() => {
@@ -141,6 +191,46 @@ const ledgerPreview = computed(() => {
   }))
 })
 
+const redemptionStatusFallback = computed(() => t('web.pages.dashboard.redemptions.statusPending'))
+
+const redemptionsPreview = computed(() => {
+  if (!redemptions.value) return []
+  return redemptions.value.slice(0, 6).map((entry, index) => {
+    const goods = entry.goods || {}
+    const id = entry.orderSn || entry.id || `${goods.id || 'reward'}-${index}`
+    const reward =
+      goods.name ||
+      entry.goodsName ||
+      entry.title ||
+      entry.name ||
+      t('web.pages.dashboard.redemptions.fallbackReward')
+    const status =
+      entry.stateForamt ||
+      entry.stateFormat ||
+      entry.stateLabel ||
+      entry.statusLabel ||
+      entry.statusName ||
+      redemptionStatusFallback.value
+    const date =
+      entry.createTime ||
+      entry.create_time ||
+      entry.createdAt ||
+      entry.created_at ||
+      entry.payTime ||
+      entry.pay_time ||
+      entry.updateTime ||
+      entry.update_time ||
+      ''
+    return {
+      id,
+      reward,
+      spend: formatRedemptionSpend(entry),
+      status,
+      date
+    }
+  })
+})
+
 const roadmap = computed(() => {
   const items = tm('web.pages.dashboard.roadmap.items')
   const statusLabels = tm('web.pages.dashboard.roadmap.statusLabels') || {}
@@ -156,18 +246,26 @@ const roadmap = computed(() => {
 const ledgerLoading = computed(() => ledgerState.value.loading)
 const hasMoreLedger = computed(() => ledgerState.value.hasMore)
 const loading = computed(() => ledgerState.value.loading)
+const redemptionsLoading = computed(() => redemptionState.value.loading)
+const hasMoreRedemptions = computed(() => redemptionState.value.hasMore)
 
 const refresh = async () => {
   if (!isAuthenticated.value) return
   await Promise.all([
     member.loadProfile({ silent: true }),
-    member.loadLedger({ reset: true })
+    member.loadLedger({ reset: true }),
+    member.loadRedemptions({ reset: true })
   ])
 }
 
 const loadMoreLedger = async () => {
   if (!isAuthenticated.value) return
   await member.loadLedger()
+}
+
+const loadMoreRedemptions = async () => {
+  if (!isAuthenticated.value) return
+  await member.loadRedemptions()
 }
 
 onMounted(() => {
@@ -257,6 +355,17 @@ onMounted(() => {
 
 .ledger-points--positive {
   color: #16a34a;
+}
+
+.redemption-spend {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.redemption-status {
+  font-weight: 600;
+  color: #4338ca;
+  text-transform: capitalize;
 }
 
 .roadmap {

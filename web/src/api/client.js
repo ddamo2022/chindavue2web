@@ -48,6 +48,10 @@ const memberApi = {
     const response = await http.get(api.hydj)
     return unwrap(response, 'Unable to load membership tiers')
   },
+  async redemptions(params) {
+    const response = await http.get(api.jfdd, { params })
+    return unwrap(response, 'Unable to load redemption history')
+  },
   async redeem(payload) {
     const response = await http.post(api.pMallOut, payload)
     return unwrap(response, 'Unable to complete redemption')

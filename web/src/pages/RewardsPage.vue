@@ -224,6 +224,7 @@ const redeemReward = async (reward) => {
       tone: 'success'
     })
     member.loadProfile({ silent: true }).catch(() => {})
+    member.loadRedemptions({ reset: true }).catch(() => {})
   } catch (error) {
     site.notify({
       title: t('web.notifications.redeemFailed.title'),
@@ -239,6 +240,9 @@ onMounted(async () => {
   if (isAuthenticated.value && !profile.value) {
     member.loadProfile({ silent: true }).catch(() => {})
   }
+  if (isAuthenticated.value) {
+    member.loadRedemptions({ reset: true }).catch(() => {})
+  }
   await Promise.all([loadCategories(), loadRewards()])
 })
 
@@ -247,6 +251,7 @@ watch(
   (value) => {
     if (value) {
       member.loadProfile({ silent: true }).catch(() => {})
+      member.loadRedemptions({ reset: true }).catch(() => {})
     } else {
       redeeming.value = ''
     }

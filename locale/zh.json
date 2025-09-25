@@ -1673,6 +1673,23 @@
                                         "fallbackAction": "会员动态",
                                         "loadMore": "加载更多"
                                 },
+                                "redemptions": {
+                                        "title": "兑换记录",
+                                        "description": "同步忠诚度服务中的最新积分商城兑换订单。",
+                                        "headers": {
+                                                "reward": "奖励",
+                                                "spend": "消耗",
+                                                "status": "状态",
+                                                "date": "日期"
+                                        },
+                                        "empty": "暂时没有兑换记录。",
+                                        "loading": "兑换记录加载中…",
+                                        "fallbackReward": "奖励",
+                                        "pointsShort": "积分",
+                                        "pendingSpend": "待确认",
+                                        "statusPending": "处理中",
+                                        "loadMore": "加载更多"
+                                },
                                 "roadmap": {
                                         "title": "体验路线图",
                                         "description": "与跨职能团队对齐即将上线的能力。",
