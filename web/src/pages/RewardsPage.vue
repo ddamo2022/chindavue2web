@@ -20,6 +20,9 @@
           </RouterLink>
         </template>
       </div>
+      <p v-if="selectedStoreName" class="rewards-page__store">
+        {{ t('web.pages.rewards.storeContext', { name: selectedStoreName }) }}
+      </p>
       <div class="rewards-page__filters">
         <label>
           <span>{{ t('web.pages.rewards.filters.category') }}</span>
@@ -75,15 +78,24 @@ import { rewardsApi, memberApi } from '@/api/client'
 import { useSiteStore } from '@/stores/site'
 import { useAuthStore } from '@/stores/auth'
 import { useMemberStore } from '@/stores/member'
+import { useCatalogStore } from '@/stores/catalog'
 import { useI18n } from 'vue-i18n'
 import { usePageMeta } from '@/composables/usePageMeta'
 
 const site = useSiteStore()
 const auth = useAuthStore()
 const member = useMemberStore()
+const catalog = useCatalogStore()
 const router = useRouter()
 const { isAuthenticated } = storeToRefs(auth)
 const { profile, pointsBalance, profileLoading } = storeToRefs(member)
+const {
+  selectedStore: activeStore,
+  selectedStoreId: activeStoreId,
+  diningType: activeDiningType,
+  stores: catalogStores,
+  storesLoading: catalogStoresLoading
+} = storeToRefs(catalog)
 const rewards = ref([])
 const categories = ref([])
 const placeholder = '/reward-placeholder.svg'
@@ -130,6 +142,7 @@ const loadRewards = async () => {
 
 const summaryLoading = computed(() => isAuthenticated.value && profileLoading.value)
 const formattedBalance = computed(() => pointsBalance.value.toLocaleString())
+const selectedStoreName = computed(() => activeStore.value?.name || '')
 
 const formatNumber = (value) => {
   const number = Number(value)
@@ -217,18 +230,32 @@ const redeemReward = async (reward) => {
   }
   try {
     redeeming.value = reward.id
-    await memberApi.redeem({ reward_id: rewardId })
+    const payload = { goodsId: rewardId, num: 1 }
+    const storeId = activeStoreId.value ? String(activeStoreId.value) : ''
+    if (storeId) {
+      payload.storeId = storeId
+    }
+    const normalizedDining = Number(activeDiningType.value)
+    if (Number.isFinite(normalizedDining)) {
+      payload.diningType = normalizedDining
+    }
+
+    const data = await memberApi.redeem(payload)
+    const paymentDue = Number(data?.pay?.money) > 0
+    const notificationKey = paymentDue ? 'redeemPendingPayment' : 'redeemSuccess'
     site.notify({
-      title: t('web.notifications.redeemSuccess.title'),
-      message: t('web.notifications.redeemSuccess.message', { name: reward.title }),
-      tone: 'success'
+      title: t(`web.notifications.${notificationKey}.title`),
+      message: t(`web.notifications.${notificationKey}.message`, { name: reward.title }),
+      tone: paymentDue ? 'warning' : 'success'
     })
     member.loadProfile({ silent: true }).catch(() => {})
     member.loadRedemptions({ reset: true }).catch(() => {})
+    member.loadLedger({ reset: true }).catch(() => {})
+    await loadRewards()
   } catch (error) {
     site.notify({
       title: t('web.notifications.redeemFailed.title'),
-      message: t('web.notifications.redeemFailed.message'),
+      message: error?.message || t('web.notifications.redeemFailed.message'),
       tone: 'error'
     })
   } finally {
@@ -237,6 +264,9 @@ const redeemReward = async (reward) => {
 }
 
 onMounted(async () => {
+  if (!catalogStores.value.length && !catalogStoresLoading.value) {
+    catalog.loadStores({ refresh: true }).catch(() => {})
+  }
   if (isAuthenticated.value && !profile.value) {
     member.loadProfile({ silent: true }).catch(() => {})
   }
@@ -292,6 +322,11 @@ watch(
 
 .rewards-page__summary p {
   margin: 0;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rewards-page__store {
   font-weight: 600;
   color: #0f172a;
 }

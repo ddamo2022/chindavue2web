@@ -53,7 +53,24 @@ const memberApi = {
     return unwrap(response, 'Unable to load redemption history')
   },
   async redeem(payload) {
-    const response = await http.post(api.pMallOut, payload)
+    let body
+    if (payload && typeof payload === 'object' && !Array.isArray(payload)) {
+      body = { num: 1, ...payload }
+    } else {
+      body = { goodsId: payload }
+    }
+
+    const goodsId = body?.goodsId || body?.goods_id
+    if (!goodsId) {
+      throw new Error('A goodsId is required to redeem rewards')
+    }
+
+    body.goodsId = goodsId
+    if (!body.num) {
+      body.num = 1
+    }
+
+    const response = await http.post(api.pMallOut, body)
     return unwrap(response, 'Unable to complete redemption')
   }
 }

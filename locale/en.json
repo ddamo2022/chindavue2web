@@ -1567,6 +1567,7 @@
                                 "viewDashboard": "View dashboard",
                                 "signInPrompt": "Sign in to redeem rewards across devices.",
                                 "signInButton": "Sign in",
+                                "storeContext": "Redeeming for {name}",
                                 "lockedLabel": "Locked",
                                 "lockedInsufficient": "Add {shortfall} more points to unlock this reward."
                         },
@@ -1876,7 +1877,11 @@
                                 "title": "Not enough points",
                                 "message": "This reward requires {needed} points. Keep earning and try again soon."
                         },
-"redeemSuccess": {
+                        "redeemPendingPayment": {
+                                "title": "Complete your redemption",
+                                "message": "{name} requires a quick checkout. Follow the payment prompt to finish."
+                        },
+                        "redeemSuccess": {
                                 "title": "Redemption requested",
                                 "message": "{name} will be ready for you shortly."
                         },

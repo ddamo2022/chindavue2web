@@ -181,7 +181,12 @@ export const useCatalogStore = defineStore('catalog', () => {
   const storesError = ref('')
   const pagination = reactive({ page: 1, size: 12, hasMore: true })
 
-  const selectedStoreId = ref('')
+  const readPersistedStoreId = () => {
+    if (typeof window === 'undefined') return ''
+    return localStorage.getItem('shopId') || sessionStorage.getItem('shopId') || ''
+  }
+
+  const selectedStoreId = ref(readPersistedStoreId())
   const selectedStore = ref(null)
 
   const categories = ref([])
@@ -261,6 +266,7 @@ export const useCatalogStore = defineStore('catalog', () => {
       pagination.hasMore = true
       stores.value = []
     }
+    const wasEmpty = stores.value.length === 0
     if (!pagination.hasMore) return
     storesLoading.value = true
     storesError.value = ''
@@ -283,8 +289,17 @@ export const useCatalogStore = defineStore('catalog', () => {
       if (pagination.hasMore) {
         pagination.page += 1
       }
-      if (!selectedStoreId.value && list.length) {
-        await selectStore(list[0].id, { skipDetail: true })
+      const shouldAutoSelect = refresh || wasEmpty || !selectedStoreId.value
+      if (stores.value.length && shouldAutoSelect) {
+        const persistedId = selectedStoreId.value || readPersistedStoreId()
+        if (persistedId) {
+          const match = stores.value.find((store) => String(store.id) === String(persistedId))
+          if (match) {
+            await selectStore(match.id, { persist: false })
+            return
+          }
+        }
+        await selectStore(stores.value[0].id)
       }
     } catch (error) {
       storesError.value = error?.message || 'Unable to load stores'
@@ -323,11 +338,13 @@ export const useCatalogStore = defineStore('catalog', () => {
     }
   }
 
-  const selectStore = async (storeId, { skipDetail = false } = {}) => {
+  const selectStore = async (storeId, { skipDetail = false, persist = true } = {}) => {
     if (!storeId) return
     const normalizedId = String(storeId)
     selectedStoreId.value = normalizedId
-    persistSelectedStore(normalizedId)
+    if (persist) {
+      persistSelectedStore(normalizedId)
+    }
     clearSearch()
     if (!skipDetail) {
       await loadStoreDetail(normalizedId)
@@ -451,13 +468,6 @@ export const useCatalogStore = defineStore('catalog', () => {
     }
     return services
   })
-
-  if (typeof window !== 'undefined') {
-    const persistedId = localStorage.getItem('shopId') || sessionStorage.getItem('shopId')
-    if (persistedId) {
-      selectedStoreId.value = persistedId
-    }
-  }
 
   watch(
     () => site.config.siteInfo,

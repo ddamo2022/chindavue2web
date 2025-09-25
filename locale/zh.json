@@ -1590,6 +1590,7 @@
                                 "viewDashboard": "查看仪表盘",
                                 "signInPrompt": "登录后即可在各终端兑换礼遇。",
                                 "signInButton": "立即登录",
+                                "storeContext": "兑换门店：{name}",
                                 "lockedLabel": "已锁定",
                                 "lockedInsufficient": "再累积 {shortfall} 积分即可兑换。"
                         },
@@ -1895,7 +1896,11 @@
                                 "title": "积分不足",
                                 "message": "本次兑换需要 {needed} 积分，请先累积更多积分。"
                         },
-"redeemSuccess": {
+                        "redeemPendingPayment": {
+                                "title": "完成兑换",
+                                "message": "“{name}” 需要完成付款，请按照提示完成支付。"
+                        },
+                        "redeemSuccess": {
                                 "title": "兑换请求已提交",
                                 "message": "{name} 即将为您准备完成。"
                         },
